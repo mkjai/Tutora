@@ -1,13 +1,215 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+ * {
+     margin: 0;
+     box-sizing: border-box;
+     font-size: 62.5%;
+
+ }
+
+ @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+ body {
+     font-family: 'Nunito';
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+ }
+
+/* -------- Start of navi --------- */
+
+.navi-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    max-width: 76rem;
+    margin: 0 auto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.navi-page input {
+    width: 38rem;
+    background: #FFFFFF;
+    box-shadow: 0 0.188rem 1.550rem rgb(156, 156, 156, 0.3);
+    border-radius: 5px;
+    height: 40px;
+    border: none;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-left: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.navi-page input:focus {
+    outline: none;
+}
+
+.navi-page input::placeholder {
+    color: #C0C0C0;
+}
+
+.navi-page-tutor-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.navi-page-tutor-label label{
+   font-size: 2.5rem;
+   font-weight: 700;
+   color: #000;
+}
+
+.navi-page-tutor-label button {
+    background: transparent;
+    border: none;
+    justify-content: flex-end;
+}
+
+.tutor-grid {
+    max-width: 76rem;
+    gap: 2rem;
+    display: grid;
+    margin: 1rem auto;
+
+}
+
+#select-label {
+    font-weight: 700;
+    font-size: 1.8rem;
+    padding-bottom: 0.5rem;
+    
+}
+
+.navi-page select {
+    width: 100%;
+    height: 40px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background-color: #f2f2f2;
+    color: #00867d;
+    border-radius: 5px;
+    border: none;
+    padding-left: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.navi-page select:focus {
+    outline: none;   
+}
+
+.navi-page select > option {
+    width: 100%;
+    height: 40px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: #f2f2f2;
+    color: #00867d;
+    border-radius: 5px;
+    border: none;
+    padding-left: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+/* for non mobile */
+@media screen and (min-width: 768px) {
+    .tutor-grid, .profile-block-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* -------- End of navi --------- */
+
+/* -------- Start of profile --------- */
+
+.profile-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    max-width: 76rem;
+    margin: 0 auto;
+}
+
+.name-pic-bio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-edit button {
+    display: flex;
+    height: auto;
+    width: 100%;
+    background: #00867D;
+    color: #fff;
+    cursor: pointer;
+    align-items: center;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1rem;
+    font-size: 1.5rem;
+}
+
+.profile-page label {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.profile-page p {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.profile-page-ratings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 1rem;
+    
+    gap: 4rem;
+}
+
+.profile-page-ratings p {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #00867D;
+}
+
+.profile-page-ratings h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #C0C0C0;
+}
+
+.profile-blocks-grid {
+    max-width: 76rem;
+    gap: 2rem;
+    display: grid;
+    margin: 1rem auto;
+}
+
+#profile-blocks {
+    width: 25rem;
+    height: 25rem;
+    background: #00867D;
+    border-radius:5px;
+    padding: 1rem;
+
+    color: #fff;
 }

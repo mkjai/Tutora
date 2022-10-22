@@ -1,0 +1,106 @@
+.tutor-container {
+    width: 38rem;
+    height: 20rem;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    background: #fff;
+    margin: 0 auto;
+    box-shadow: 0 0.188rem 1.550rem rgb(156, 156, 156, 0.3);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.container-top {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 9rem;
+}
+
+.profile-name {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.profile-name img {
+    width: 7rem;
+}
+
+.profile-name p {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.container-top button {
+    display: flex;
+    height: 35px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background: #00867D;
+    color: #fff;
+    cursor: pointer;
+    align-items: center;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1rem;
+    font-size: 1.5rem;
+}
+
+.tutor-container-rr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+
+    gap: 5rem;
+}
+
+.tutor-container-rating p {
+    font-size: 2rem;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    
+    gap: 1.5rem;
+
+    color: #00867D;
+}
+
+.tutor-container-reviews p {
+    font-size: 2rem;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+
+    gap: 1.5rem;
+
+    color: #C0C0C0;
+}
+
+.tutor-container-subject label {
+    color: #000;
+    font-size: 2rem;
+    font-weight: 700;
+    padding-left: 1rem;
+}
+
+.tutor-container-subject p{
+    font-size: 1.7rem;
+    font-weight: 700;
+    padding-left: 1rem;
+    padding-right: 0.2rem;
+
+    color: #c0c0c0;
+}
