@@ -71,7 +71,6 @@
     gap: 2rem;
     display: grid;
     margin: 1rem auto;
-
 }
 
 #select-label {
@@ -113,7 +112,7 @@
 
 /* for non mobile */
 @media screen and (min-width: 768px) {
-    .tutor-grid, .profile-block-grid {
+    .tutor-grid, .profile-blocks-grid, .requests-grid, .schedule-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
@@ -168,6 +167,9 @@
 .profile-page label {
     font-size: 3rem;
     font-weight: 700;
+    display: flex;
+    justify-content: center;
+
 }
 
 .profile-page p {
@@ -181,6 +183,7 @@
     justify-content: center;
     text-align: center;
     padding-top: 1rem;
+    padding-bottom: 1rem;
     
     gap: 4rem;
 }
@@ -201,15 +204,215 @@
     max-width: 76rem;
     gap: 2rem;
     display: grid;
-    margin: 1rem auto;
+    margin: 1rem auto
 }
 
 #profile-blocks {
-    width: 25rem;
-    height: 25rem;
+    width: 35rem;
+    height: 30rem;
     background: #00867D;
     border-radius:5px;
     padding: 1rem;
 
     color: #fff;
+}
+
+#profile-blocks h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* -------- end of profile -----*/
+/* -------- start of request ------- */
+.request-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    max-width: 76rem;
+    margin: 0 auto;
+}
+
+ .become-tutor {
+     width: 38rem;
+     display: flex;
+     align-items: start;
+     flex-direction: column;
+     background: #fff;
+     margin: 0 auto;   
+    box-shadow: 0 0.188rem 1.550rem rgb(156, 156, 156, 0.3);
+     border-radius: 1rem;
+     padding: 1rem;
+     margin-top: 1.5rem;
+     margin-bottom: 1.5rem;
+ }
+
+ .become-tutor-profile-name {
+     display: flex;
+     align-items: center;
+     flex-direction: row;
+     gap: 1rem;
+ }
+
+ .become-tutor-profile-name img {
+    width: 7rem;
+ }
+
+ .become-tutor-profile-name p {
+    font-size: 2rem;
+    font-weight: 700;
+ }
+
+ .become-tutor-subject label {
+     color: #000;
+     font-size: 2rem;
+     font-weight: 700;
+     padding-left: 1rem;
+ }
+
+ .become-tutor-subject p {
+     font-size: 1.7rem;
+     font-weight: 700;
+     padding-left: 1rem;
+     padding-right: 0.2rem;
+
+     color: #c0c0c0;
+ }
+
+.become-tutor-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+}
+
+ .become-tutor-buttons button {
+     display: flex;
+     height: 35px;
+     padding-left: 2rem;
+     padding-right: 2rem;
+     background: #00867D;
+     color: #fff;
+     cursor: pointer;
+     align-items: center;
+     outline: none;
+     border-radius: 5px;
+     border: none;
+
+     font-family: 'Nunito';
+     font-style: normal;
+     font-weight: 700;
+     line-height: 1rem;
+     font-size: 1.5rem;
+ }
+
+ .requests, .schedule-page-lessons {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    margin-bottom: 1.5rem;
+ }
+
+ .requests label, .schedule-page-lessons label {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+ }
+
+.requests-grid {
+    max-width: 76rem;
+    gap: 2rem;
+    display: grid;
+    margin: 1rem auto;
+}
+
+/* --- schedule page --- */
+
+.schedule-page {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+
+    max-width: 76rem;
+    margin: 0 auto;
+}
+
+.schedule-page-lessons {
+    margin-top: 1rem;
+}
+
+.schedule-grid {
+    max-width: 76rem;
+    gap: 2rem;
+    display: grid;
+    margin: 1rem auto
+}
+
+/* --- setting page --- */
+.setting-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    max-width: 76rem;
+    margin: 0 auto;
+}
+
+.setting-page-inner {
+    margin: 0;
+    
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
+    max-width: 76rem;
+}
+
+.setting-page label {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 3rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ .setting-buttons {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     width: 100%;
+     gap: 2rem;
+ }
+
+.setting-buttons button {
+    display: flex;
+    height: 40px;
+    width: 60%;
+    background: #00867D;
+    color: #fff;
+    cursor: pointer;
+    align-items: center;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+    
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1rem;
+    font-size: 1.5rem;
 }

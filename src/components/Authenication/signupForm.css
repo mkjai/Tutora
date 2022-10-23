@@ -59,39 +59,6 @@
      color: #C0C0C0;
  }
 
-/* For school search */
-
-.sign-up .school-search {
-    background: #F2F2F2;
-    border: 1px solid #D3D3D3;
-    border-radius: 5px;
-}
-
-.school-selection {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 2rem;
-}
-
-.school-selection input {
-    background: #F2F2F2;
-    border: 1px solid #D3D3D3;
-    border-radius: 5px;
-
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1rem;
-
-    height: 40px;
-    width: 100%;
-    padding: 0.5rem;
-
-    color: #999999;
-    font-size: 1.5rem;
-}
-
  .sign-up input:focus {
      outline: none;
      border: 0.2rem solid #00867D;
@@ -143,51 +110,6 @@
      font-size: 1.5rem;
  }
 
- .dropdown {
-    background: #F2F2F2;
-    border-radius: 5px;
-        
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1rem;
-        
-    color: #999999;
-    font-size: 1.5rem;
- }
-
- .dropdown:empty {
-     border: none;
- }
-
- .dropdown-row {
-    cursor: pointer;
-    text-align: start;
-    margin: 2px 0;
-    height: 40px;
-    width: 100%;
-    padding: 1rem;
-    font-size: 1.5rem;
- }
-
- .school-address {
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1rem;
-
-    margin-top: 0.5rem;
-    
-    color: #00867D;
-    font-size: 1rem;
- }
-
- /* For role button */
-
- .roleButton {
-    width: 100%;
- }
-
  /* For SignupCont.js */
 
   .sign-up-cont-container {
@@ -208,7 +130,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 5rem 5rem;
+    padding: 5rem;
+    padding-bottom: 5rem;
     flex-direction: column;
   }
 
@@ -222,7 +145,7 @@
 
     width: 100%;
     margin: 0.5rem;
-    margin-bottom: 0rem;
+    margin-bottom: 2rem;
     margin-top: 0rem;
   }
 
@@ -239,9 +162,8 @@
   .add-profile-container button {
     display: flex;
     height: 40px;
-    width: 60%;
+    width: 100%;
     padding: 0.5rem;
-    margin-bottom: 0.5rem;
     background: #00867D;
     color: #fff;
     cursor: pointer;
@@ -261,12 +183,11 @@
 
   .sign-up-bio-container {
     flex-direction: column;
-    width: 60%;
+    width: 100%;
     text-align: center;
     align-items: left;
     justify-content: left;
     display: flex;
-    margin-top: 3rem;
     margin-bottom: 3rem;
   }
 
@@ -297,7 +218,7 @@
     width: 100%;
     padding: 1rem;
     
-    color: #999999;
+    color: #999;
     font-size: 1.5rem;
 
     text-align: left;
@@ -312,7 +233,7 @@
  .sign-up-cont-inner-create-btn {
      display: flex;
      height: 40px;
-     width: 60%;
+     width: 100%;
      padding: 0.5rem;
      margin-bottom: 0.5rem;
      background: #00867D;
@@ -335,9 +256,8 @@
  .sign-up-cont-inner-back-btn {
       display: flex;
       height: 40px;
-      width: 60%;
+      width: 100%;
       padding: 0.5rem;
-      margin-bottom: 0.5rem;
       background: #F2F2F2;
       color: #00867D;
       cursor: pointer;
@@ -363,3 +283,121 @@
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
+
+.cont-intput-container {
+  display: flex;
+}
+
+ .school-address {
+   font-family: 'Nunito';
+   font-style: normal;
+   font-weight: 500;
+   line-height: 1rem;
+
+   margin-top: 0.5rem;
+
+   color: #00867D;
+   font-size: 1rem;
+ }
+
+.cont-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cont-input-container input {
+      display: flex;
+      height: 40px;
+      width: 100%;
+      padding: 0.5rem;
+      background: #F2F2F2;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      border: none;
+      
+      margin-bottom: 2rem;
+    border: 1px solid #D3D3D3;
+
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1rem;
+      font-size: 1.5rem;
+      color: #999999
+}
+
+.cont-input-container input::placeholder {
+   color: #C0C0C0;
+ }
+
+.cont-input-container input:focus {
+   outline: none;
+   border: 0.2rem solid #00867D;
+ }
+ 
+.school-search {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.school-search input {
+  background: #F2F2F2;
+  border: 1px solid #D3D3D3;
+  border-radius: 5px;
+
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1rem;
+
+  height: 40px;
+  width: 100%;
+  padding: 0.5rem;
+
+  color: #999999;
+  font-size: 1.5rem;
+
+}
+
+ .school-search input:focus {
+   outline: none;
+   border: 0.2rem solid #00867D;
+ }
+
+ .school-search input::placeholder {
+    color: #C0C0C0;
+ }
+
+ .dropdown {
+   background: #F2F2F2;
+   border-radius: 5px;
+
+   font-family: 'Nunito';
+   font-style: normal;
+   font-weight: 700;
+   line-height: 1rem;
+
+   color: #999999;
+   font-size: 1.5rem;
+ }
+
+ .dropdown:empty {
+   border: none;
+ }
+
+ .dropdown-row {
+   cursor: pointer;
+   text-align: start;
+   margin: 2px 0;
+   height: 40px;
+   width: 100%;
+   padding: 1rem;
+   font-size: 1.5rem;
+ }

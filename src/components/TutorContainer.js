@@ -1,6 +1,6 @@
 import React from 'react'
 import defaultProfile from '../assets/profileIcon.png';
-import './Home/tutorContainer.css';
+import './Home/containers.css';
 import {FaStar} from 'react-icons/fa'
 
 const TutorContainer = () => {

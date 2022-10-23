@@ -43,20 +43,15 @@ export default function ProfilePage() {
         <div className = "profile-blocks-grid">
             <div id = "profile-blocks" className = "contact-blocks">
                 <label> Personal Info </label>
-                <p> Email: </p>
-                <p> School </p>
             </div>
             <div id = "profile-blocks" className = "contact-blocks">
                 <label> Courses </label>
-                <p> Email: </p>
+            </div>
+            <div id = "profile-blocks" className = "contact-blocks">
+                <label> Availability </label>
             </div>
             <div id = "profile-blocks" className = "contact-blocks">
                 <label> Personal Info </label>
-                <p> Email: </p>
-            </div>
-            <div id = "profile-blocks" className = "contact-blocks">
-                <label> Personal Info </label>
-                <p> Email: </p>
             </div>
         </div>
 
