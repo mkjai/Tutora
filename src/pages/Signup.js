@@ -17,9 +17,8 @@ export default function Signup() {
     };
 
 
-    const emailRef = useRef()
-    const passwordRef = useRef()
-    const passwordConfirmRef = useRef()
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
 
 
@@ -31,9 +30,9 @@ export default function Signup() {
                 <div className = "sign-up-input-container">
                     <p> Create an account </p>
 
-                    <input type = "text" placeholder = "Email" ref = {emailRef}/>
-                    <input type = "text" placeholder = "Password" ref = {passwordRef}/>
-                    <input type = "text" placeholder = "Confirm password" ref = {passwordConfirmRef}/>
+                    <input type = "text" placeholder = "Email" onChange={(e) => setEmail(e.target.value)}/>
+                    <input type = "text" placeholder = "Password" onChange={(e) => setPassword(e.target.value)}/>
+                    <input type = "text" placeholder = "Confirm password" onChange={(e) => setPassword(e.target.value)}/>
 
 
                 <button className = "sign-up-page-button" type = "submit"> Continue </button>
