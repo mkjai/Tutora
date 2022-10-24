@@ -17,6 +17,11 @@ export default function Signup() {
     };
 
 
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const passwordConfirmRef = useRef()
+
+
 
 
     return (
@@ -26,12 +31,12 @@ export default function Signup() {
                 <div className = "sign-up-input-container">
                     <p> Create an account </p>
 
-                    <input type = "text" placeholder = "Email"/>
-                    <input type = "text" placeholder = "Password" />
-                    <input type = "text" placeholder = "Confirm password"/>
+                    <input type = "text" placeholder = "Email" ref = {emailRef}/>
+                    <input type = "text" placeholder = "Password" ref = {passwordRef}/>
+                    <input type = "text" placeholder = "Confirm password" ref = {passwordConfirmRef}/>
 
 
-                <button className = "sign-up-page-button"> Continue </button>
+                <button className = "sign-up-page-button" type = "submit"> Continue </button>
 
                 <button className = "sign-up-page-cancel"> Cancel </button>
                 

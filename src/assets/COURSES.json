@@ -1,0 +1,68 @@
+[
+  {
+    "label" : "Math",
+    "options" : [
+      {
+        "value" : "basic math",
+        "label" : "Basic Math"
+      },
+      {
+        "value" : "algebra i",
+        "label" : "Algebra I"
+      },
+      {
+        "value" : "geometry",
+        "label" : "Geometry"
+      },
+      {
+        "value" : "algebra ii",
+        "label" : "Algebra II"
+      },
+      {
+        "value" : "pre-calculus",
+        "label" : "Pre-Calculus"
+      },
+      {
+        "value" : "ap calculus ab",
+        "label" : "AP Calculus AB"
+      },
+      {
+        "value" : "ap calculus bc",
+        "label" : "AP Calculus BC"
+      },
+      {
+        "value" : "ap statistics",
+        "label" : "AP Statistics"
+      }
+    ]
+  },
+  {
+    "label" : "English",
+    "options" : [
+      {
+        "value" : "english 9",
+        "label" : "English 9"
+      },
+      {
+        "value" : "english 10",
+        "label" : "English 10"
+      },
+      {
+        "value" : "english 11",
+        "label" : "English 11"
+      },
+      {
+        "value" : "english 12",
+        "label" : "English 12"
+      },
+      {
+        "value" : "ap lang",
+        "label" : "AP Lang"
+      },
+      {
+        "value" : "ap lit",
+        "label" : "AP Lit"
+      }
+    ]
+  }
+]

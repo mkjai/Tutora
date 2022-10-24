@@ -3,7 +3,10 @@ import '../components/Authenication/signupForm.css';
 import Avatar from 'react-avatar-edit';
 import profileIcon from '../assets/profileIcon.png';
 import Popup from '../components/Popup';
+import Select from 'react-select';
+import makeAnimated from "react-select/animated";
 var data = require("../assets/SCHOOLS.json");
+var options = require("../assets/COURSES.json");
 
 
 const SignupCont = () => {
@@ -40,6 +43,39 @@ const SignupCont = () => {
 
     const onClose = () => {
         setImgCrop(null)
+    }
+
+    const animatedComponents = makeAnimated();
+    const [selectedOptions, setSelectedOptions] = useState([]);
+    
+    const handleSelect = () => {
+        console.log(selectedOptions);
+    }
+
+    const customStyle = {
+        control: (base, state) => ({
+            ...base,
+            background: "#F2F2F2",
+            borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+            borderColor: state.isFocused ? "#00867D" : "#D3D3D3",
+            "&:hover": {
+                borderColor: state.isFocused ? "#00867D" : "#00867D"
+            },
+            boxShadow: state.isFocused ? null : null,
+            fontSize: "4rem",
+            fontWeight: "700",
+            color: "#C0C0C0",
+            width: 400
+        }),
+            menu: base => ({
+            ...base,
+            borderRadius: 0,
+            marginTop: 0
+            }),
+            menuList: base => ({
+            ...base,
+            padding: 0
+            })
     }
 
 
@@ -84,6 +120,22 @@ const SignupCont = () => {
                                 </div>
                                 ))}
                     </div>
+                </div>
+
+                <div className = "course-selection">
+                    <Select isMulti
+                        components = {animatedComponents}
+                        options = {options}
+                        onChange = {(item) => setSelectedOptions(item)}
+                        isClearable = {true}
+                        isSearchable = {true}
+                        isDisabled = {false}
+                        isLoading = {false}
+                        closeMenuOnSelect = {false}
+                        styles = {customStyle}
+                    >
+
+                    </Select>
                 </div>
 
                 <div className = "add-profile-container">
