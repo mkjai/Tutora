@@ -1,56 +1,52 @@
  nav {
    display: flex;
-   justify-content: center;
+   justify-content: space-between;
    align-items: center;
    height: 10vh;
 
    width: 100%;
    margin: 0 auto;
+   width: 76rem;
+   background-color: #fff;
  }
 
 header {
   position: sticky;
   top: 0;
-  background-color: #fff;
   height: 10vh;
 }
 
-li {
-  list-style: none;
+.navlinks {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-left: 30rem;
+}
 
+nav a {
   color: black;
-  font-size: 2.5rem;
-  margin-top: 1.5rem;
+  font-size: 1.5rem;
   cursor: pointer;
   text-transform: capitalize;
   text-decoration: none;
   font-weight: 700;
   text-align: center;
-  display: inline;
-}
-
-a{
+  display: flex;
   color: black;
-}
-
-.active-link {
-  color: #00867D;
+  padding: 1rem;
+  justify-content: flex-end;
+  text-decoration: none;
 }
 
 header .nav-logo {
     width: 10rem;
-    margin-right: 300px;
+    justify-content: flex-start;
 }
 
  .nav-logo-non-mobile {
    width: 10rem;
    visibility: hidden;
  }
-
-nav a {
-  margin: 0 1rem;
-  text-decoration: none;
-}
 
 header .nav-btn {
   padding: 5px;
@@ -63,15 +59,6 @@ header .nav-btn {
   font-size: 3rem;
 }
 
-nav ul {
-  display: flex;
-}
-
-header nav {
-  display: flex;
-  right: 0;
-}
-
 @media only screen and (max-width: 768px) {
 
   .mobile-container {
@@ -81,6 +68,7 @@ header nav {
     display: flex;
     margin-top: 1.4rem;
     background-color: #fff;
+    
   }
 
   header .nav-btn {
@@ -113,27 +101,18 @@ header nav {
     background-color: #fff;
     transition: 1s;
     transform: translateY(-100vh);
+
+  justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
-    nav ul {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    nav li {
-      list-style: none;
-
-      color: black;
-      font-size: 1.5rem;
-      margin: 1.5rem 0.5rem;
-      cursor: pointer;
-      text-transform: capitalize;
-      text-decoration: none;
-      font-weight: 700;
-      display: flex;
-    }
+  .navlinks {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
 
   header .responsive_nav {
     transform: none;
@@ -145,7 +124,11 @@ header nav {
     display: flex;
   }
 
+
+
   nav a {
     font-size: 1.5rem;
+    margin: 1rem;
+    padding: 0;
   }
 }

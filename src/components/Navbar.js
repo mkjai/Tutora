@@ -17,25 +17,21 @@ const Navbar = () => {
     return(
         <header>
                 <nav ref = {navRef}>
-                    <ul>
                         <img class = "nav-logo" src = {navLogo} alt = ''/>
-                        <li>
-                            <NavLink exact activeClassName = "active-link" to = "/"> Explore </NavLink>
-                        </li>
-                        <li>
-                            <NavLink exact activeClassName = "active-link" to = "/schedule-page"> Schedule </NavLink>
-                        </li>
-                        <li>
-                            <NavLink exact activeClassName = "active-link" to = "/request-page"> Requests </NavLink>
-                        </li>
-                        <li>
-                            <NavLink exact activeClassName = "active-link" to = "/profile-page"> Profile </NavLink>
-                        </li>
-                        <li>
-                            <NavLink exact activeClassName = "active-link" to = "/setting-page"> Settings </NavLink>
-                        </li>
+                            <div className = "navlinks">
+                                <NavLink exact style = {({isActive}) => (isActive ? {color: "#00867D"} : {color: "#000"})} onClick = {showNavbar} to = "/" end> Explore </NavLink>
+
+
+                                <NavLink exact style = {({isActive}) => (isActive ? {color: "#00867D"} : {color: "#000"})} onClick = {showNavbar} to = "/schedule-page"> Schedule </NavLink>
+
+
+                                <NavLink exact style = {({isActive}) => (isActive ? {color: "#00867D"} : {color: "#000"})} onClick = {showNavbar} to = "/request-page"> Requests </NavLink>
+
+                                <NavLink exact style = {({isActive}) => (isActive ? {color: "#00867D"} : {color: "#000"})} onClick = {showNavbar} to = "/profile-page"> Profile </NavLink>
+
+                                <NavLink exact style = {({isActive}) => (isActive ? {color: "#00867D"} : {color: "#000"})} onClick = {showNavbar} to = "/setting-page"> Settings </NavLink>
+                            </div>
                         <button className = "nav-btn nav-close-btn" onClick = {showNavbar}><GrClose/></button>
-                    </ul>
 
                 </nav>
                 <div className = "mobile-container">
