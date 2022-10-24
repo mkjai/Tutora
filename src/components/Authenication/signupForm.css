@@ -1,5 +1,5 @@
  .sign-up-container {
-     width: 50rem;
+     width: 40rem;
      display: flex;
      align-items: center;
      flex-direction: column;
@@ -113,7 +113,7 @@
  /* For SignupCont.js */
 
   .sign-up-cont-container {
-    width: 50rem;
+    width: 40rem;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -348,7 +348,6 @@
   flex-direction: column;
   width: 100%;
   margin-bottom: 2rem;
-  position: relative;
 }
 
 .school-search input {
@@ -408,6 +407,7 @@
 
  .course-selection {
   margin-bottom: 2rem;
+  display: flex;
  }
 
  .course-selection label {

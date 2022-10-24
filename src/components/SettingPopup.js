@@ -15,7 +15,6 @@ const STYLES = {
     alignItems: 'center',
     flexDirection: 'column',
     width: '50rem'
-
 }
 
 const OVERLAY_STYLES = {
@@ -50,7 +49,6 @@ const BUTTON_STYLES = {
     lineHeight: '1rem',
     fontSize: '1.5rem'
 }
-
 
 function SettingPopup(props) {
   return (

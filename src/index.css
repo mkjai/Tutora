@@ -22,7 +22,6 @@
 
     max-width: 76rem;
     margin: 0 auto;
-    padding-left: 1rem;
 }
 
 .search-bar input {
@@ -131,7 +130,6 @@
 
     max-width: 76rem;
     margin: 0 auto;
-    padding-left: 1rem;
 }
 
 .name-pic-bio {
@@ -236,7 +234,6 @@
 
     max-width: 76rem;
     margin: 0 auto;
-        padding-left: 1rem;
 }
 
  .become-tutor {
@@ -320,7 +317,7 @@
     margin-bottom: 1.5rem;
  }
 
- .requests label, .schedule-page-lessons label {
+ .requests label, .schedule-page-lessons label,.setting-page label {
     font-size: 2.5rem;
     font-weight: 700;
     color: #000;
@@ -343,7 +340,6 @@
     
     max-width: 76rem;
     margin: 0 auto;
-        padding-left: 1rem;
 }
 
 .schedule-page-inner {
@@ -366,48 +362,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     flex-direction: column;
-    
-    width: 76rem;
+    max-width: 76rem;
     margin: 0 auto;
-    padding-left: 1rem;
 }
 
 .setting-page-inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    width: 100%;
-    margin: 0 auto;
+    width: 60%;
 }
-
-
-.setting-page label {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #000;
-    margin-bottom: 3rem;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
- .setting-display {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     width: 100%;
-     gap: 2rem;
- }
 
 .setting-display button {
     display: flex;
     height: 40px;
-    width: 60%;
+    width: 100%;
     background: #00867D;
     color: #fff;
     cursor: pointer;
@@ -415,8 +383,7 @@
     outline: none;
     border-radius: 5px;
     border: none;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 2.5rem;
     justify-content: center;
     
     font-family: 'Nunito';

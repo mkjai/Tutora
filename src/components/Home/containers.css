@@ -1,5 +1,5 @@
 .tutor-container {
-    width: 38rem;
+    width: 36rem;
     height: 20rem;
     display: flex;
     align-items: start;
@@ -108,7 +108,7 @@
 /* for tutor request and schedule page */
 
  .tutor-requests, .tutor-schedule {
-     width: 38rem;
+     width: 36rem;
      display: flex;
      align-items: start;
      flex-direction: column;

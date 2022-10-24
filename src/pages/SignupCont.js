@@ -63,7 +63,7 @@ const SignupCont = () => {
                 borderColor: state.isFocused ? "#00867D" : "#00867D",
             },
             boxShadow: state.isFocused ? null : null,
-            width: 400
+            width: 300,
         }),
             menu: base => ({
             ...base,
