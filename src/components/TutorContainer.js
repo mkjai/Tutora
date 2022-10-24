@@ -22,7 +22,7 @@ const TutorContainer = () => {
                     <img src = {profilePic} alt = '' />
                     <p> Name </p>
                 </div>
-                <button className = "tutor-container-btn"> Check profile </button>
+                <button className = "tutor-container-btn"> Book a lesson </button>
             </div>
 
             <div className = "tutor-container-rr">

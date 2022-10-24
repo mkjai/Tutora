@@ -3,6 +3,7 @@ import '../components/Authenication/signupForm.css';
 import Avatar from 'react-avatar-edit';
 import profileIcon from '../assets/profileIcon.png';
 import Popup from '../components/Popup';
+import AvatarPopup from '../components/AvatarPopup';
 import Select from 'react-select';
 import makeAnimated from "react-select/animated";
 var data = require("../assets/SCHOOLS.json");
@@ -57,27 +58,58 @@ const SignupCont = () => {
             ...base,
             background: "#F2F2F2",
             borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
-            borderColor: state.isFocused ? "#00867D" : "#D3D3D3",
+            border: state.isFocused ? "0.2rem solid #00867D" : "1px solid #D3D3D3",
             "&:hover": {
-                borderColor: state.isFocused ? "#00867D" : "#00867D"
+                borderColor: state.isFocused ? "#00867D" : "#00867D",
             },
             boxShadow: state.isFocused ? null : null,
-            fontSize: "4rem",
-            fontWeight: "700",
-            color: "#C0C0C0",
             width: 400
         }),
             menu: base => ({
             ...base,
             borderRadius: 0,
-            marginTop: 0
+            marginTop: 0,
+            background: "#F2F2F2"
             }),
             menuList: base => ({
             ...base,
-            padding: 0
-            })
+            padding: 0,
+            fontSize: "3rem",
+            fontWeight: "700"
+            }),
+        option: based => ({
+            ...based,
+            color: '#999',
+            background: "#F2F2F2",
+            "&:hover": {
+                background: "rgba(0,134,125, 0.4)",
+                cursor: "pointer"
+            },
+        }),
+        groupHeading: based => ({
+            ...based,
+            color: '#00867D',
+            fontWeight: 700,
+            font: 'Nunito'
+        }),
+        input: based => ({
+            ...based,
+            color: "#999",
+            fontSize: "1.5rem",
+            fontWeight: 700
+        }),
+        multiValueLabel: based => ({
+            ...based,
+            color: "#999",
+            fontSize: "1.5rem",
+            fontWeight: 700
+        })
     }
 
+
+    const avatarLabelStyle = {
+        fontSize: "1.5rem", fontWeight: 700
+    }
 
     return (
         <div className = "sign-up-cont-container" >
@@ -133,8 +165,8 @@ const SignupCont = () => {
                         isLoading = {false}
                         closeMenuOnSelect = {false}
                         styles = {customStyle}
+                        placeholder = {<div className = "course-select"> <label>Choose your courses</label> </div>}
                     >
-
                     </Select>
                 </div>
 
@@ -155,10 +187,13 @@ const SignupCont = () => {
                 <button className = "sign-up-cont-inner-back-btn"> Back </button>
                 </div>
 
-                <Popup trigger = {buttonPopup} setTrigger = {setButtonPopup}>
+                <AvatarPopup trigger = {buttonPopup} setTrigger = {setButtonPopup}>
                     <h1 class = "sign-up-cont-popup-label"> Choose a profile picture </h1>
-                    <Avatar className = "avatar" width = {250} height = {300} textSizeRatio = {5} onClose = {onCrop} onCrop = {onClose}  />
-                </Popup>
+                    <Avatar
+                        className = "avatar" width = {250} height = {300} onClose = {onCrop}
+                        onCrop = {onClose} labelStyle = {avatarLabelStyle}
+                    />
+                </AvatarPopup>
 
             </div>
 

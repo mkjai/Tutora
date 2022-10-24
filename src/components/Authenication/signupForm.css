@@ -230,6 +230,10 @@
       border: 0.2rem solid #00867D;
   }
 
+  .sign-up-bio-container textarea::placeholder {
+      color: #C0C0C0;
+    }
+
  .sign-up-cont-inner-create-btn {
      display: flex;
      height: 40px;
@@ -400,4 +404,17 @@
    width: 100%;
    padding: 1rem;
    font-size: 1.5rem;
+ }
+
+ .course-selection {
+  margin-bottom: 2rem;
+ }
+
+ .course-selection label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #c0c0c0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
  }
