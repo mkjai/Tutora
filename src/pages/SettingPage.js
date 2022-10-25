@@ -18,6 +18,7 @@ export default function SettingPage() {
                     <button onClick = {() => isPopupAccount(true)}> Account </button>
                     <button onClick = {() => isPopupHelp(true)}> Help and Support </button>
                     <button onClick = {() => isPopupAbout(true)}> About </button>
+                    <button> Sign out </button>
                 </div>
             </div>
 

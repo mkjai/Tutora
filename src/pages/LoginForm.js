@@ -1,8 +1,9 @@
-import React from 'react';
-import '../components/Authenication/loginForm.css';
+import React, { useRef, useState, useEffect } from 'react'
 import img from '../assets/navLogo.png';
-import Popup from '../components/Popup';
-import {Link} from 'react-router-dom'
+import '../components/Authenication/loginForm.css';
+import { useNavigate, Link } from 'react-router-dom'
+
+import { useAuth } from '../AuthContext'
 
 
 // divider that separates Login and Create account
@@ -21,17 +22,44 @@ const Divider = ({ children}) => {
 
 export default function LoginForm() {
 
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
+    const { currentUser, login, setError } = useAuth();
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (currentUser) {
+        navigate("/");
+        }
+    }, [currentUser, navigate]);
+
+    async function submitHandler(e) {
+        e.preventDefault();
+
+        try {
+        setLoading(true);
+        await login(email, password);
+        navigate("/");
+        } catch (e) {
+        setError("Wrong email or password");
+        }
+
+        setLoading(false);
+    }
+
 
     return (
         <div className = "container">
-            <div className = "log-in">
+            <form className = "log-in" onSubmit = {submitHandler}>
 
                 <img class = "login-img" src = {img} alt = ''/>
 
                 <div className = "login-form">
 
-                    <input type = "text" placeholder = "Username" />
-                    <input type = "password" placeholder = "Password" />
+                    <input required type = "email" placeholder = "Username" onChange={(e) => setEmail(e.target.value)}/>
+                    <input required type = "password" placeholder = "Password" onChange={(e) => setPassword(e.target.value)}/>
 
                     <button className = "log-in-form-button"> Login </button>
                     
@@ -42,7 +70,7 @@ export default function LoginForm() {
                     <p className = "forgot"> Forgot password? </p>
                 </div>
 
-            </div>
+            </form>
 
 
         </div>

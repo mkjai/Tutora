@@ -165,7 +165,7 @@
 }
 
 .profile-page label {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
     display: flex;
     justify-content: center;
@@ -208,7 +208,7 @@
 }
 
 #profile-blocks {
-    width: 35rem;
+    width: 28rem;
     height: 30rem;
     background: #00867D;
     border-radius:5px;

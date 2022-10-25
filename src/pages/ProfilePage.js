@@ -51,7 +51,7 @@ export default function ProfilePage() {
                 <label> Availability </label>
             </div>
             <div id = "profile-blocks" className = "contact-blocks">
-                <label> Personal Info </label>
+                <label> Other </label>
             </div>
         </div>
 

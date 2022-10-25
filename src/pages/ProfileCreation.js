@@ -6,14 +6,21 @@ import Popup from '../components/Popup';
 import AvatarPopup from '../components/AvatarPopup';
 import Select from 'react-select';
 import makeAnimated from "react-select/animated";
+import {Link} from 'react-router-dom'
+import { FaInstagramSquare } from 'react-icons/fa';
+import { ProfileCreateBtn } from '../components/ProfileRouter';
 var data = require("../assets/SCHOOLS.json");
 var options = require("../assets/COURSES.json");
 
 
-const SignupCont = () => {
+export let profileCreated = false;
 
-    const [buttonPopup, setButtonPopup, val, setVal] = useState(false);
+
+const ProfileCreation = () => {
+
+    const [buttonPopup, setButtonPopup] = useState(false);
     const [imgCrop, setImgCrop] = useState(false);
+    const [isTrue, setIsTrue] = useState(false);
 
     const [characterLimit] = useState(125);
     const [inputText, setInputText] = useState("");
@@ -27,6 +34,7 @@ const SignupCont = () => {
     const onSearch = (searchTerm) => {
         setValue(searchTerm);
     };
+
 
     const handleChange = event => {
         setInputText(event.target.value);
@@ -46,12 +54,15 @@ const SignupCont = () => {
         setImgCrop(null)
     }
 
+    const handleClick = () => {
+        setIsTrue(true);
+    }
+
+    profileCreated = setIsTrue;
+
     const animatedComponents = makeAnimated();
     const [selectedOptions, setSelectedOptions] = useState([]);
     
-    const handleSelect = () => {
-        console.log(selectedOptions);
-    }
 
     const customStyle = {
         control: (base, state) => ({
@@ -105,7 +116,6 @@ const SignupCont = () => {
             fontWeight: 700
         })
     }
-
 
     const avatarLabelStyle = {
         fontSize: "1.5rem", fontWeight: 700
@@ -183,8 +193,7 @@ const SignupCont = () => {
                     <h2> {inputText.length}/{characterLimit} Characters </h2>
                 </div>
 
-                <button className = "sign-up-cont-inner-create-btn"> Create an account </button>
-                <button className = "sign-up-cont-inner-back-btn"> Back </button>
+                <button className = "sign-up-cont-inner-create-btn" onClick = {handleClick}> Done </button>
                 </div>
 
                 <AvatarPopup trigger = {buttonPopup} setTrigger = {setButtonPopup}>
@@ -212,5 +221,4 @@ function formatPhoneNumber(value) {
     return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3,6)}-${phoneNumber.slice(6,10)}`;
 }
 
-
-export default SignupCont
+export default ProfileCreation

@@ -1,11 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react'
 import '../components/Authenication/signupForm.css';
-import app from '../firebase';
 import { useNavigate, Link } from 'react-router-dom'
 
 import { useAuth } from '../AuthContext'
-
-
 
 export default function Signup() {
 
@@ -14,7 +11,7 @@ export default function Signup() {
     const [passwordConf, setPasswordConf] = useState('');
 
     const navigate = useNavigate();
-    const { currentUser, register } = useAuth();
+    const { currentUser, register, setError} = useAuth();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -27,15 +24,15 @@ export default function Signup() {
         e.preventDefault();
 
         if (password !== passwordConf) {
-        return alert("Password not matching");
+        return setError("Password not matching");
         }
 
         try {
         setLoading(true);
         await register(email, password);
-        navigate("/navi-page");
+        navigate("/");
         } catch (e) {
-        alert("Failed to create an account");
+        setError("Failed to create an account");
         }
 
         setLoading(false);
