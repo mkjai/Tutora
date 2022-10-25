@@ -2,6 +2,7 @@ import React from 'react';
 import '../components/Authenication/loginForm.css';
 import img from '../assets/navLogo.png';
 import Popup from '../components/Popup';
+import {Link} from 'react-router-dom'
 
 
 // divider that separates Login and Create account
@@ -36,7 +37,7 @@ export default function LoginForm() {
                     
                     <Divider> Or </Divider>
 
-                    <button className = "log-in-form-button"> Create an Account </button>
+                    <Link to = "/signup" style = {{ textDecoration: 'none'}} className = "create-acc-link"><button className = "log-in-form-button"> Create an Account </button></Link>
 
                     <p className = "forgot"> Forgot password? </p>
                 </div>

@@ -1,47 +1,65 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import '../components/Authenication/signupForm.css';
-//import {RoleButtons} from '../components/RoleButtons.js';
+import app from '../firebase';
+import { useNavigate, Link } from 'react-router-dom'
+
+import { useAuth } from '../AuthContext'
+
 
 
 export default function Signup() {
-    const [value, setValue] = useState("");
-
-    const onChange = (event) => {
-        setValue(event.target.value);
-    };
-
-    const onSearch = (searchTerm) => {
-        setValue(searchTerm);
-        // our api to fetch the search result
-        console.log("search ", searchTerm);
-    };
-
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordConf, setPasswordConf] = useState('');
 
+    const navigate = useNavigate();
+    const { currentUser, register } = useAuth();
+    const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        if (currentUser) {
+        navigate("/");
+        }
+    }, [currentUser, navigate]);
 
+    async function submitHandler(e) {
+        e.preventDefault();
+
+        if (password !== passwordConf) {
+        return alert("Password not matching");
+        }
+
+        try {
+        setLoading(true);
+        await register(email, password);
+        navigate("/navi-page");
+        } catch (e) {
+        alert("Failed to create an account");
+        }
+
+        setLoading(false);
+    }
 
     return (
         <div className = "sign-up-container">
-            <div className = "sign-up">
 
+            <form className = "sign-up">
                 <div className = "sign-up-input-container">
                     <p> Create an account </p>
 
-                    <input type = "text" placeholder = "Email" onChange={(e) => setEmail(e.target.value)}/>
-                    <input type = "text" placeholder = "Password" onChange={(e) => setPassword(e.target.value)}/>
-                    <input type = "text" placeholder = "Confirm password" onChange={(e) => setPassword(e.target.value)}/>
+                    <input required type = "email" placeholder = "Email" onChange={(e) => setEmail(e.target.value)}/>
+                    <input required type = "password" placeholder = "Password" onChange={(e) => setPassword(e.target.value)}/>
+                    <input required type = "password" placeholder = "Confirm password" onChange={(e) => setPasswordConf(e.target.value)}/>
 
 
-                <button className = "sign-up-page-button" type = "submit"> Continue </button>
+                <button className = "sign-up-page-button" type = "submit" disabbled = {loading}> Create an account </button>
 
-                <button className = "sign-up-page-cancel"> Cancel </button>
+                <Link to = "/login" style = {{textDecoration: "none"}}><button className = "sign-up-page-cancel"> Cancel </button></Link>
                 
 
                 </div>
-            </div>
+            </form>
         </div>
     );    
 }
