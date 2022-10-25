@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import '../components/Authenication/signupForm.css';
 //import {RoleButtons} from '../components/RoleButtons.js';
 
+// import { createUser } from '../functions/userAuthFunctions'
 
 export default function Signup() {
     const [value, setValue] = useState("");

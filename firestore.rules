@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Allow any authenticated user to read other docs
+    match /users/{documents=**} {
+    	allow read: if request.auth != null;
+    }
+    match /explore/{documents=**} {
+    	allow read: if request.auth != null;
+    }
+
+    // Allow user to write to own doc
+    match /users/{uid} {
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /explore/{uid=**} {
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}
