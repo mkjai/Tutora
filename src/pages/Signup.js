@@ -44,7 +44,7 @@ export default function Signup() {
     return (
         <div className = "sign-up-container">
 
-            <form className = "sign-up">
+            <form className = "sign-up" onSubmit = {submitHandler}>
                 <div className = "sign-up-input-container">
                     <p> Create an account </p>
 
