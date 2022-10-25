@@ -1,13 +1,10 @@
-import { onAuthStateChanged, connectAuthEmulator, createUserWithEmailAndPassword, getAuth } from "firebase/auth"
-import { arrayUnion, connectFirestoreEmulator, doc, getFirestore, setDoc, writeBatch } from "firebase/firestore"
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth"
+import { arrayUnion, doc, getFirestore, writeBatch } from "firebase/firestore"
 
 import { app } from "../firebase"
 
 const auth = getAuth(app);
 const db = getFirestore(app);
-// connectAuthEmulator(auth, "http://localhost:9099");
-// connectFirestoreEmulator(db, "http://localhost:8080");
-
 
 
 export function createUser(email, password) {
