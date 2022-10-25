@@ -2,6 +2,16 @@ import React, { useRef, useState } from 'react'
 import '../components/Authenication/signupForm.css';
 //import {RoleButtons} from '../components/RoleButtons.js';
 
+import { app } from "../firebase"
+import { connectAuthEmulator, createUserWithEmailAndPassword, getAuth } from "firebase/auth"
+import { connectFunctionsEmulator, getFunctions, httpsCallable } from "firebase/functions"
+
+const auth = getAuth(app);
+// connectAuthEmulator(auth, "http://localhost:9099")
+
+const functions = getFunctions(app);
+
+// connectFunctionsEmulator(functions, )
 
 export default function Signup() {
     const [value, setValue] = useState("");
@@ -35,7 +45,7 @@ export default function Signup() {
                     <input type = "text" placeholder = "Confirm password" onChange={(e) => setPassword(e.target.value)}/>
 
 
-                <button className = "sign-up-page-button" type = "submit"> Continue </button>
+                <button className = "sign-up-page-button" onClick={() => {createUserWithEmailAndPassword(auth, email, password)}}> Continue </button>
 
                 <button className = "sign-up-page-cancel"> Cancel </button>
                 
