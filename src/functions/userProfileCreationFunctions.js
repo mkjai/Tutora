@@ -38,7 +38,7 @@ export function createUserProfile(profileMap) {
     updateUserProfile.commit()
     .then(
       () =>
-      console.log('successfully committed batch')
+      console.log('successfully created user profile')
     )
     .catch(
       (error) => {
