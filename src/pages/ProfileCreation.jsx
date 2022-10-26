@@ -40,11 +40,6 @@ export default function ProfileCreation() {
         courses: courses.split(', ')
       }
     )
-    .then(
-      () => {
-        console.log('working')
-      }
-    )
   }
   
   return (

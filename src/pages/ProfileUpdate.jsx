@@ -38,16 +38,21 @@ export default function ProfileCreation() {
     setBio(bio);
     setContactInfo(contactInfo);
     setAvailability(availability);
-    newCourses.split(', ').forEach(
-      (item) => {
-        addCourse(item);
-      }
-    )
-    remCourses.split(', ').forEach(
-      (item) => {
-        removeCourse(item);
-      }
-    )
+    if (newCourses) {
+      newCourses.split(', ').forEach(
+        (item) => {
+          addCourse(item);
+        }
+      )  
+    }
+    if (remCourses) {
+      remCourses.split(', ').forEach(
+        (item) => {
+          removeCourse(item);
+        }
+      )
+    }
+    
   }
   
   return (

@@ -9,7 +9,7 @@ export async function createUser(email, password) {
   createUserWithEmailAndPassword(auth, email, password)
   .then(
     () =>
-    console.log('created user 123' + auth.currentUser.uid)
+    console.log('created user ' + auth.currentUser.uid)
   )
   .catch(
     () =>
@@ -36,7 +36,7 @@ export async function createUserProfile(profileMap) {
     updateUserProfile.commit()
     .then(
       () =>
-      console.log('successfully created user profile')
+      console.log(`successfully created profile ${auth.currentUser.uid}`)
     )
     .catch(
       (error) => {

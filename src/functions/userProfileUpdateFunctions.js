@@ -3,40 +3,75 @@ import { auth } from "../firebase";
 import { db } from "../firebase";
 
 export async function setName(newName) {
-  await updateDoc(doc(db, `users/${auth.currentUser.uid}`), 
+  updateDoc(doc(db, `users/${auth.currentUser.uid}`), 
     {
       name:newName
+    }
+  ).then(
+    () => {
+      console.log('successfully updated')
+    }
+  )
+  .catch(
+    (error) => {
+      console.log(error)
     }
   );
 }
 
 export async function setBio(newBio) {
-  await updateDoc(doc(db, `users/${auth.currentUser.uid}`), 
+  updateDoc(doc(db, `users/${auth.currentUser.uid}`), 
     {
       bio:newBio
+    }
+  ).then(
+    () => {
+      console.log('successfully updated')
+    }
+  )
+  .catch(
+    (error) => {
+      console.log(error)
     }
   );
 }
 
 export async function setContactInfo(newContactInfo) {
-  await updateDoc(doc(db, `users/${auth.currentUser.uid}`), 
+  updateDoc(doc(db, `users/${auth.currentUser.uid}`), 
     {
       contactInfo:newContactInfo
+    }
+  ).then(
+    () => {
+      console.log('successfully updated')
+    }
+  )
+  .catch(
+    (error) => {
+      console.log(error)
     }
   );
 }
 
 export async function setAvailabilty(newAvailabilty) {
-  await updateDoc(doc(db, `users/${auth.currentUser.uid}`), 
+  updateDoc(doc(db, `users/${auth.currentUser.uid}`), 
     {
       availabilty:newAvailabilty
+    }
+  ).then(
+    () => {
+      console.log('successfully updated')
+    }
+  )
+  .catch(
+    (error) => {
+      console.log(error)
     }
   );
 }
 
 export async function addCourse(course) {
   const userSchool = (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().school;
-  console.log(userSchool);
   const updateCourses = writeBatch(db);
 
   updateCourses.update(doc(db, `users/${auth.currentUser.uid}`), {
@@ -47,12 +82,21 @@ export async function addCourse(course) {
     students: arrayUnion(auth.currentUser.uid)
   })
 
-  updateCourses.commit();
+  updateCourses.commit()
+  .then(
+    () => {
+      console.log(`added ${course} course to user ${auth.currentUser.uid}`)
+    }
+  )
+  .catch(
+    (error) => {
+      console.log(error)
+    }
+  );
 }
 
 export async function removeCourse(course) {
   const userSchool = (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().school;
-  console.log(userSchool);
   const updateCourses = writeBatch(db);
 
   updateCourses.update(doc(db, `users/${auth.currentUser.uid}`), {
@@ -63,5 +107,15 @@ export async function removeCourse(course) {
     students: arrayRemove(auth.currentUser.uid)
   })
 
-  updateCourses.commit();
+  updateCourses.commit()
+  .then(
+    () => {
+      console.log(`removed ${course} course from user ${auth.currentUser.uid}`)
+    }
+  )
+  .catch(
+    (error) => {
+      console.log(error)
+    }
+  );
 }
