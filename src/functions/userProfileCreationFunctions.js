@@ -1,7 +1,7 @@
 import { auth } from "../firebase";
 import { db } from "../firebase";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { arrayUnion, doc, getFirestore, writeBatch } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { arrayUnion, doc, writeBatch } from "firebase/firestore";
 
 
 
