@@ -2,16 +2,15 @@ import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { auth } from "../firebase";
 import { db } from "../firebase";
 
-const userDoc = doc(db, `users/${auth.currentUser.uid}`)
 
 export async function setName(newName) {
-  return updateDoc(userDoc, {
+  return updateDoc(doc(db, `users/${auth.currentUser.uid}`), {
     name: newName
   })
 }
 
 export async function setBio(newBio) {
-  return updateDoc(userDoc,
+  return updateDoc(doc(db, `users/${auth.currentUser.uid}`),
     {
       bio: newBio
     }
@@ -19,13 +18,13 @@ export async function setBio(newBio) {
 }
 
 export async function setSchool(newSchool) {
-  return updateDoc(userDoc, {
+  return updateDoc(doc(db, `users/${auth.currentUser.uid}`), {
     school: newSchool
   })
 }
 
 export async function setContactInfo(newContactInfo) {
-  return updateDoc(userDoc,
+  return updateDoc(doc(db, `users/${auth.currentUser.uid}`),
     {
       contactInfo: newContactInfo
     }
@@ -33,7 +32,7 @@ export async function setContactInfo(newContactInfo) {
 }
 
 export async function setAvailabilty(newAvailabilty) {
-  return updateDoc(userDoc,
+  return updateDoc(doc(db, `users/${auth.currentUser.uid}`),
     {
       availabilty: newAvailabilty
     }
@@ -41,13 +40,13 @@ export async function setAvailabilty(newAvailabilty) {
 }
 
 export async function addCourse(course) {
-  return updateDoc(userDoc, {
+  return updateDoc(doc(db, `users/${auth.currentUser.uid}`), {
     courses: arrayUnion(course)
   })
 }
 
 export async function removeCourse(course) {
-  return updateDoc(userDoc, {
+  return updateDoc(doc(db, `users/${auth.currentUser.uid}`), {
     courses: arrayRemove(course)
   })
 }

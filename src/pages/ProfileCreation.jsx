@@ -47,7 +47,7 @@ export default function ProfileCreation() {
       }
     )
     .then(
-      console.log('created user profile')
+      () => console.log('created user profile ' + auth.currentUser.uid)
     )
     .catch(
       e => console.log(e)

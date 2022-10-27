@@ -1,18 +1,20 @@
 import { addDoc, arrayUnion, collection, getDoc, getDocs, increment, query, serverTimestamp, updateDoc, where } from 'firebase/firestore'
 import { auth, db } from '../firebase'
+import { doc } from 'firebase/firestore';
 
-const uid = auth.currentUser.uid;
-const userDoc = (await getDoc(doc(db, `users/${uid}`))).data();
-
+// const auth.currentUser.uid = auth.currentUser.uid;
+// const (await getDoc(doc(db, `users/${uid}`))).data() = (await getDoc(doc(db, `users/${uid}`))).data();
+// console.log(auth.currentUser.uid);
 // Creates new outgoing request to a tutor, with a message to tutor
 export async function createOutgoingRequest(to, message) {
+  console.log(auth)
   return addDoc(collection(db, 'requests'), {
     to: to,
-    from: uid,
+    from: auth.currentUser.uid,
     timeCreated: serverTimestamp(),
     status: 'PENDING',
     messageToTutor: message,
-    StudentContactInfo: userDoc.contactInfo,
+    StudentContactInfo: (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().contactInfo,
   })  
 }
 
@@ -20,12 +22,13 @@ export async function createOutgoingRequest(to, message) {
 // Also adds the current docID as a field, so that it's id can be
 // passed into acceptIcomingRequest and rejectIncomingRequest later on
 export async function getOutgoingRequests() {
-  const requests = await getDocs(query(collection('requests'), where('from', '==', uid)));
+  const requests = await getDocs(query(collection('requests'), where('from', '==', auth.currentUser.uid)));
   const output = [];
   requests.forEach(item => {
     updateDoc(item, {requestID: item.id})
     output.push(item.data());
   });
+  console.log(output)
   return output;
 }
 
@@ -33,7 +36,7 @@ export async function getOutgoingRequests() {
 // Also adds the current docID as a field, so that it's id can be
 // passed into acceptIcomingRequest and rejectIncomingRequest later on
 export async function getIncomingRequests() {
-  const requests = await getDocs(query(collection('requests'), where('to', '==', uid)));
+  const requests = await getDocs(query(collection('requests'), where('to', '==', auth.currentUser.uid)));
   const output = [];
   requests.forEach(item => {
     updateDoc(item, {requestID: item.id})
@@ -46,11 +49,11 @@ export async function getIncomingRequests() {
 // Also creates a new appointment with the student
 export async function acceptIncomingRequest(requestID, message) {
   const studentID = (await getDoc(doc(db, `requests/${requestID}`))).data().from;
-  await createNewAppointment(studentID, uid);
+  await createNewAppointment(studentID, auth.currentUser.uid);
   return updateDoc(doc(db, `requests/${requestID}`), {
     status: 'ACCEPTED',
     messageToStudent: message,
-    TutorContactInfo: userDoc.contactInfo,
+    TutorContactInfo: (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().contactInfo,
   })
 }
 
@@ -76,7 +79,7 @@ async function createNewAppointment(student, tutor) {
 // Also adds the current docID as a field, so that it's id can be
 // passed into finishAppointment() later on
 export async function getStudentAppointments() {
-  const apts = await getDocs(query(collection('appointments'), where('student', '==', uid)));
+  const apts = await getDocs(query(collection('appointments'), where('student', '==', auth.currentUser.uid)));
   const output = [];
   apts.forEach(item => {
     updateDoc(item, {appointmentID: item.id});
@@ -89,7 +92,7 @@ export async function getStudentAppointments() {
 // Also adds the current docID as a field, so that it's id can be
 // passed into finishAppointment() later on
 export async function getTutorAppointments() {
-  const apts = await getDocs(query(collection('appointments'), where('tutor', '==', uid)));
+  const apts = await getDocs(query(collection('appointments'), where('tutor', '==', auth.currentUser.uid)));
   const output = [];
   apts.forEach(item => {
     updateDoc(item, {appointmentID: item.id});

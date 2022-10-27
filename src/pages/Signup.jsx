@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { auth } from "../firebase";
 import { createUser } from "../functions/userProfileCreationFunctions"
 
 export default function Signup() { 
@@ -16,7 +17,10 @@ export default function Signup() {
     setDisplayName(e.target.value)
   }
   const handleSubmitButton = () => { 
-    createUser(email, password);
+    createUser(email, password)
+    .then(
+      () => console.log('created user ' + auth.currentUser.uid)
+    );
   }
   return ( 
     <div className="App"> 
