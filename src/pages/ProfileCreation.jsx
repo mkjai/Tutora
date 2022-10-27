@@ -1,8 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 import { createUserProfile } from "../functions/userProfileCreationFunctions";
 
 export default function ProfileCreation() {
+
+  const nav = useNavigate();
+
   const [name, setName] = useState('');
   const [school, setSchool] = useState('');
   const [bio, setBio] = useState('');
@@ -32,6 +37,7 @@ export default function ProfileCreation() {
   const handleSubmitButton = () => {
     createUserProfile(
       {
+        uid: auth.currentUser.uid,
         name: name,
         school: school,
         bio: bio,
@@ -39,6 +45,12 @@ export default function ProfileCreation() {
         availability: availability,
         courses: courses.split(', ')
       }
+    )
+    .then(
+      console.log('created user profile')
+    )
+    .catch(
+      e => console.log(e)
     )
   }
   

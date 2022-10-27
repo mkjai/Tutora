@@ -1,121 +1,53 @@
-import { arrayRemove, arrayUnion, doc, getDoc, updateDoc, writeBatch } from "firebase/firestore";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { auth } from "../firebase";
 import { db } from "../firebase";
 
+const userDoc = doc(db, `users/${auth.currentUser.uid}`)
+
 export async function setName(newName) {
-  updateDoc(doc(db, `users/${auth.currentUser.uid}`), 
-    {
-      name:newName
-    }
-  ).then(
-    () => {
-      console.log('successfully updated')
-    }
-  )
-  .catch(
-    (error) => {
-      console.log(error)
-    }
-  );
+  return updateDoc(userDoc, {
+    name: newName
+  })
 }
 
 export async function setBio(newBio) {
-  updateDoc(doc(db, `users/${auth.currentUser.uid}`), 
+  return updateDoc(userDoc,
     {
-      bio:newBio
-    }
-  ).then(
-    () => {
-      console.log('successfully updated')
+      bio: newBio
     }
   )
-  .catch(
-    (error) => {
-      console.log(error)
-    }
-  );
+}
+
+export async function setSchool(newSchool) {
+  return updateDoc(userDoc, {
+    school: newSchool
+  })
 }
 
 export async function setContactInfo(newContactInfo) {
-  updateDoc(doc(db, `users/${auth.currentUser.uid}`), 
+  return updateDoc(userDoc,
     {
-      contactInfo:newContactInfo
-    }
-  ).then(
-    () => {
-      console.log('successfully updated')
+      contactInfo: newContactInfo
     }
   )
-  .catch(
-    (error) => {
-      console.log(error)
-    }
-  );
 }
 
 export async function setAvailabilty(newAvailabilty) {
-  updateDoc(doc(db, `users/${auth.currentUser.uid}`), 
+  return updateDoc(userDoc,
     {
-      availabilty:newAvailabilty
-    }
-  ).then(
-    () => {
-      console.log('successfully updated')
+      availabilty: newAvailabilty
     }
   )
-  .catch(
-    (error) => {
-      console.log(error)
-    }
-  );
 }
 
 export async function addCourse(course) {
-  const userSchool = (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().school;
-  const updateCourses = writeBatch(db);
-
-  updateCourses.update(doc(db, `users/${auth.currentUser.uid}`), {
+  return updateDoc(userDoc, {
     courses: arrayUnion(course)
   })
-
-  updateCourses.set(doc(db, `explore/${course}/schools/${userSchool}`), {
-    students: arrayUnion(auth.currentUser.uid)
-  })
-
-  updateCourses.commit()
-  .then(
-    () => {
-      console.log(`added ${course} course to user ${auth.currentUser.uid}`)
-    }
-  )
-  .catch(
-    (error) => {
-      console.log(error)
-    }
-  );
 }
 
 export async function removeCourse(course) {
-  const userSchool = (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().school;
-  const updateCourses = writeBatch(db);
-
-  updateCourses.update(doc(db, `users/${auth.currentUser.uid}`), {
+  return updateDoc(userDoc, {
     courses: arrayRemove(course)
   })
-
-  updateCourses.set(doc(db, `explore/${course}/schools/${userSchool}`), {
-    students: arrayRemove(auth.currentUser.uid)
-  })
-
-  updateCourses.commit()
-  .then(
-    () => {
-      console.log(`removed ${course} course from user ${auth.currentUser.uid}`)
-    }
-  )
-  .catch(
-    (error) => {
-      console.log(error)
-    }
-  );
 }
