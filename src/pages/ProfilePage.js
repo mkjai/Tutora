@@ -50,9 +50,6 @@ export default function ProfilePage() {
             <div id = "profile-blocks" className = "contact-blocks">
                 <label> Availability </label>
             </div>
-            <div id = "profile-blocks" className = "contact-blocks">
-                <label> Other </label>
-            </div>
         </div>
 
     </div>

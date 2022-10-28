@@ -7,25 +7,33 @@ import AvatarPopup from '../components/AvatarPopup';
 import Select from 'react-select';
 import makeAnimated from "react-select/animated";
 import {Link} from 'react-router-dom'
-import { FaInstagramSquare } from 'react-icons/fa';
-import { ProfileCreateBtn } from '../components/ProfileRouter';
+import validator from 'validator'
 var data = require("../assets/SCHOOLS.json");
 var options = require("../assets/COURSES.json");
 
 
-export let profileCreated = false;
-
-
-const ProfileCreation = () => {
+const ProfileCreation = ({prevPage, handleChange, values}) => {
 
     const [buttonPopup, setButtonPopup] = useState(false);
     const [imgCrop, setImgCrop] = useState(false);
     const [isTrue, setIsTrue] = useState(false);
 
-    const [characterLimit] = useState(125);
+    const [characterLimit] = useState(150);
     const [inputText, setInputText] = useState("");
 
     const [value, setValue] = useState("");
+
+    const [isValid, setIsValid] = useState(false);
+
+    const animatedComponents = makeAnimated();
+    const [selectedOptions, setSelectedOptions] = useState([]);
+
+    const [selectedOption, setSelectedOption] = useState([]);
+
+
+    useEffect(() => {
+        setIsValid(selectedOption ? true : false);
+    }, [selectedOption]);
 
     const onChange = (event) => {
         setValue(event.target.value);
@@ -35,16 +43,9 @@ const ProfileCreation = () => {
         setValue(searchTerm);
     };
 
-
-    const handleChange = event => {
+    const handleText = event => {
         setInputText(event.target.value);
     };
-
-    const [inputPhone, setInputPhone] = useState('');
-    const handlePhone = e => {
-        const formattedPhoneNumber = formatPhoneNumber(e.target.value);
-        setInputPhone(formattedPhoneNumber);
-    }
 
     const onCrop = (view) => {
         setImgCrop(view)
@@ -57,17 +58,25 @@ const ProfileCreation = () => {
     const handleClick = () => {
         setIsTrue(true);
     }
-
-    profileCreated = setIsTrue;
-
-    const animatedComponents = makeAnimated();
-    const [selectedOptions, setSelectedOptions] = useState([]);
     
+    const [loading, setLoading] = useState(false);
+
+    const submitHandler = (e) => {
+            e.preventDefault();
+
+            // checking if value of first name and last name is empty show error else take to next step
+            if (validator.isEmpty(values.age) || validator.isEmpty(values.email)) {
+            setLoading(true);
+            } else {
+                console.log('hi');
+            }
+        };
+
 
     const customStyle = {
         control: (base, state) => ({
             ...base,
-            background: "#F2F2F2",
+            backgroundColor: "#F2F2F2",
             borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
             border: state.isFocused ? "0.2rem solid #00867D" : "1px solid #D3D3D3",
             "&:hover": {
@@ -76,24 +85,25 @@ const ProfileCreation = () => {
             boxShadow: state.isFocused ? null : null,
             width: 300,
         }),
-            menu: base => ({
+            menu: (base, state) => ({
             ...base,
             borderRadius: 0,
             marginTop: 0,
-            background: "#F2F2F2"
+            backgroundColor: state.isFocused ? "rgba(0,134,125, 0.4)" : "#F2F2F2"
             }),
-            menuList: base => ({
+            menuList: (base,state) => ({
             ...base,
             padding: 0,
             fontSize: "3rem",
-            fontWeight: "700"
+            fontWeight: "700",
+            backgroundColor: state.isFocused ? "rgba(0,134,125, 0.4)" : "#F2F2F2"
             }),
-        option: based => ({
+        option: (based,state) => ({
             ...based,
             color: '#999',
             background: "#F2F2F2",
             "&:hover": {
-                background: "rgba(0,134,125, 0.4)",
+                backgroundColor: state.isFocused ? "rgba(0,134,125, 0.4)" : null,
                 cursor: "pointer"
             },
         }),
@@ -114,6 +124,35 @@ const ProfileCreation = () => {
             color: "#999",
             fontSize: "1.5rem",
             fontWeight: 700
+        }),
+        singleValue: (based,state) => ({
+            ...based,
+            color: '#00867D',
+            fontWeight: 700,
+            font: 'Nunito',
+            fontSize: '1.5rem',
+            backgroundColor: state.isFocused ? "rgba(0,134,125, 0.4)" : "#F2F2F2"
+        }),
+        menuPortal: (based,state) => ({
+            ...based,
+            color: '#999',
+            fontWeight: 700,
+            font: 'Nunito',
+            fontSize: '1.5rem',
+            background: "F2F2F2",
+            backgroundColor: state.isFocused ? "rgba(0,134,125, 0.4)" : "#F2F2F2"
+        }),
+        option: (based,state) => ({
+            ...based,
+            color: '#999',
+            fontWeight: 700,
+            font: 'Nunito',
+            fontSize: '1.5rem',
+            backgroundColor: state.isSelected ?  "rgba(0,134,125, 0.4)" : "F2F2F2",
+            "&:hover": {
+                background: "rgba(0,134,125, 0.4)",
+                cursor: "pointer"
+            },
         })
     }
 
@@ -122,52 +161,15 @@ const ProfileCreation = () => {
     }
 
     return (
-        <div className = "sign-up-cont-container" >
-            <div className = "sign-up-cont-inner">
-                <p class = "sign-up-cont-label"> Create an account </p>
+        <div className = "sign-up-cont-container" onSubmit = {submitHandler}>
+            <form className = "sign-up-cont-inner">
+                <p class = "sign-up-cont-label"> Create your profile </p>
 
-                
-                <div className = "cont-input-container">
-                    <input type = "text" placeholder = "Last name"/>
-                    <input type = "text" placeholder = "First name"/>
-                    <input type = "text" placeholder = "Phone number" 
-                            onChange = {e => handlePhone(e)} value = {inputPhone}
-                    />
-                </div>
-
-                <div className = "school-search">
-                    <input type="text" placeholder = "Type your school here" value={value} onChange={onChange} />
-                    
-                    <div className="dropdown">
-                            {data
-                                .filter((item) => {
-                                const searchTerm = value.toLowerCase();
-                                const name = item.school_name.toLowerCase();
-
-                                return (
-                                    searchTerm &&
-                                    name.startsWith(searchTerm) &&
-                                    name !== searchTerm
-                                );
-                                })
-                                .slice(0, 5)
-                                .map((item) => (
-                                <div
-                                    className="dropdown-row"
-                                    key={item.school_name}
-                                    onClick={() => onSearch(item.school_name)}
-                                >
-                                    {item.school_name}<br></br>
-                                    <p className = "school-address">{item.street}</p>
-                                </div>
-                                ))}
-                    </div>
-                </div>
-
-                <div className = "course-selection">
-                    <Select isMulti
+                <div className = "sign-up-selection">
+                    <Select
+                        required
                         components = {animatedComponents}
-                        options = {options}
+                        options = {data}
                         onChange = {(item) => setSelectedOptions(item)}
                         isClearable = {true}
                         isSearchable = {true}
@@ -175,7 +177,23 @@ const ProfileCreation = () => {
                         isLoading = {false}
                         closeMenuOnSelect = {false}
                         styles = {customStyle}
-                        placeholder = {<div className = "course-select"> <label>Choose your courses</label> </div>}
+                        placeholder = {<div className = "sign-up-select"> <label>Choose your school</label> </div>}
+                    >
+                    </Select>
+                </div>
+
+                <div className = "sign-up-selection">
+                    <Select isMulti
+                        components = {animatedComponents}
+                        options = {options}
+                        onChange = {(item) => setSelectedOption(item)}
+                        isClearable = {true}
+                        isSearchable = {true}
+                        isDisabled = {false}
+                        isLoading = {false}
+                        closeMenuOnSelect = {false}
+                        styles = {customStyle}
+                        placeholder = {<div className = "sign-up-select"> <label>Choose your courses</label> </div>}
                     >
                     </Select>
                 </div>
@@ -187,14 +205,27 @@ const ProfileCreation = () => {
 
                 </div>
 
-                <div className = "sign-up-bio-container">
-                    <p> Bio </p>
-                    <textarea value = {inputText} onChange = {handleChange} maxLength = {125} placeholder = "Type your bio here"></textarea>
+                <div className = "sign-up-text-container">
+                    <p> Bio (Optional) </p>
+                    <textarea value = {inputText} onChange = {handleText} maxLength = {150} placeholder = "Type your bio here"></textarea>
                     <h2> {inputText.length}/{characterLimit} Characters </h2>
                 </div>
 
-                <button className = "sign-up-cont-inner-create-btn" onClick = {handleClick}> Done </button>
+                <div className = "sign-up-text-container">
+                    <p> Contact Info (Optional) </p>
+                    <textarea value = {inputText} onChange = {handleText} maxLength = {150} placeholder = "Type your contact info here"></textarea>
+                    <h2> {inputText.length}/{characterLimit} Characters </h2>
                 </div>
+
+                <div className = "sign-up-text-container">
+                    <p> Availability (Optional) </p>
+                    <textarea value = {inputText} onChange = {handleText} maxLength = {150} placeholder = "Type your contact info here"></textarea>
+                    <h2> {inputText.length}/{characterLimit} Characters </h2>
+                </div>
+
+                <button className = "sign-up-cont-inner-create-btn" type = "submit"> Done </button>
+                <button className = "sign-up-cont-inner-back-btn" onClick = {prevPage}> Back </button>
+                </form>
 
                 <AvatarPopup trigger = {buttonPopup} setTrigger = {setButtonPopup}>
                     <h1 class = "sign-up-cont-popup-label"> Choose a profile picture </h1>
@@ -210,15 +241,15 @@ const ProfileCreation = () => {
     );
 }
 
-function formatPhoneNumber(value) {
-    if(!value) return value;
-    const phoneNumber = value.replace(/[^\d]/g, '');
-    const phoneNumberLength = phoneNumber.length;
-    if (phoneNumberLength < 4) return phoneNumber;
-    if (phoneNumber.length < 7) {
-        return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3)}`;
-    }
-    return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3,6)}-${phoneNumber.slice(6,10)}`;
-}
+// function formatPhoneNumber(value) {
+//     if(!value) return value;
+//     const phoneNumber = value.replace(/[^\d]/g, '');
+//     const phoneNumberLength = phoneNumber.length;
+//     if (phoneNumberLength < 4) return phoneNumber;
+//     if (phoneNumber.length < 7) {
+//         return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3)}`;
+//     }
+//     return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3,6)}-${phoneNumber.slice(6,10)}`;
+// }
 
 export default ProfileCreation

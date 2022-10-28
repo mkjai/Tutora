@@ -1,296 +1,297 @@
  .sign-up-container {
-     width: 40rem;
-     display: flex;
-     align-items: center;
-     flex-direction: column;
-     background: #fff;
-     margin: 0 auto;
-     box-shadow: 0 0.188rem 1.550rem rgb(156, 156, 156);
-     margin-top: 10rem;
-     margin-bottom: 10rem;
-     border-radius: 1rem;
+   width: 40rem;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   background: #fff;
+   margin: 0 auto;
+   box-shadow: 0 0.188rem 1.550rem rgb(156, 156, 156);
+   margin-top: 10rem;
+   margin-bottom: 10rem;
+   border-radius: 1rem;
  }
 
  .sign-up {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 5rem 5rem;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   padding: 5rem 5rem;
  }
 
  .sign-up-input-container {
-     display: flex;
-     flex-direction: column;
-     width: 100%;
-     margin: 0.5rem;
-     margin-bottom: 0rem;
-     margin-top: 0rem;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   margin: 0.5rem;
+   margin-bottom: 0rem;
+   margin-top: 0rem;
  }
 
- .sign-up-input-container p,  .sign-up-cont-label {
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 2rem;
+ .sign-up-input-container p,
+ .sign-up-cont-label {
+   font-size: 3rem;
+   font-weight: 700;
+   text-align: center;
+   margin-bottom: 2rem;
  }
 
  .sign-up-input-container input {
-     background: #F2F2F2;
-     border: 1px solid #D3D3D3;
-     border-radius: 5px;
+   background: #F2F2F2;
+   border: 1px solid #D3D3D3;
+   border-radius: 5px;
 
-     font-family: 'Nunito';
-     font-style: normal;
-     font-weight: 700;
-     line-height: 1rem;
+   font-family: 'Nunito';
+   font-style: normal;
+   font-weight: 700;
+   line-height: 1rem;
 
-     height: 40px;
-     width: 100%;
-     padding: 0.5rem;
-     margin-bottom: 2rem;
+   height: 40px;
+   width: 100%;
+   padding: 0.5rem;
+   margin-bottom: 2rem;
 
-     color: #999999;
-     font-size: 1.5rem;
+   color: #999999;
+   font-size: 1.5rem;
  }
 
  .sign-up input::placeholder {
-     color: #C0C0C0;
+   color: #C0C0C0;
  }
 
  .sign-up input:focus {
-     outline: none;
-     border: 0.2rem solid #00867D;
+   outline: none;
+   border: 0.2rem solid #00867D;
  }
 
  .sign-up-page-button {
-    display: flex;
-    height: 40px;
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    background: #00867D;
-    color: #fff;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    border-radius: 5px;
-    border: none;
-    margin-top: 1rem;
-    
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1rem;
-    font-size: 1.5rem;
+   display: flex;
+   height: 40px;
+   width: 100%;
+   padding: 0.5rem;
+   margin-bottom: 0.5rem;
+   background: #00867D;
+   color: #fff;
+   cursor: pointer;
+   align-items: center;
+   justify-content: center;
+   outline: none;
+   border-radius: 5px;
+   border: none;
+   margin-top: 1rem;
+
+   font-family: 'Nunito';
+   font-style: normal;
+   font-weight: 700;
+   line-height: 1rem;
+   font-size: 1.5rem;
  }
 
  .sign-up-page-cancel {
-     display: flex;
-     height: 40px;
-     width: 100%;
-     padding: 0.5rem;
-     margin-bottom: 0.5rem;
-     background: #F2F2F2;
-     color: #00867D;
-     cursor: pointer;
-     align-items: center;
-     justify-content: center;
-     outline: none;
-     border-radius: 5px;
-     border: none;
-     margin-top: 1rem;
+   display: flex;
+   height: 40px;
+   width: 100%;
+   padding: 0.5rem;
+   margin-bottom: 0.5rem;
+   background: #F2F2F2;
+   color: #00867D;
+   cursor: pointer;
+   align-items: center;
+   justify-content: center;
+   outline: none;
+   border-radius: 5px;
+   border: none;
+   margin-top: 1rem;
 
-     font-family: 'Nunito';
-     font-style: normal;
-     font-weight: 700;
-     line-height: 1rem;
-     font-size: 1.5rem;
+   font-family: 'Nunito';
+   font-style: normal;
+   font-weight: 700;
+   line-height: 1rem;
+   font-size: 1.5rem;
  }
 
  /* For SignupCont.js */
 
-  .sign-up-cont-container {
-    width: 40rem;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background: #fff;
-    margin: 0 auto;
-    box-shadow: 0 0.188rem 1.550rem rgb(156, 156, 156);
-    margin-top: 10rem;
-    margin-bottom: 10rem;
-    border-radius: 1rem;
-  }
-
-  .sign-up-cont-inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 5rem;
-    padding-bottom: 5rem;
-    flex-direction: column;
-  }
-
-  .add-profile-container {
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    display: flex;
-
-    width: 100%;
-    margin: 0.5rem;
-    margin-bottom: 2rem;
-    margin-top: 0rem;
-  }
-
-  .add-profile-container p {
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-
-  .add-profile-container img {
-    width: 15rem;
-    height: 15rem;
-  }
-
-  .add-profile-container button {
-    display: flex;
-    height: 40px;
-    width: 100%;
-    padding: 0.5rem;
-    background: #00867D;
-    color: #fff;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    border-radius: 5px;
-    border: none;
-    margin-top: 1rem;
-
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1rem;
-    font-size: 1.5rem;
-  }
-
-  .sign-up-bio-container {
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    align-items: left;
-    justify-content: left;
-    display: flex;
-    margin-bottom: 3rem;
-  }
-
-.sign-up-bio-container p {
-    font-size: 2rem;
-    font-weight: 700;
-    text-align: left;
+ .sign-up-cont-container {
+   width: 40rem;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   background: #fff;
+   margin: 0 auto;
+   box-shadow: 0 0.188rem 1.550rem rgb(156, 156, 156);
+   margin-top: 10rem;
+   margin-bottom: 10rem;
+   border-radius: 1rem;
  }
 
- .sign-up-bio-container h2 {
+ .sign-up-cont-inner {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   padding: 5rem;
+   padding-bottom: 5rem;
+   flex-direction: column;
+ }
+
+ .add-profile-container {
+   width: 100%;
+   text-align: center;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   display: flex;
+
+   width: 100%;
+   margin: 0.5rem;
+   margin-bottom: 2rem;
+   margin-top: 0rem;
+ }
+
+ .add-profile-container p {
    font-size: 1.5rem;
    font-weight: 700;
-    color: #999;
+ }
+
+ .add-profile-container img {
+   width: 15rem;
+   height: 15rem;
+ }
+
+ .add-profile-container button {
+   display: flex;
+   height: 40px;
+   width: 100%;
+   padding: 0.5rem;
+   background: #00867D;
+   color: #fff;
+   cursor: pointer;
+   align-items: center;
+   justify-content: center;
+   outline: none;
+   border-radius: 5px;
+   border: none;
+   margin-top: 1rem;
+
+   font-family: 'Nunito';
+   font-style: normal;
+   font-weight: 700;
+   line-height: 1rem;
+   font-size: 1.5rem;
+ }
+
+ .sign-up-text-container {
+   flex-direction: column;
+   width: 100%;
+   text-align: center;
+   align-items: left;
+   justify-content: left;
+   display: flex;
+   margin-bottom: 3rem;
+ }
+
+ .sign-up-text-container p {
+   font-size: 2rem;
+   font-weight: 700;
    text-align: left;
  }
 
- .sign-up-bio-container textarea {
-    background: #F2F2F2;
-    border: 1px solid #D3D3D3;
-    border-radius: 5px;
-    
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1.7rem;
-    
-    height: 20rem;
-    width: 100%;
-    padding: 1rem;
-    
-    color: #999;
-    font-size: 1.5rem;
-
-    text-align: left;
-    resize: none;
+ .sign-up-text-container h2 {
+   font-size: 1.5rem;
+   font-weight: 700;
+   color: #999;
+   text-align: left;
  }
 
- .sign-up-bio-container textarea:focus {
-      outline: none;
-      border: 0.2rem solid #00867D;
-  }
+ .sign-up-text-container textarea {
+   background: #F2F2F2;
+   border: 1px solid #D3D3D3;
+   border-radius: 5px;
 
-  .sign-up-bio-container textarea::placeholder {
-      color: #C0C0C0;
-    }
+   font-family: 'Nunito';
+   font-style: normal;
+   font-weight: 700;
+   line-height: 1.7rem;
+
+   height: 20rem;
+   width: 100%;
+   padding: 1rem;
+
+   color: #999;
+   font-size: 1.5rem;
+
+   text-align: left;
+   resize: none;
+ }
+
+ .sign-up-text-container textarea:focus {
+   outline: none;
+   border: 0.2rem solid #00867D;
+ }
+
+ .sign-up-text-container textarea::placeholder {
+   color: #C0C0C0;
+ }
 
  .sign-up-cont-inner-create-btn {
-     display: flex;
-     height: 40px;
-     width: 100%;
-     padding: 0.5rem;
-     margin-bottom: 0.5rem;
-     background: #00867D;
-     color: #fff;
-     cursor: pointer;
-     align-items: center;
-     justify-content: center;
-     outline: none;
-     border-radius: 5px;
-     border: none;
-     margin-top: 1rem;
+   display: flex;
+   height: 40px;
+   width: 100%;
+   padding: 0.5rem;
+   margin-bottom: 0.5rem;
+   background: #00867D;
+   color: #fff;
+   cursor: pointer;
+   align-items: center;
+   justify-content: center;
+   outline: none;
+   border-radius: 5px;
+   border: none;
+   margin-top: 1rem;
 
-     font-family: 'Nunito';
-     font-style: normal;
-     font-weight: 700;
-     line-height: 1rem;
-     font-size: 1.5rem;
+   font-family: 'Nunito';
+   font-style: normal;
+   font-weight: 700;
+   line-height: 1rem;
+   font-size: 1.5rem;
  }
 
  .sign-up-cont-inner-back-btn {
-      display: flex;
-      height: 40px;
-      width: 100%;
-      padding: 0.5rem;
-      background: #F2F2F2;
-      color: #00867D;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      outline: none;
-      border-radius: 5px;
-      border: none;
-      margin-top: 1rem;
+   display: flex;
+   height: 40px;
+   width: 100%;
+   padding: 0.5rem;
+   background: #F2F2F2;
+   color: #00867D;
+   cursor: pointer;
+   align-items: center;
+   justify-content: center;
+   outline: none;
+   border-radius: 5px;
+   border: none;
+   margin-top: 1rem;
 
-      font-family: 'Nunito';
-      font-style: normal;
-      font-weight: 700;
-      line-height: 1rem;
-      font-size: 1.5rem;
-  }
+   font-family: 'Nunito';
+   font-style: normal;
+   font-weight: 700;
+   line-height: 1rem;
+   font-size: 1.5rem;
+ }
 
-.sign-up-cont-popup-label {
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1rem;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
+ .sign-up-cont-popup-label {
+   font-family: 'Nunito';
+   font-style: normal;
+   font-weight: 700;
+   line-height: 1rem;
+   font-size: 1.5rem;
+   margin-bottom: 1rem;
+ }
 
-.cont-intput-container {
-  display: flex;
-}
+ .cont-intput-container {
+   display: flex;
+ }
 
  .school-address {
    font-family: 'Nunito';
@@ -304,70 +305,70 @@
    font-size: 1rem;
  }
 
-.cont-input-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-}
+ .cont-input-container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   width: 100%;
+ }
 
-.cont-input-container input {
-      display: flex;
-      height: 40px;
-      width: 100%;
-      padding: 0.5rem;
-      background: #F2F2F2;
-      align-items: center;
-      justify-content: center;
-      border-radius: 5px;
-      border: none;
-      
-      margin-bottom: 2rem;
-    border: 1px solid #D3D3D3;
+ .cont-input-container input {
+   display: flex;
+   height: 40px;
+   width: 100%;
+   padding: 0.5rem;
+   background: #F2F2F2;
+   align-items: center;
+   justify-content: center;
+   border-radius: 5px;
+   border: none;
 
-      font-family: 'Nunito';
-      font-style: normal;
-      font-weight: 700;
-      line-height: 1rem;
-      font-size: 1.5rem;
-      color: #999999
-}
+   margin-bottom: 2rem;
+   border: 1px solid #D3D3D3;
 
-.cont-input-container input::placeholder {
+   font-family: 'Nunito';
+   font-style: normal;
+   font-weight: 700;
+   line-height: 1rem;
+   font-size: 1.5rem;
+   color: #999999
+ }
+
+ .cont-input-container input::placeholder {
    color: #C0C0C0;
  }
 
-.cont-input-container input:focus {
+ .cont-input-container input:focus {
    outline: none;
    border: 0.2rem solid #00867D;
  }
- 
-.school-search {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-bottom: 2rem;
-}
 
-.school-search input {
-  background: #F2F2F2;
-  border: 1px solid #D3D3D3;
-  border-radius: 5px;
+ .school-search {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   margin-bottom: 2rem;
+ }
 
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1rem;
+ .school-search input {
+   background: #F2F2F2;
+   border: 1px solid #D3D3D3;
+   border-radius: 5px;
 
-  height: 40px;
-  width: 100%;
-  padding: 0.5rem;
+   font-family: 'Nunito';
+   font-style: normal;
+   font-weight: 700;
+   line-height: 1rem;
 
-  color: #999999;
-  font-size: 1.5rem;
+   height: 40px;
+   width: 100%;
+   padding: 0.5rem;
 
-}
+   color: #999999;
+   font-size: 1.5rem;
+
+ }
 
  .school-search input:focus {
    outline: none;
@@ -375,7 +376,7 @@
  }
 
  .school-search input::placeholder {
-    color: #C0C0C0;
+   color: #C0C0C0;
  }
 
  .dropdown {
@@ -405,16 +406,16 @@
    font-size: 1.5rem;
  }
 
- .course-selection {
-  margin-bottom: 2rem;
-  display: flex;
+ .sign-up-selection {
+   margin-bottom: 2rem;
+   display: flex;
  }
 
- .course-selection label {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #c0c0c0;
-  align-items: center;
-  justify-content: center;
-  display: flex;
+ .sign-up-select label {
+   font-size: 1.5rem;
+   font-weight: 700;
+   color: #c0c0c0;
+   align-items: center;
+   justify-content: center;
+   display: flex;
  }

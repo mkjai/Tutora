@@ -22,21 +22,14 @@ const TutorContainer = () => {
                     <img src = {profilePic} alt = '' />
                     <p> Name </p>
                 </div>
-                <button className = "tutor-container-btn"> Book a lesson </button>
-            </div>
-
-            <div className = "tutor-container-rr">
                 <div className = "tutor-container-rating">
                     <p> <FaStar size = {20} /> 5.0 </p>
                 </div>
-
-                <div className = "tutor-container-reviews">
-                    <p> 10 Reviews</p>
-                </div>
             </div>
 
+
             <div className = "tutor-container-subject">
-                <label>Subjects:</label> 
+                <label>Comment</label> 
                 <p>Test </p>
             </div>
         </div>
