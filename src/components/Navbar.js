@@ -17,7 +17,7 @@ const Navbar = () => {
     return(
         <header>
                 <nav ref = {navRef}>
-                        <img class = "nav-logo-non-mobile" src = {navLogo} alt = ''/>
+                        <img className = "nav-logo-non-mobile" src = {navLogo} alt = ''/>
                             <div className = "navlinks">
                                 <NavLink exact style = {({isActive}) => (isActive ? {color: "#00867D"} : {color: "#000"})} onClick = {showNavbar} to = "/" end> Explore </NavLink>
 
@@ -35,7 +35,7 @@ const Navbar = () => {
 
                 </nav>
                 <div className = "mobile-container">
-                    <img class = "nav-logo" src = {navLogo} alt = ''/>
+                    <img className = "nav-logo" src = {navLogo} alt = ''/>
                     <button className = "nav-btn" onClick = {showNavbar}><FaBars/></button>
                 </div>
         </header>

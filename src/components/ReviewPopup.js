@@ -6,7 +6,7 @@ import { FaStar } from "react-icons/fa";
 
 
 const STYLES = {
-    position: 'static',
+    position: 'fixed',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -23,7 +23,7 @@ const STYLES = {
 }
 
 const OVERLAY_STYLES = {
-    position: 'static',
+    position: 'fixed',
     top: 0,
     left: 0,
     right: 0,

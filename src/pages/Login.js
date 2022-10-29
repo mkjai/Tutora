@@ -3,6 +3,8 @@ import img from '../assets/navLogo.png';
 import '../components/Authenication/loginForm.css';
 import { useNavigate, Link } from 'react-router-dom'
 
+import ForgotPasswordPopup from '../components/ForgotPasswordPopup';
+
 import { useAuth } from '../AuthContext'
 
 
@@ -24,6 +26,8 @@ export default function LoginForm() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const [popup, isPopup] = useState(false);
 
     const navigate = useNavigate();
     const { currentUser, login, setError } = useAuth();
@@ -67,10 +71,12 @@ export default function LoginForm() {
 
                     <Link to = "/signup" style = {{ textDecoration: 'none'}} className = "create-acc-link"><button className = "log-in-form-button"> Create an Account </button></Link>
 
-                    <p className = "forgot"> Forgot password? </p>
+                    <p className = "forgot" onClick = {() => isPopup(true)}> Forgot password? </p>
                 </div>
 
             </form>
+
+            <ForgotPasswordPopup trigger = {popup} setTrigger = {isPopup}></ForgotPasswordPopup>
 
 
         </div>
