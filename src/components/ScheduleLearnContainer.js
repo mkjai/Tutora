@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import defaultProfile from '../assets/profileIcon.png';
+import ReviewPopup from './ReviewPopup';
 import './Home/containers.css';
 
 const ScheduleLearnontainer = () => {
     
     const profilePic = defaultProfile;
 
+    const [popup, isPopup] = useState(false);
 
     return (
         <div className = "tutor-schedule">
@@ -20,9 +22,11 @@ const ScheduleLearnontainer = () => {
             </div>
 
             <div className = "tutor-schedule-buttons">
-                <button id = "tutor-accept"> Rate </button>
+                <button id = "tutor-accept" onClick = {() => isPopup(true)}> Rate </button>
                 <button id = "tutor-decline"> Cancel </button>
             </div>
+
+            <ReviewPopup trigger = {popup} setTrigger = {isPopup}></ReviewPopup>
         </div>
     )
 }

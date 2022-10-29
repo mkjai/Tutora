@@ -9,6 +9,7 @@
     box-shadow: 0 0.188rem 1.550rem rgb(156, 156, 156, 0.3);
     border-radius: 1rem;
     padding: 1rem;
+    cursor: help;
 }
 
 .container-top {
@@ -117,6 +118,7 @@
      box-shadow: 0 0.188rem 1.550rem rgb(156, 156, 156, 0.3);
      border-radius: 1rem;
      padding: 1rem;
+     cursor: help;
  }
 
  .tutor-requests-profile-name, .tutor-schedule-profile-name {

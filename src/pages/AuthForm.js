@@ -8,15 +8,13 @@ import { useAuth } from '../AuthContext'
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils'
 
 export default function AuthForm() {
+    const { currentUser} = useAuth();
+    const navigate = useNavigate();
     const [page, setPage] = useState(1);
     const [signupData, setSignupData] = useState({
         name: "",
         email: "",
-        password: "",
-        school: "",
-        courses: "",
-        availability: "",
-        bio: "",
+        password: ""
     })
 
     // const password = {password};
@@ -35,33 +33,11 @@ export default function AuthForm() {
         setPage(page-1);
     }
 
-    // const navigate = useNavigate();
-    // const { currentUser, register, setError} = useAuth();
-    // const [loading, setLoading] = useState(false);
-
-    // useEffect(() => {
-    //     if (currentUser) {
-    //     navigate("/");
-    //     }
-    // }, [currentUser, navigate]);
-
-    // async function contHandler(e) {
-    //     e.preventDefault();
-    //     console.log(signupData);
-
-    //     if (signupData.password !== signupData.passwordConf) {
-    //         return setError("Password not matching");
-    //     }
-
-    //     try {
-    //     setLoading(true);
-    //     await setPage((currPage) => currPage + 1);
-    //     } catch (e) {
-    //     setError("Cannot go to next page");
-    //     }
-
-    //     setLoading(false);
-    // }
+    useEffect(() => {
+        if (currentUser) {
+        navigate("/");
+        }
+    }, [currentUser, navigate]);
 
     switch (page) {
         case 1:

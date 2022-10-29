@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import { arrayUnion, doc, writeBatch } from "firebase/firestore";
 
-import {auth} from "./firebase";
+import {auth, db} from "./firebase";
 
 const AuthContext = createContext();
 
@@ -44,4 +45,34 @@ export function AuthProvider({ children }) {
         {!loading && children}
         </AuthContext.Provider>
     );
+}
+
+export async function createUserProfile(profileMap) {
+  const user = auth.currentUser;
+  if (user != null) {
+    const updateUserProfile = writeBatch(db);
+    
+    updateUserProfile.set(doc(db, `users/${user.uid}`), profileMap)
+
+    // for each item in profileMap.courses, create a new doc
+    profileMap.courses.forEach(element => {
+      updateUserProfile.set(doc(db, `explore/${element}/schools/${profileMap.school}`), 
+        {
+          students: arrayUnion(user.uid)
+        }
+      );
+    });
+
+    updateUserProfile.commit()
+    .then(
+      () =>
+      console.log(`successfully created profile ${auth.currentUser.uid}`)
+    )
+    .catch(
+      (error) => {
+        console.log(error)
+      }
+    )
+  }
+  
 }

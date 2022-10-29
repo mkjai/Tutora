@@ -35,8 +35,8 @@
     font-size: 1.5rem;
     font-weight: 700;
     padding-left: 1rem;
-    margin-top: 6rem;
     margin-bottom: 3rem;
+    margin-top: 2rem;
 }
 
 .search-bar input:focus {
@@ -112,7 +112,7 @@
 
 /* for non mobile */
 @media screen and (min-width: 768px) {
-    .tutor-grid, .requests-grid, .schedule-grid {
+    .tutor-grid, .requests-grid, .schedule-grid, .review-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
@@ -505,4 +505,58 @@
     padding: 1rem;
     padding-right: 5rem;
     padding-left: 5rem;
+}
+
+/* review page */
+
+.review-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    max-width: 76rem;
+    margin: 0 auto;
+}
+
+.review-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+}
+
+.review-label {
+    margin: auto;
+    padding-right: 3rem;
+}
+
+.review-label p {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.review-grid {
+    max-width: 76rem;
+    gap: 2rem;
+    display: grid;
+    margin: 1rem auto;
+    justify-content: center;
+    align-items: center;
+}
+
+/* pop up */
+.course-select label{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #c0c0c0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.course-selection {
+    margin-bottom: 1rem;
 }

@@ -6,6 +6,7 @@
 
    width: 100%;
    margin: 0 auto;
+   margin-bottom: 50vh;
    width: 76rem;
    background-color: #fff;
  }
@@ -14,7 +15,6 @@
    position: sticky;
    top: 0;
    height: 10vh;
-   background: white;
  }
 
  header .navlinks {

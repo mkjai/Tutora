@@ -25,36 +25,28 @@ export default function NaviPage() {
     const customStyle = {
         control: (base, state) => ({
             ...base,
-            background: "#F2F2F2",
-            borderRadius: state.isFocused ? "5px 3px 0 0" : 5,
-            border: state.isFocused ? "0.2rem solid #00867D" : "transparent",
+            backgroundColor: "#F2F2F2",
+            borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+            border: state.isFocused ? "0.2rem solid #00867D" : "none",
             "&:hover": {
                 borderColor: state.isFocused ? "#00867D" : "#00867D",
             },
             boxShadow: state.isFocused ? null : null,
-            width: 260
+            width: 250,
         }),
-            menu: base => ({
+            menu: (base, state) => ({
             ...base,
             borderRadius: 0,
             marginTop: 0,
-            background: "#F2F2F2"
+            backgroundColor: state.isFocused ? "rgba(0,134,125, 0.4)" : "#F2F2F2"
             }),
-            menuList: base => ({
+            menuList: (base,state) => ({
             ...base,
             padding: 0,
             fontSize: "3rem",
-            fontWeight: "700"
+            fontWeight: "700",
+            backgroundColor: state.isFocused ? "rgba(0,134,125, 0.4)" : "#F2F2F2"
             }),
-        option: based => ({
-            ...based,
-            color: '#999',
-            background: "#F2F2F2",
-            "&:hover": {
-                background: "rgba(0,134,125, 0.4)",
-                cursor: "pointer"
-            },
-        }),
         groupHeading: based => ({
             ...based,
             color: '#00867D',
@@ -67,19 +59,43 @@ export default function NaviPage() {
             fontSize: "1.5rem",
             fontWeight: 700
         }),
-        valueContainer: based => ({
+        multiValueLabel: based => ({
             ...based,
-            color: "#00867D",
-            fontSize: "2rem",
-            fontWeight: 700
-        }),
-        singleValue: based => ({
-            ...based,
-            color: "#00867D",
+            color: "#999",
             fontSize: "1.5rem",
             fontWeight: 700
+        }),
+        singleValue: (based,state) => ({
+            ...based,
+            color: '#00867D',
+            fontWeight: 700,
+            font: 'Nunito',
+            fontSize: '1.5rem',
+            backgroundColor: state.isFocused ? "rgba(0,134,125, 0.4)" : "#F2F2F2"
+        }),
+        menuPortal: (based,state) => ({
+            ...based,
+            color: '#999',
+            fontWeight: 700,
+            font: 'Nunito',
+            fontSize: '1.5rem',
+            background: "F2F2F2",
+            backgroundColor: state.isFocused ? "rgba(0,134,125, 0.4)" : "#F2F2F2"
+        }),
+        option: (based,state) => ({
+            ...based,
+            color: '#999',
+            fontWeight: 700,
+            font: 'Nunito',
+            fontSize: '1.5rem',
+            backgroundColor: state.isSelected ?  "rgba(0,134,125, 0.4)" : "F2F2F2",
+            "&:hover": {
+                background: "rgba(0,134,125, 0.4)",
+                cursor: "pointer"
+            },
         })
     }
+
 
 
   return (

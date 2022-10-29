@@ -3,12 +3,14 @@ import { VscError } from "react-icons/vsc";
 
 import { useAuth } from "../AuthContext";
 
+import React, {useEffect, useState} from 'react'
+
 export default function ErrorMsg() {
   const { error, setError } = useAuth();
 
     const STYLES = {
-        position: 'fixed',
-        top: '25%',
+        position: 'absolute',
+        top: '8%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
         backgroundColor: '#DC143C',
@@ -26,9 +28,16 @@ export default function ErrorMsg() {
     const COLOR = {color: "#fff"}
 
 
+    const [showElement, setShowElement] = useState(true);
+    useEffect(() => {
+      setTimeout(function() {
+        setShowElement(false)
+      }, 5000);
+    },[])
+
   return (
     error && (
-        <div>
+        <div> {showElement?
                 <div style = {STYLES}>
                     <VscError
                         onClick = {() => setError("")}
@@ -40,7 +49,8 @@ export default function ErrorMsg() {
                     Error: {error}
                     </h3>
                 </div>
-            </div>
+            :<></>}
+        </div>
     )
   );
 }

@@ -7,16 +7,12 @@ import AvatarPopup from '../components/AvatarPopup';
 import Select from 'react-select';
 import makeAnimated from "react-select/animated";
 import {Link, Navigate} from 'react-router-dom'
-import validator from 'validator'
-import { registerVersion } from 'firebase/app';
 import { useNavigate } from 'react-router-dom'
-import { useAuth, createUserProfile} from '../AuthContext'
-import { auth } from '../firebase';
 var data = require("../assets/SCHOOLS.json");
 var options = require("../assets/COURSES.json");
 
 
-const ProfileCreation = ({prevPage, handleChange, values}) => {
+const ProfileEditPage = () => {
 
     const [buttonPopup, setButtonPopup] = useState(false);
     const [imgCrop, setImgCrop] = useState(false);
@@ -29,7 +25,6 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
     const animatedComponents = makeAnimated();
 
     const [loading, setLoading] = useState(false);
-    const { currentUser, register, setError} = useAuth();
     const navigate = useNavigate();
 
     const [selectedOptions, setSelectedOptions] = useState([]);
@@ -57,42 +52,9 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
         setImgCrop(null)
     }
 
-    async function submitHandler(e) {
-            e.preventDefault();
-            console.log(values);
+    // async function submitHandler(e) {
 
-            if (selectedSchool == null || selectedSchool.length == 0) {
-                return setError("Please choose your school");
-            }
-
-            try {
-            setLoading(true);
-            await register(values.email, values.password);
-            createUserProfile(
-            {
-                uid: auth.currentUser.uid,
-                name: values.name,
-                school: selectedSchool,
-                bio: bioText,
-                contactInfo: contactText,
-                availability: availabilityText,
-                courses: selectedOptions
-            }
-            )
-            .then(
-            () => console.log('created user profile ' + auth.currentUser.uid)
-            )
-            .catch(
-            e => console.log(e)
-            )
-            navigate("/");
-            console.log(selectedSchool)
-            } catch (e) {
-            setError("Failed to create an account");
-            }
-
-            setLoading(false);
-        };
+    //     };
 
 
     const customStyle = {
@@ -175,8 +137,33 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
 
     return (
         <div className = "sign-up-cont-container">
-            <form className = "sign-up-cont-inner" onSubmit = {submitHandler}>
-                <p class = "sign-up-cont-label"> Create your profile </p>
+            <form className = "sign-up-cont-inner">
+                <p class = "sign-up-cont-label"> Edit profile </p>
+
+                <div className = "add-profile-container">
+                    <p> Add a profile picture </p>
+                    <img src = {profileIcon} alt = ''/>
+                    <button onClick = {() => setButtonPopup(true)}> Upload </button>
+
+                </div>
+
+                <div className = "sign-up-text-container">
+                    <p> Bio </p>
+                    <textarea value = {bioText} onChange = {handleBio} maxLength = {150} placeholder = "Type your bio here"></textarea>
+                    <h2> {bioText.length}/{characterLimit} Characters </h2>
+                </div>
+
+                <div className = "sign-up-text-container">
+                    <p> Contact Info </p>
+                    <textarea value = {contactText} onChange = {handleContact} maxLength = {150} placeholder = "Type your contact info here"></textarea>
+                    <h2> {contactText.length}/{characterLimit} Characters </h2>
+                </div>
+
+                <div className = "sign-up-text-container">
+                    <p> Availability </p>
+                    <textarea value = {availabilityText} onChange = {handleAvailability} maxLength = {150} placeholder = "Type your contact info here"></textarea>
+                    <h2> {availabilityText.length}/{characterLimit} Characters </h2>
+                </div>
 
                 <div className = "sign-up-selection">
                     <Select
@@ -211,33 +198,10 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
                     </Select>
                 </div>
 
-                <div className = "add-profile-container">
-                    <p> Add a profile picture (Optional) </p>
-                    <img src = {profileIcon} alt = ''/>
-                    <button onClick = {() => setButtonPopup(true)}> Upload </button>
-
-                </div>
-
-                <div className = "sign-up-text-container">
-                    <p> Bio (Optional) </p>
-                    <textarea value = {bioText} onChange = {handleBio} maxLength = {150} placeholder = "Type your bio here"></textarea>
-                    <h2> {bioText.length}/{characterLimit} Characters </h2>
-                </div>
-
-                <div className = "sign-up-text-container">
-                    <p> Contact Info (Optional) </p>
-                    <textarea value = {contactText} onChange = {handleContact} maxLength = {150} placeholder = "Type your contact info here"></textarea>
-                    <h2> {contactText.length}/{characterLimit} Characters </h2>
-                </div>
-
-                <div className = "sign-up-text-container">
-                    <p> Availability (Optional) </p>
-                    <textarea value = {availabilityText} onChange = {handleAvailability} maxLength = {150} placeholder = "Type your contact info here"></textarea>
-                    <h2> {availabilityText.length}/{characterLimit} Characters </h2>
-                </div>
-
                 <button className = "sign-up-cont-inner-create-btn" type = "submit"> Done </button>
-                <button className = "sign-up-cont-inner-back-btn" onClick = {prevPage}> Back </button>
+                <Link to = '/profile-page' style = {{textDecoration: 'none', width: '100%'}}>
+                    <button className = "sign-up-cont-inner-back-btn"> Cancel </button>
+                </Link>
                 </form>
 
                 <AvatarPopup trigger = {buttonPopup} setTrigger = {setButtonPopup}>
@@ -265,4 +229,4 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
 //     return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3,6)}-${phoneNumber.slice(6,10)}`;
 // }
 
-export default ProfileCreation
+export default ProfileEditPage

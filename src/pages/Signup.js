@@ -6,7 +6,6 @@ import { useAuth } from '../AuthContext'
 
 export default function Signup({nextPage, handleChange, values}) {
     const { currentUser, register, setError} = useAuth();
-    const [password, setPassword] = useState('');
     const [passwordConf, setPasswordConf] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -37,7 +36,7 @@ export default function Signup({nextPage, handleChange, values}) {
                     <input required type = "text" placeholder = "Full name" onChange={handleChange('name')} defaultValue = {values.name}/>
                     <input required type = "email" placeholder = "Email" onChange={handleChange('email')} defaultValue = {values.email}/>
                     <input required type = "password" placeholder = "Password" onChange={handleChange('password')} defaultValue = {values.password}/>
-                    <input required type = "password" placeholder = "Confirm password" onChange={(e) => setPasswordConf(e.target.value)} defaultValue = {passwordConf}/>
+                    <input required type = "password" placeholder = "Confirm password" onChange={(e) => setPasswordConf(e.target.value)}/>
 
 
                 <button className = "sign-up-page-button" type = "submit" disabbled = {loading}> Continue </button>
