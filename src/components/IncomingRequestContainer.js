@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import defaultProfile from '../assets/profileIcon.png';
 import './Home/containers.css';
 
@@ -10,6 +10,9 @@ const IncomingRequestContainer = (data) => {
     const course = data.props.lessonCourse;
     const message = data.props.messageToTutor;
     const profilePic = defaultProfile;
+
+    const [popup, isPopup] = useState(false);
+    
 
     console.log(name);
     return (
