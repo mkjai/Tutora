@@ -7,35 +7,38 @@ import { cancelAppointment } from '../firebase-functions/bookingFunctions';
 const ScheduleLearnontainer = (data) => {
     
     const profilePic = defaultProfile;
-    // const appointmentId = data.props.appointmentId;
+    const appointmentId = data.props.appointmentId;
     
+    const name = data.props.tutor;
+
+
 
     
 
     const [popup, isPopup] = useState(false);
 
     function handleCancel() {
-        // cancelAppointment(appointmentId)
+        cancelAppointment(appointmentId)
     }
 
     return (
         <div className = "tutor-schedule">
             <div className = "tutor-schedule-profile-name">
                 <img  src = {profilePic} alt = ''/>
-                <p> Name </p>
+                <p> {name} </p>
             </div>
 
-            <div className = "tutor-schedule-subject">
+            {/* <div className = "tutor-schedule-subject">
                 <label> Subjects</label>
                 <p> Test</p>
-            </div>
+            </div> */}
 
             <div className = "tutor-schedule-buttons">
                 <button id = "tutor-accept" onClick = {() => isPopup(true)}> Complete </button>
                 <button id = "tutor-decline" onClick={handleCancel}> Cancel </button>
             </div>
 
-            <ReviewPopup trigger = {popup} setTrigger = {isPopup}></ReviewPopup>
+            <ReviewPopup trigger = {popup} setTrigger = {isPopup} data = {data.props}></ReviewPopup>
         </div>
     )
 }

@@ -5,13 +5,15 @@ import './Home/containers.css';
 const ScheduleTutorContainer = (data) => {
     
     const profilePic = defaultProfile;
+    const name = data.props.student;
+    console.log(data);
 
 
     return (
         <div className = "tutor-schedule">
             <div className = "tutor-schedule-profile-name">
                 <img  src = {profilePic} alt = ''/>
-                <p> Name </p>
+                <p> {name} </p>
             </div>
 
             {/* <div className = "tutor-schedule-subject">

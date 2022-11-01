@@ -2,6 +2,7 @@ import {React, useState} from 'react'
 import ReactDom from 'react-dom'
 import './Home/popup.css'
 import { FaStar } from "react-icons/fa";
+import { finishAppointment } from '../firebase-functions/bookingFunctions';
 
 
 
@@ -104,6 +105,13 @@ function ReviewPopup(props) {
         setReviewText(event.target.value);
     };
 
+    const handleConf = () => {
+        finishAppointment(props.data.appointmentId, currentValue, reviewText);
+        props.setTrigger(false);
+    }
+
+    console.log(props.data)
+
   return (
     props.trigger) ? (
 
@@ -139,7 +147,7 @@ function ReviewPopup(props) {
                 <h2> {reviewText.length}/{characterLimit} Characters </h2>
             </div>
 
-            <button style = {CONF_BUTTON_STYLES}> Confirm </button>
+            <button style = {CONF_BUTTON_STYLES} onClick = {handleConf}> Confirm </button>
             <button style = {CANCEL_BUTTON_STYLES} onClick = {() => props.setTrigger(false)}> Cancel </button>
 
         </div>

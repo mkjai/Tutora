@@ -92,7 +92,9 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
                 bio: bioText,
                 contactInfo: contactText,
                 availability: availabilityText,
-                courses: selectedCourses
+                courses: selectedCourses,
+                defaultCourses: selectedOptions,
+                defaultSchool: selectedSchool
             }
             )
             .then(

@@ -148,6 +148,7 @@ export default function NaviPage() {
                     <Select multi
                         components = {animatedComponents}
                         options = {options}
+                        defaultValue = {auth.currentUser.school}
                         onChange = {(item) => setSelectedOptions(item)}
                         isClearable = {true}
                         isSearchable = {true}

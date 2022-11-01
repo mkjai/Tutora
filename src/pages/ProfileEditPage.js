@@ -13,9 +13,6 @@ var options = require("../assets/COURSES.json");
 
 const ProfileEditPage = () => {
 
-    const [buttonPopup, setButtonPopup] = useState(false);
-    const [imgCrop, setImgCrop] = useState(false);
-
     const [characterLimit] = useState(150);
     const [bioText, setBioText] = useState("");
     const [contactText, setContactText] = useState("");
@@ -43,13 +40,6 @@ const ProfileEditPage = () => {
         setAvailabilityText(event.target.value);
     };
 
-    const onCrop = (view) => {
-        setImgCrop(view)
-    }
-
-    const onClose = () => {
-        setImgCrop(null)
-    }
 
     // async function submitHandler(e) {
 
@@ -202,14 +192,6 @@ const ProfileEditPage = () => {
                     <button className = "sign-up-cont-inner-back-btn"> Cancel </button>
                 </Link>
                 </form>
-
-                <AvatarPopup trigger = {buttonPopup} setTrigger = {setButtonPopup}>
-                    <h1 class = "sign-up-cont-popup-label"> Choose a profile picture </h1>
-                    <Avatar
-                        className = "avatar" width = {250} height = {300} onClose = {onCrop}
-                        onCrop = {onClose} labelStyle = {avatarLabelStyle}
-                    />
-                </AvatarPopup>
 
             </div>
 
