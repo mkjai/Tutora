@@ -7,25 +7,26 @@ import { Link } from 'react-router-dom';
 const TutorContainer = (data) => {
     
     const profilePic = defaultProfile;
-    const name = data.props.name;
-    const rating = data.props.rating;
-    const reviews = data.props.reviews;
-    const courses = data.props.courses;
 
     console.log(data);
+    const name = data.data.name;
+    const rating = data.data.rating;
+    const reviews = data.data.review;
+    const courses = data.data.courses;
+    console.log(name);
 
     return (
         <div className = "tutor-container">
             <div className = "container-top">
                 <div className = "profile-name">
                     <img src = {profilePic} alt = '' />
-                    <p style={{color: "black"}}> {name} </p>
+                    <p style={{color: "black"}}> {name}</p>
                 </div>
             </div>
 
             <div className = "tutor-container-rr">
                 <div className = "tutor-container-rating">
-                    <p> <FaStar size = {20} /> {rating} </p>
+                    <p> <FaStar size = {20} /> {rating}</p>
                 </div>
 
                 <div className = "tutor-container-reviews">
