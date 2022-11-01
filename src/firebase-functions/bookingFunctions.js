@@ -8,9 +8,13 @@ import { FaLessThan } from 'react-icons/fa';
 // console.log(auth.currentUser.uid);
 // Creates new outgoing request to a tutor, with a message to tutor
 export async function createOutgoingRequest(to, message, course) {
+  const fromName = (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().name;
+  const toName = (await getDoc(doc(db, `users/${to}`))).data().name;
   return addDoc(collection(db, 'requests'), {
     to: to,
+    toName: toName,
     from: auth.currentUser.uid,
+    fromName: fromName,
     timeCreated: serverTimestamp(),
     status: 'PENDING',
     messageToTutor: message,
