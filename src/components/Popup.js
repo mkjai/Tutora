@@ -57,7 +57,7 @@ function Popup(props) {
     props.trigger) ? (
 
     <div className = "popup" style = {OVERLAY_STYLES}>
-        <div clasName = "popup-inner" style = {STYLES}>
+        <div className = "popup-inner" style = {STYLES}>
 
             { props.children }
             <button className = "popup-button" style = {BUTTON_STYLES} onClick = {() => props.setTrigger(false)}> Continue </button>

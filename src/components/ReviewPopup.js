@@ -106,17 +106,16 @@ function ReviewPopup(props) {
     };
 
     const handleConf = () => {
-        finishAppointment(props.data.appointmentId, currentValue, reviewText);
+        //finishAppointment(props.data.appointmentId, currentValue, reviewText);
         props.setTrigger(false);
     }
 
-    console.log(props.data)
 
   return (
     props.trigger) ? (
 
     <div style = {OVERLAY_STYLES}>
-        <div clasName = "booking-review-popup-inner" style = {STYLES}>
+        <div className = "booking-review-popup-inner" style = {STYLES}>
 
             <label className = "booking-review-popup-inner-label"> Rating </label>
             <div className = "review-stars">

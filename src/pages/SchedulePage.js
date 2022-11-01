@@ -46,7 +46,7 @@ export default function SchedulePage() {
                         return(
                             <ScheduleTutorContainer key = {elem.timeCreated} props = {elem}></ScheduleTutorContainer> 
                         )
-                        }) : <p> You do not have any incoming requests </p>}
+                        }) : <p id = "schedule-none"> You do not have any incoming requests </p>}
                 </div>
 
                 <div className = "schedule-page-lessons">
@@ -58,7 +58,7 @@ export default function SchedulePage() {
                         return(
                             <ScheduleLearnontainer key = {elem.timeCreated} props = {elem}></ScheduleLearnontainer> 
                         )
-                        }) : <p> You do not have any incoming requests </p>}
+                        }) : <p id = "schedule-none"> You do not have any incoming requests </p>}
                 </div>
             </div>
         </div>

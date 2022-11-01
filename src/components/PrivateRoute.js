@@ -4,8 +4,6 @@ import { useAuth } from "../AuthContext";
 const PrivateRoute = ({ children }) => {
   const { currentUser } = useAuth();
 
-  console.log(currentUser);
-
   if (currentUser) {
     return children;
   }

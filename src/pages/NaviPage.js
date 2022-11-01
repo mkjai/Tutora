@@ -11,6 +11,7 @@ import { searchByCourseAndSchool, searchBySchool } from '../AuthContext';
 import { auth, db } from '../firebase';
 import { useEffect } from 'react';
 import { createSearchParams, Link, useNavigate, useParams } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
 var options = require("../assets/COURSES.json");
 var data = require("../assets/SCHOOLS.json");
 
@@ -23,6 +24,8 @@ export default function NaviPage() {
 
   const [tutorData, setTutorData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+
 
 
     useEffect(() => {
