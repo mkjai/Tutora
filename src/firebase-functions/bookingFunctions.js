@@ -21,7 +21,7 @@ export async function createOutgoingRequest(to, message, course) {
     lessonCourse: course,
     StudentContactInfo: (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().contactInfo,
   }) 
-  updateDoc(docRef, {
+  return updateDoc(docRef, {
     requestId: docRef.id,
   })
 }
@@ -97,15 +97,11 @@ export async function acceptIncomingRequest(requestId) {
 }
 
 // Updates the request status to be rejected, and sends a message
-export async function rejectIncomingRequest(to, message) {
-  const q = query(collection(db, 'requests'), where('from', '==', auth.currentUser.uid), where('to', '==', to));
-
-  // should only return one doc
-  const requestDoc = (await getDocs(q))[0];
+export async function rejectIncomingRequest(requestId) {
+  const requestDoc = await getDoc(doc(db, `requests/${requestId}`))
 
   return updateDoc(requestDoc, {
     status: 'REJECTED',
-    messageToStudent: message,
   })
 }
 
