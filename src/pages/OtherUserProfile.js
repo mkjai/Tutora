@@ -17,9 +17,6 @@ const OtherUserProfile = _ => {
 
     console.log(params.id);
 
-    
-
-
 
     return (
         <div className = "profile-page">
@@ -73,7 +70,7 @@ const OtherUserProfile = _ => {
                 </div>
             </div>
 
-            <BookingPopup trigger = {popup} setTrigger = {isPopup} id = {params.id}></BookingPopup>
+            <BookingPopup trigger = {popup} setTrigger = {isPopup}></BookingPopup>
 
         </div>
     )

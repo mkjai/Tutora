@@ -23,7 +23,7 @@ export async function createOutgoingRequest(to, message, course) {
 // Also adds the current docID as a field, so that it's id can be
 // passed into acceptIcomingRequest and rejectIncomingRequest later on
 export async function getOutgoingRequests() {
-  const requests = await getDocs(query(collection(db, 'requests'), where('from', '==', auth.currentUser.uid)));
+  const requests = await getDocs(query(collection('requests'), where('from', '==', auth.currentUser.uid)));
   const output = [];
   requests.forEach(item => {
     updateDoc(item, {requestID: item.id})
@@ -37,7 +37,7 @@ export async function getOutgoingRequests() {
 // Also adds the current docID as a field, so that it's id can be
 // passed into acceptIcomingRequest and rejectIncomingRequest later on
 export async function getIncomingRequests() {
-  const requests = await getDocs(query(collection(db, 'requests'), where('to', '==', auth.currentUser.uid)));
+  const requests = await getDocs(query(collection('requests'), where('to', '==', auth.currentUser.uid)));
   const output = [];
   requests.forEach(item => {
     updateDoc(item, {requestID: item.id})

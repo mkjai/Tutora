@@ -3,7 +3,8 @@ import Select from 'react-select';
 import ReactDom from 'react-dom'
 import makeAnimated from "react-select/animated";
 import './Home/popup.css'
-import { createOutgoingRequest } from '../firebase-functions/bookingFunctions';
+import { createOutgoingRequest, getOutgoingRequests } from '../firebase-functions/bookingFunctions';
+import { useParams } from 'react-router-dom';
 var options = require("../assets/COURSES.json");
 
 const STYLES = {
@@ -152,7 +153,9 @@ const CANCEL_BUTTON_STYLES = {
     }
 
 
-function BookingPopup(props, id) {
+function BookingPopup(props) {
+
+    const params = useParams();
 
     const [selectedOptions, setSelectedOptions] = useState([]);
     const animatedComponents = makeAnimated();
@@ -167,16 +170,18 @@ function BookingPopup(props, id) {
     };
 
     const handleSubmit = () => {
-        createOutgoingRequest(id, bookingText, selectedOptions.label);
+        createOutgoingRequest(params.id, bookingText, selectedOptions.label);
         props.setTrigger(false);
     }
+    console.log(params.id);
+    console.log(getOutgoingRequests());
 
 
   return (
     props.trigger) ? (
 
     <div style = {OVERLAY_STYLES}>
-        <form clasName = "booking-review-popup-inner" style = {STYLES}>
+        <div clasName = "booking-review-popup-inner" style = {STYLES}>
 
             <div className = "booking-review-subject-selection">
                 <p id = "booking-review-select-label"> Choose a course </p>
@@ -204,7 +209,7 @@ function BookingPopup(props, id) {
             <button type = 'submit' className = "booking-review-popup-button" style = {CONF_BUTTON_STYLES} onClick = {handleSubmit}> Confirm </button>
             <button className = "booking-review-popup-button" style = {CANCEL_BUTTON_STYLES} onClick = {() => props.setTrigger(false)}> Cancel </button>
 
-        </form>
+        </div>
     </div>
   ) : "";
 }
