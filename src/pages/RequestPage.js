@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import '../index.css';
-import RequestContainer from '../components/RequestContainer';
 import { getIncomingRequests, getOutgoingRequests } from '../firebase-functions/bookingFunctions';
+import IncomingRequestContainer from '../components/IncomingRequestContainer';
+import OutgoingRequestContainer from '../components/OutgoingRequestContainer';
 
 
 export default function RequestPage() {
@@ -30,7 +31,7 @@ export default function RequestPage() {
 
     // const requestData = getOutgoingRequests();
 
-    console.log(outIncomingRequestData);
+    console.log(incomingRequests);
 
 
 
@@ -45,7 +46,7 @@ export default function RequestPage() {
                 <div className = "requests-grid">
                     {incomingRequests.length > 1 ? incomingRequests.map((elem) => {
                         return(
-                            <RequestContainer key = {elem.timeCreated} props = {elem}></RequestContainer> 
+                            <IncomingRequestContainer key = {elem.timeCreated} props = {elem}></IncomingRequestContainer> 
                         )
                         }) : <p> You do not have any incoming requests </p>}
                 </div>
@@ -57,7 +58,7 @@ export default function RequestPage() {
                 <div className = "requests-grid">
                     {outgoingRequestData.length > 1 ? outgoingRequestData.map((elem) => {
                         return(
-                            <RequestContainer key = {elem.timeCreated} props = {elem}></RequestContainer> 
+                            <OutgoingRequestContainer key = {elem.timeCreated} props = {elem}></OutgoingRequestContainer> 
                         )
                         }) : <p> You do not have any incoming requests </p>}
                 </div>

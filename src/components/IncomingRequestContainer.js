@@ -2,7 +2,7 @@ import React from 'react'
 import defaultProfile from '../assets/profileIcon.png';
 import './Home/containers.css';
 
-const RequestContainer = (data) => {
+const IncomingRequestContainer = (data) => {
 
     console.log(data.props);
     
@@ -37,4 +37,4 @@ const RequestContainer = (data) => {
     )
 }
 
-export default RequestContainer
+export default IncomingRequestContainer

@@ -148,6 +148,7 @@
  .tutor-requests-profile-name p, .tutor-schedule-profile-name p {
      font-size: 2rem;
      font-weight: 700;
+     color: black;
  }
 
  .tutor-requests-subject label, .tutor-requests-msg label,
