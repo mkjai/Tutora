@@ -7,8 +7,17 @@ import { doc } from 'firebase/firestore';
 // console.log(auth.currentUser.uid);
 // Creates new outgoing request to a tutor, with a message to tutor
 export async function createOutgoingRequest(to, message, course) {
-  console.log(auth)
-  return addDoc(collection(db, 'requests'), {
+  getOutgoingRequests()
+  .then(
+    (arr) => {
+      arr.forEach(item => {
+        if (to === item.to) {
+          throw 'repeated request';
+        }
+      })
+    }
+  )
+  return  addDoc(collection(db, 'requests'), {
     to: to,
     from: auth.currentUser.uid,
     timeCreated: serverTimestamp(),
@@ -16,17 +25,18 @@ export async function createOutgoingRequest(to, message, course) {
     messageToTutor: message,
     lessonCourse: course,
     StudentContactInfo: (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().contactInfo,
-  })  
+  })
 }
 
 // Gets all outgoing requests currently made by this user.
 // Also adds the current docID as a field, so that it's id can be
 // passed into acceptIcomingRequest and rejectIncomingRequest later on
 export async function getOutgoingRequests() {
-  const requests = await getDocs(query(collection('requests'), where('from', '==', auth.currentUser.uid)));
+  console.log(auth.currentUser.uid)
+  const q =  query(collection(db, 'requests'), where('from', '==', auth.currentUser.uid));
   const output = [];
-  requests.forEach(item => {
-    updateDoc(item, {requestID: item.id})
+  (await getDocs(q)).forEach(item => {
+    // updateDoc(item, {requestID: item.id})
     output.push(item.data());
   });
   console.log(output)
@@ -37,10 +47,10 @@ export async function getOutgoingRequests() {
 // Also adds the current docID as a field, so that it's id can be
 // passed into acceptIcomingRequest and rejectIncomingRequest later on
 export async function getIncomingRequests() {
-  const requests = await getDocs(query(collection('requests'), where('to', '==', auth.currentUser.uid)));
+  const requests = await getDocs(query(collection(db, 'requests'), where('to', '==', auth.currentUser.uid)));
   const output = [];
   requests.forEach(item => {
-    updateDoc(item, {requestID: item.id})
+    // updateDoc(item, {requestID: item.id})
     output.push(item.data());
   });
   return output;
