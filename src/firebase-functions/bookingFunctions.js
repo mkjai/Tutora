@@ -88,7 +88,6 @@ export async function getIncomingRequests() {
 // Also creates a new appointment with the student
 export async function acceptIncomingRequest(requestId) {
   const requestDoc = await getDoc(doc(db, `requests/${requestId}`))
-  console.log(requestDoc.data())
   await createNewAppointment(requestDoc.data().from, requestDoc.data().to);
   return updateDoc(requestDoc, {
     status: 'ACCEPTED',

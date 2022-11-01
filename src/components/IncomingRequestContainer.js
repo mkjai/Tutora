@@ -35,7 +35,7 @@ const IncomingRequestContainer = (data) => {
             </div>
 
             <div className = "tutor-requests-buttons">
-                <button id = "tutor-accept"> Accept </button>
+                <button id = "tutor-accept" onClick={async () => {await acceptIncomingRequest(requestId)}}> Accept </button>
                 <button id = "tutor-decline"> Decline </button>
             </div>
 
