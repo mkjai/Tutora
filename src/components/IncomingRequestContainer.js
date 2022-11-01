@@ -14,10 +14,9 @@ const IncomingRequestContainer = (data) => {
     const requestId = data.props.requestId;
     const profilePic = defaultProfile;
 
-    console.log(acceptIncomingRequest(requestId))
-
     function handleCofirmClick() {
         acceptIncomingRequest(requestId)
+        console.log('confirm button clicked')
     }
 
     console.log(requestId);

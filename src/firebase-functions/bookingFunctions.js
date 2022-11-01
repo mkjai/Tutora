@@ -61,7 +61,7 @@ export async function doesRequestAlreadyExist(to) {
 // Also adds the current docID as a field, so that it's id can be
 // passed into acceptIcomingRequest and rejectIncomingRequest later on
 export async function getOutgoingRequests() {
-  const q =  query(collection(db, 'requests'), where('from', '==', auth.currentUser.uid));
+  const q =  query(collection(db, 'requests'), where('from', '==', auth.currentUser.uid), where('status', '==', 'PENDING'));
   const output = [];
   (await getDocs(q)).forEach(item => {
     // updateDoc(item, {requestID: item.id})
@@ -75,7 +75,7 @@ export async function getOutgoingRequests() {
 // Also adds the current docID as a field, so that it's id can be
 // passed into acceptIcomingRequest and rejectIncomingRequest later on
 export async function getIncomingRequests() {
-  const requests = await getDocs(query(collection(db, 'requests'), where('to', '==', auth.currentUser.uid)));
+  const requests = await getDocs(query(collection(db, 'requests'), where('to', '==', auth.currentUser.uid), where('status', '==', 'PENDING')));
   const output = [];
   requests.forEach(item => {
     // updateDoc(item, {requestID: item.id})
@@ -87,10 +87,10 @@ export async function getIncomingRequests() {
 // Updates the request status to be accepted, and sends a message with contactInfo
 // Also creates a new appointment with the student
 export async function acceptIncomingRequest(requestId) {
-  const requestDoc = await getDoc(doc(db, `requests/${requestId}`))
-  console.log(requestDoc.data())
-  await createNewAppointment(requestDoc.data().from, requestDoc.data().to);
-  return updateDoc(requestDoc, {
+  const requestDocRef = doc(db, `requests/${requestId}`)
+  const requestDocRefData = (await getDoc(requestDocRef)).data();
+  await createNewAppointment(requestDocRefData.from, requestDocRefData.to);
+  return updateDoc(requestDocRef, {
     status: 'ACCEPTED',
     TutorContactInfo: (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().contactInfo,
   })
