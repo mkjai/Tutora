@@ -90,7 +90,8 @@ export async function acceptIncomingRequest(to, message) {
   const q = query(collection(db, 'requests'), where('from', '==', auth.currentUser.uid), where('to', '==', to));
   
   // should only return one doc
-  const requestDoc = (await getDocs(q))[0];
+  const requestDoc = (await getDocs(q)).docs[0]
+  console.log(requestDoc)
 
   return updateDoc(requestDoc, {
     status: 'ACCEPTED',

@@ -3,7 +3,7 @@ import Select from 'react-select';
 import ReactDom from 'react-dom'
 import makeAnimated from "react-select/animated";
 import './Home/popup.css'
-import { createOutgoingRequest, getOutgoingRequests } from '../firebase-functions/bookingFunctions';
+import { acceptIncomingRequest, createOutgoingRequest, getOutgoingRequests } from '../firebase-functions/bookingFunctions';
 import { useParams } from 'react-router-dom';
 var options = require("../assets/COURSES.json");
 
@@ -80,7 +80,7 @@ const CANCEL_BUTTON_STYLES = {
 
 function AcceptingPopup(props) {
 
-
+    console.log(props.studentUid)
 
     const [bookingText, setBookingText] = useState("");
 
@@ -89,6 +89,11 @@ function AcceptingPopup(props) {
     const handleBook = event => {
         setBookingText(event.target.value);
     };
+
+    const handleConfirm = () => {
+        acceptIncomingRequest(props.studentUid, bookingText)
+        props.setTrigger(false);
+    }
 
 
   return (
@@ -103,7 +108,7 @@ function AcceptingPopup(props) {
                 <h2> {bookingText.length}/{characterLimit} Characters </h2>
             </div>
 
-            <button type = 'submit' className = "booking-review-popup-button" style = {CONF_BUTTON_STYLES}> Confirm </button>
+            <button type = 'submit' className = "booking-review-popup-button" style = {CONF_BUTTON_STYLES} onClick = {handleConfirm}> Confirm </button>
             <button className = "booking-review-popup-button" style = {CANCEL_BUTTON_STYLES} onClick = {() => props.setTrigger(false)}> Cancel </button>
 
         </div>

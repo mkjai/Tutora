@@ -10,6 +10,7 @@ const IncomingRequestContainer = (data) => {
     const name = data.props.fromName;
     const course = data.props.lessonCourse;
     const message = data.props.messageToTutor;
+    const uid = data.props.from;
     const profilePic = defaultProfile;
 
     const [popup, isPopup] = useState(false);
@@ -38,7 +39,7 @@ const IncomingRequestContainer = (data) => {
                 <button id = "tutor-decline"> Decline </button>
             </div>
 
-            <AcceptingPopup trigger = {popup} setTrigger = {isPopup}/>
+            <AcceptingPopup trigger = {popup} setTrigger = {isPopup} studentUid = {uid}/>
         </div>
     )
 }
