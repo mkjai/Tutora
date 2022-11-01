@@ -24,25 +24,34 @@ export async function createOutgoingRequest(to, message, course) {
 }
 // Checks if a request has already been made to this user
 export async function doesRequestAlreadyExist(to) {
+  const arr = (await getOutgoingRequests());
   let output = false;
-  getOutgoingRequests()
-  .then(
-    (arr) => {
-      arr.forEach(item => {
-        if (to === item.to) {
-          // console.log('already exists')
-          output =  true;
-          return;
-        }
-      })
+  arr.forEach( item => {
+    if (to == item.to) {
+      output = true;
+      return;
     }
-  )
-  .catch(
-    e => {
-      console.log('how lmao' + e)
-    }
-  )
+  })
   return output;
+  // let output = false;
+  // getOutgoingRequests()
+  // .then(
+  //   (arr) => {
+  //     arr.forEach(item => {
+  //       if (to === item.to) {
+  //         // console.log('already exists')
+  //         output = true;
+  //         return;
+  //       }
+  //     })
+  //   }
+  // )
+  // .catch(
+  //   e => {
+  //     console.log('how lmao' + e)
+  //   }
+  // )
+  // return output;
 }
 
 // Gets all outgoing requests currently made by this user.

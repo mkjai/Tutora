@@ -24,6 +24,7 @@ const OtherUserProfile = _ => {
     useEffect(() => {
       const getAlrRequest = async () => {
         const response = await doesRequestAlreadyExist(params.id);
+        console.log(response);
         setIsRequested(response);
         setIsLoading(false);
       };
