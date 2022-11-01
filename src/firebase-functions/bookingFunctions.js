@@ -25,7 +25,7 @@ export async function doesRequestAlreadyExist(to) {
   .then(
     (arr) => {
       arr.forEach(item => {
-        if (to === item.to && item.status === 'PENDING') {
+        if (to === item.to) {
           return true;
         }
       })
@@ -86,15 +86,6 @@ export async function rejectIncomingRequest(requestID, message) {
   })
 }
 
-// Creates new appointment
-async function createNewAppointment(student, tutor) {
-  return addDoc(collection(db, 'appointments'), {
-    student: student,
-    tutor: tutor,
-    done: false,
-    timeCreated: serverTimestamp(),
-  })
-}
 
 // Gets all current active appointments, where current user is the Student
 // Also adds the current docID as a field, so that it's id can be
@@ -122,10 +113,25 @@ export async function getTutorAppointments() {
   return output;
 }
 
+// Creates new appointment
+async function createNewAppointment(student, tutor) {
+  return addDoc(collection(db, 'appointments'), {
+    student: student,
+    tutor: tutor,
+    done: false,
+    timeCreated: serverTimestamp(),
+  })
+}
+
 // Updates the Appointment status to done, only student can access
+// Deletes the request doc
 // Also rates the tutor
-export async function finishAppointment(appointmentID, stars, review) {
-  const appointmentDoc = await getDoc(db, `appointments/${appointmentID}`);
+export async function finishAppointment(tutor, stars, review) {
+  
+  // This query should only return one doc
+  const q = query(collection('appointments'), where('tutor', '==', tutor), where('student', '==', auth.currentUser.uid));
+
+  const appointmentDoc = (await getDocs(q))[0];
   const tutorDoc = await getDoc(db, `users/${appointmentDoc.data().tutor}`);
   
   // Finish appointment
