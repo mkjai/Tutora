@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import defaultProfile from '../assets/profileIcon.png';
-import AcceptingPopup from './AcceptingPopup';
+import { acceptIncomingRequest } from '../firebase-functions/bookingFunctions';
 import './Home/containers.css';
 
 const IncomingRequestContainer = (data) => {
@@ -13,8 +13,7 @@ const IncomingRequestContainer = (data) => {
     const uid = data.props.from;
     const profilePic = defaultProfile;
 
-    const [popup, isPopup] = useState(false);
-    
+    console.log(acceptIncomingRequest())
 
     console.log(name);
     return (
@@ -35,11 +34,10 @@ const IncomingRequestContainer = (data) => {
             </div>
 
             <div className = "tutor-requests-buttons">
-                <button id = "tutor-accept" onClick = {() => isPopup(true)}> Accept </button>
+                <button id = "tutor-accept"> Accept </button>
                 <button id = "tutor-decline"> Decline </button>
             </div>
 
-            <AcceptingPopup trigger = {popup} setTrigger = {isPopup} studentUid = {uid}/>
         </div>
     )
 }

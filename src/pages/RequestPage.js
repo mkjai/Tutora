@@ -26,8 +26,6 @@ export default function RequestPage() {
       fetchIncomingRequests();
     }, []);
 
-    console.log(outgoingRequestData);
-
 
     // const requestData = getOutgoingRequests();
 

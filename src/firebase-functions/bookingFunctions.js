@@ -83,7 +83,7 @@ export async function getIncomingRequests() {
 
 // Updates the request status to be accepted, and sends a message with contactInfo
 // Also creates a new appointment with the student
-export async function acceptIncomingRequest(to, message) {
+export async function acceptIncomingRequest(to) {
   
   await createNewAppointment(to, auth.currentUser.uid);
 
@@ -95,7 +95,6 @@ export async function acceptIncomingRequest(to, message) {
 
   return updateDoc(requestDoc, {
     status: 'ACCEPTED',
-    messageToStudent: message,
     TutorContactInfo: (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().contactInfo,
   })
 }
