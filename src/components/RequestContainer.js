@@ -2,8 +2,13 @@ import React from 'react'
 import defaultProfile from '../assets/profileIcon.png';
 import './Home/containers.css';
 
-const RequestContainer = (name, course, message) => {
+const RequestContainer = (props) => {
+
+    console.log(props);
     
+    const name = props.StudentContactInfo;
+    const course = props.StudentContactInfo;
+    const message = props.StudentContactInfo;
     const profilePic = defaultProfile;
 
 

@@ -1,23 +1,14 @@
 import { addDoc, arrayUnion, collection, getDoc, getDocs, increment, query, serverTimestamp, updateDoc, where } from 'firebase/firestore'
 import { auth, db } from '../firebase'
 import { doc } from 'firebase/firestore';
+import { FaLessThan } from 'react-icons/fa';
 
 // const auth.currentUser.uid = auth.currentUser.uid;
 // const (await getDoc(doc(db, `users/${uid}`))).data() = (await getDoc(doc(db, `users/${uid}`))).data();
 // console.log(auth.currentUser.uid);
 // Creates new outgoing request to a tutor, with a message to tutor
 export async function createOutgoingRequest(to, message, course) {
-  getOutgoingRequests()
-  .then(
-    (arr) => {
-      arr.forEach(item => {
-        if (to === item.to) {
-          throw 'repeated request';
-        }
-      })
-    }
-  )
-  return  addDoc(collection(db, 'requests'), {
+  return addDoc(collection(db, 'requests'), {
     to: to,
     from: auth.currentUser.uid,
     timeCreated: serverTimestamp(),
@@ -25,14 +16,33 @@ export async function createOutgoingRequest(to, message, course) {
     messageToTutor: message,
     lessonCourse: course,
     StudentContactInfo: (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().contactInfo,
-  })
+  })  
+}
+
+// Checks if a request has already been made to this user
+export async function doesRequestAlreadyExist(to) {
+  getOutgoingRequests()
+  .then(
+    (arr) => {
+      arr.forEach(item => {
+        if (to === item.to && item.status === 'PENDING') {
+          return true;
+        }
+      })
+      return false;
+    }
+  )
+  .catch(
+    e => {
+      console.log('how lmao' + e)
+    }
+  )
 }
 
 // Gets all outgoing requests currently made by this user.
 // Also adds the current docID as a field, so that it's id can be
 // passed into acceptIcomingRequest and rejectIncomingRequest later on
 export async function getOutgoingRequests() {
-  console.log(auth.currentUser.uid)
   const q =  query(collection(db, 'requests'), where('from', '==', auth.currentUser.uid));
   const output = [];
   (await getDocs(q)).forEach(item => {

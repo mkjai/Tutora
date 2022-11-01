@@ -14,16 +14,15 @@ export default function RequestPage() {
 
     useEffect(() => {
       const fetchTutorData = async () => {
-        const response = await getIncomingRequests();
+        const response = await getOutgoingRequests();
         setRequestData(response);
         setIsLoading(false);
       };
       fetchTutorData();
     }, []);
 
-    console.log(requestData);
 
-    console.log(getOutgoingRequests());
+    // const requestData = getOutgoingRequests();
 
 
 
@@ -39,9 +38,9 @@ export default function RequestPage() {
                 </div>
 
                 <div className = "requests-grid">
-                    {requestData.map((requests) => {
+                    {requestData.map((elem) => {
                         return(
-                            <RequestContainer key = {requests.uid} {...requests}></RequestContainer> 
+                            <RequestContainer key = {elem.timeCreated} props = {elem}></RequestContainer> 
                         )
                         })}
                 </div>

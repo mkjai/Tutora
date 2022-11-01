@@ -4,6 +4,7 @@ import '../index.css';
 import tempImg from '../assets/profileIcon.png';
 import {FaStar} from 'react-icons/fa'
 import BookingPopup from '../components/BookingPopup'
+import { doesRequestAlreadyExist } from '../firebase-functions/bookingFunctions';
 
 const OtherUserProfile = _ => {
 
@@ -46,7 +47,13 @@ const OtherUserProfile = _ => {
             </Link>
 
             <div className = 'booking-btn'>
-                <button onClick = {() => isPopup(true)}> Book a lesson </button>
+                <button 
+                    onClick = {() => {isPopup(true)}}
+                    disabled = {doesRequestAlreadyExist()}
+                    style = {doesRequestAlreadyExist() ? {backgroundColor: 'grey'} : {}}
+                    > 
+                        Send a Request 
+                </button>
             </div>
 
             <div className = "profile-blocks-grid">
