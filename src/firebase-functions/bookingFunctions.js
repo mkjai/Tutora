@@ -162,7 +162,7 @@ export async function finishAppointment(appointmentId, stars, review) {
   })
 
   // Rate Tutor
-  updateDoc( tutorDocRef, {
+  return updateDoc( tutorDocRef, {
     completedSessions: increment(1),
     totalStars: increment(stars),
     reviews: arrayUnion({

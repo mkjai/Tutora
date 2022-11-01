@@ -106,7 +106,7 @@ function ReviewPopup(props) {
     };
 
     const handleConf = () => {
-        //finishAppointment(props.data.appointmentId, currentValue, reviewText);
+        finishAppointment(props.data.appointmentId, currentValue, reviewText);
         props.setTrigger(false);
     }
 
