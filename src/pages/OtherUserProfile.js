@@ -17,7 +17,18 @@ const OtherUserProfile = _ => {
     const params = useParams();
 
     console.log(params.id);
-
+    
+    let exists;
+    doesRequestAlreadyExist(params.id)
+    .then(
+        val => {
+            exists = val;
+        }
+    )
+    .catch(
+        e => console.log('bruh ' + e)
+    )
+    console.log(exists);
 
     return (
         <div className = "profile-page">
@@ -49,8 +60,8 @@ const OtherUserProfile = _ => {
             <div className = 'booking-btn'>
                 <button 
                     onClick = {() => {isPopup(true)}}
-                    disabled = {doesRequestAlreadyExist()}
-                    style = {doesRequestAlreadyExist() ? {backgroundColor: 'grey'} : {}}
+                    disabled = {exists}
+                    style = {exists ? {backgroundColor: 'grey'} : {}}
                     > 
                         Send a Request 
                 </button>

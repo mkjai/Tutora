@@ -25,15 +25,17 @@ export async function createOutgoingRequest(to, message, course) {
 
 // Checks if a request has already been made to this user
 export async function doesRequestAlreadyExist(to) {
+  let output = false;
   getOutgoingRequests()
   .then(
     (arr) => {
       arr.forEach(item => {
         if (to === item.to) {
-          return true;
+          // console.log('already exists')
+          output =  true;
+          return;
         }
       })
-      return false;
     }
   )
   .catch(
@@ -41,6 +43,7 @@ export async function doesRequestAlreadyExist(to) {
       console.log('how lmao' + e)
     }
   )
+  return output;
 }
 
 // Gets all outgoing requests currently made by this user.
@@ -53,7 +56,6 @@ export async function getOutgoingRequests() {
     // updateDoc(item, {requestID: item.id})
     output.push(item.data());
   });
-  console.log(output)
   return output;
 }
 
@@ -72,10 +74,13 @@ export async function getIncomingRequests() {
 
 // Updates the request status to be accepted, and sends a message with contactInfo
 // Also creates a new appointment with the student
-export async function acceptIncomingRequest(requestID, message) {
-  const studentID = (await getDoc(doc(db, `requests/${requestID}`))).data().from;
-  await createNewAppointment(studentID, auth.currentUser.uid);
-  return updateDoc(doc(db, `requests/${requestID}`), {
+export async function acceptIncomingRequest(to, message) {
+  const q = query(collection(db, 'requests'), where('from', '==', auth.currentUser.uid), where('to', '==', to));
+  
+  // should only return one doc
+  const requestDoc = (await getDocs(q))[0];
+
+  return updateDoc(requestDoc, {
     status: 'ACCEPTED',
     messageToStudent: message,
     TutorContactInfo: (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().contactInfo,
