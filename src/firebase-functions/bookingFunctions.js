@@ -74,10 +74,13 @@ export async function getIncomingRequests() {
 
 // Updates the request status to be accepted, and sends a message with contactInfo
 // Also creates a new appointment with the student
-export async function acceptIncomingRequest(requestID, message) {
-  const studentID = (await getDoc(doc(db, `requests/${requestID}`))).data().from;
-  await createNewAppointment(studentID, auth.currentUser.uid);
-  return updateDoc(doc(db, `requests/${requestID}`), {
+export async function acceptIncomingRequest(to, message) {
+  const q = query(collection(db, 'requests'), where('from', '==', auth.currentUser.uid), where('to', '==', to));
+  
+  // should only return one doc
+  const requestDoc = (await getDocs(q))[0];
+
+  return updateDoc(requestDoc, {
     status: 'ACCEPTED',
     messageToStudent: message,
     TutorContactInfo: (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().contactInfo,
