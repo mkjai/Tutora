@@ -4,17 +4,17 @@ import './Home/containers.css';
 
 const OutgoingRequestContainer = (data) => {
 
-    console.log(data.props);
+    // console.log(data.props);
     
     const name = data.props.toName;
     const course = data.props.lessonCourse;
     const message = data.props.messageToTutor;
     const profilePic = defaultProfile;
     const requestId = data.props.requestId;
-    console.log(requestId);
+    // console.log(requestId);
     
 
-    console.log(name);
+    // console.log(name);
     return (
         <div className = "tutor-requests">
             <div className = "tutor-requests-profile-name">

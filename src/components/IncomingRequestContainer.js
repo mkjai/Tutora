@@ -14,7 +14,11 @@ const IncomingRequestContainer = (data) => {
     const requestId = data.props.requestId;
     const profilePic = defaultProfile;
 
-    // console.log(acceptIncomingRequest())
+    console.log(acceptIncomingRequest(requestId))
+
+    function handleCofirmClick() {
+        acceptIncomingRequest(requestId)
+    }
 
     console.log(requestId);
     return (
@@ -35,7 +39,7 @@ const IncomingRequestContainer = (data) => {
             </div>
 
             <div className = "tutor-requests-buttons">
-                <button id = "tutor-accept" onClick={async () => {await acceptIncomingRequest(requestId)}}> Accept </button>
+                <button id = "tutor-accept" onClick={handleCofirmClick}> Accept </button>
                 <button id = "tutor-decline"> Decline </button>
             </div>
 
