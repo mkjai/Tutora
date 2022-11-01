@@ -48,14 +48,14 @@ const OtherUserProfile = _ => {
                 <div className = "profile-page-ratings" style ={{cursor:'pointer'}}>
                     <div className = 'profile-rr'>
                     <p> 
-                    <FaStar size = {20} /> {location.state.tutor.ratings != null ? location.state.tutor.ratings: 'N/A'}
+                    <FaStar size = {20} /> {location.state.tutor.totalStar != null ? location.state.tutor.totalStar/location.state.tutor.completedSessions: 'N/A'}
                     </p>
                     <h1> Rating </h1>
                     </div>
 
                     <div className = 'profile-rr'>
                     <p> 
-                    {location.state.tutor.reviews != null ? location.state.tutor.ratings: '0'}
+                    {location.state.tutor.completedSessions != null ? location.state.tutor.completedSessions: '0'}
                     </p>
                     <h1> Reviews </h1>
                     </div>

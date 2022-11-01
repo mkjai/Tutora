@@ -10,8 +10,8 @@ const TutorContainer = (data) => {
 
     console.log(data);
     const name = data.data.name;
-    const rating = data.data.rating;
-    const reviews = data.data.review;
+    const rating = data.data.totalStar;
+    const reviews = data.data.completedSessions;
     const courses = data.data.courses;
     console.log(name);
 
@@ -26,11 +26,11 @@ const TutorContainer = (data) => {
 
             <div className = "tutor-container-rr">
                 <div className = "tutor-container-rating">
-                    <p> <FaStar size = {20} /> {rating}</p>
+                    <p> <FaStar size = {20} /> {rating != null ? rating/reviews : 'N/A'}</p>
                 </div>
 
                 <div className = "tutor-container-reviews">
-                    <p> {reviews} Reviews</p>
+                    <p> {reviews != null ? reviews : "0"} Reviews</p>
                 </div>
             </div>
 
