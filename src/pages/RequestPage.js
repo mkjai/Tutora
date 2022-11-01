@@ -7,7 +7,7 @@ import { getIncomingRequests, getOutgoingRequests } from '../firebase-functions/
 export default function RequestPage() {
 
     const [outgoingRequestData, setOutgoingRequestData] = useState([]);
-    const [outIncomingRequestData, setOutIncomingRequestData] = useState([]);
+    const [incomingRequests, setIncomingRequestData] = useState([]);
     const [loading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export default function RequestPage() {
       fetchOutgoingRequests();
       const fetchIncomingRequests = async () => {
         const response = await getIncomingRequests();
-        setOutIncomingRequestData(response);
+        setIncomingRequestData(response);
         setIsLoading(false);
       };
       fetchIncomingRequests();
@@ -43,7 +43,7 @@ export default function RequestPage() {
                 </div>
 
                 <div className = "requests-grid">
-                    {outIncomingRequestData.length > 1 ? outIncomingRequestData.map((elem) => {
+                    {incomingRequests.length > 1 ? incomingRequests.map((elem) => {
                         return(
                             <RequestContainer key = {elem.timeCreated} props = {elem}></RequestContainer> 
                         )
