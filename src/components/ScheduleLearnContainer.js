@@ -11,9 +11,9 @@ const ScheduleLearnontainer = (data) => {
     
     const name = data.props.tutor;
 
+    console.log(appointmentId);
 
 
-    
 
     const [popup, isPopup] = useState(false);
 

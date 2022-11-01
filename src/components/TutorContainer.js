@@ -4,9 +4,15 @@ import './Home/containers.css';
 import {FaStar} from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 
-const TutorContainer = ({name, pfp, rating, reviews, courses, uid, bio, contactInfo, availability}) => {
+const TutorContainer = (data) => {
     
     const profilePic = defaultProfile;
+    const name = data.props.name;
+    const rating = data.props.rating;
+    const reviews = data.props.reviews;
+    const courses = data.props.courses;
+
+    console.log(data);
 
     return (
         <div className = "tutor-container">

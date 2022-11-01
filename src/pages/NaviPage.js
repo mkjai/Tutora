@@ -140,7 +140,7 @@ export default function NaviPage() {
                 <Link style = {{textDecoration: 'none'}}
                   to = {`/profile/${tutors.uid}`} state = {{tutor: tutors}}
                 >
-                    <TutorContainer key = {tutors.uid} {...tutors}></TutorContainer> 
+                    <TutorContainer key = {tutors.uid} data = {tutors}></TutorContainer> 
                 </Link>)
           })}
         </div>
