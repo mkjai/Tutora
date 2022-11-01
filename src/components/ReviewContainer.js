@@ -3,7 +3,7 @@ import defaultProfile from '../assets/profileIcon.png';
 import './Home/containers.css';
 import {FaStar} from 'react-icons/fa'
 
-const ReviewContainer = () => {
+const ReviewContainer = (data) => {
 
     // Only for testing
     {/*
@@ -14,23 +14,28 @@ const ReviewContainer = () => {
     
     const profilePic = defaultProfile;
 
+    const name = data.data.name;
+    const rating = data.data.reviews.star;
+    const comment = data.data.reviews.review;
+    console.log(data);
+
 
     return (
         <div className = "tutor-container">
             <div className = "container-top">
                 <div className = "profile-name">
                     <img src = {profilePic} alt = '' />
-                    <p> Name </p>
+                    <p> {name} </p>
                 </div>
                 <div className = "tutor-container-rating">
-                    <p> <FaStar size = {20} /> 5.0 </p>
+                    <p> <FaStar size = {20} /> {rating} </p>
                 </div>
             </div>
 
 
             <div className = "tutor-container-subject">
                 <label>Comment</label> 
-                <p>Test </p>
+                <p> {comment} </p>
             </div>
         </div>
     )
