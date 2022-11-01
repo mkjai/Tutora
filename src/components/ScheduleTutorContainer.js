@@ -2,7 +2,7 @@ import React from 'react'
 import defaultProfile from '../assets/profileIcon.png';
 import './Home/containers.css';
 
-const ScheduleTutorContainer = () => {
+const ScheduleTutorContainer = (data) => {
     
     const profilePic = defaultProfile;
 
@@ -14,7 +14,7 @@ const ScheduleTutorContainer = () => {
                 <p> Name </p>
             </div>
 
-            <div className = "tutor-schedule-subject">
+            {/* <div className = "tutor-schedule-subject">
                 <label> Subjects</label>
                 <p> Test</p>
             </div>
@@ -22,7 +22,7 @@ const ScheduleTutorContainer = () => {
             <div className = "tutor-schedule-msg">
                 <label> Message </label>
                 <p> Test </p>
-            </div>
+            </div> */}
         </div>
     )
 }

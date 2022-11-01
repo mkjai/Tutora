@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import defaultProfile from '../assets/profileIcon.png';
-import { acceptIncomingRequest } from '../firebase-functions/bookingFunctions';
+import { acceptIncomingRequest, rejectIncomingRequest } from '../firebase-functions/bookingFunctions';
 import './Home/containers.css';
 
 const IncomingRequestContainer = (data) => {
@@ -16,7 +16,11 @@ const IncomingRequestContainer = (data) => {
 
     function handleCofirmClick() {
         acceptIncomingRequest(requestId)
-        console.log('confirm button clicked')
+        // console.log('confirm button clicked')
+    }
+
+    function handleDeclineClick() {
+        rejectIncomingRequest(requestId)
     }
 
     console.log(requestId);
@@ -39,7 +43,7 @@ const IncomingRequestContainer = (data) => {
 
             <div className = "tutor-requests-buttons">
                 <button id = "tutor-accept" onClick={handleCofirmClick}> Accept </button>
-                <button id = "tutor-decline"> Decline </button>
+                <button id = "tutor-decline" onClick={handleDeclineClick}> Decline </button>
             </div>
 
         </div>

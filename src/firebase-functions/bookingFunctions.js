@@ -1,4 +1,4 @@
-import { addDoc, arrayUnion, collection, getDoc, getDocs, increment, query, serverTimestamp, updateDoc, where } from 'firebase/firestore'
+import { addDoc, arrayUnion, collection, deleteDoc, getDoc, getDocs, increment, query, serverTimestamp, updateDoc, where } from 'firebase/firestore'
 import { auth, db } from '../firebase'
 import { doc } from 'firebase/firestore';
 import { FaLessThan } from 'react-icons/fa';
@@ -25,6 +25,12 @@ export async function createOutgoingRequest(to, message, course) {
     requestId: docRef.id,
   })
 }
+
+export async function cancelOutgoingRequest(requestID) {
+  const reqestDocRef = doc(db, `requests/${requestID}`);
+  return deleteDoc(reqestDocRef);
+}
+
 // Checks if a request has already been made to this user
 export async function doesRequestAlreadyExist(to) {
   const arr = (await getOutgoingRequests());
@@ -98,7 +104,7 @@ export async function acceptIncomingRequest(requestId) {
 
 // Updates the request status to be rejected, and sends a message
 export async function rejectIncomingRequest(requestId) {
-  const requestDoc = await getDoc(doc(db, `requests/${requestId}`))
+  const requestDoc = doc(db, `requests/${requestId}`)
 
   return updateDoc(requestDoc, {
     status: 'REJECTED',
@@ -107,11 +113,14 @@ export async function rejectIncomingRequest(requestId) {
 
 // Creates new appointment
 async function createNewAppointment(student, tutor) {
-  return addDoc(collection(db, 'appointments'), {
+  const docRef = await addDoc(collection(db, 'appointments'), {
     student: student,
     tutor: tutor,
     done: false,
     timeCreated: serverTimestamp(),
+  })
+  return updateDoc(docRef, {
+    appointmentID: docRef.id,
   })
 }
 
@@ -122,7 +131,6 @@ export async function getStudentAppointments() {
   const apts = await getDocs(query(collection('appointments'), where('student', '==', auth.currentUser.uid)));
   const output = [];
   apts.forEach(item => {
-    updateDoc(item, {appointmentID: item.id});
     output.push(item.data());
   })
   return output;
@@ -135,7 +143,6 @@ export async function getTutorAppointments() {
   const apts = await getDocs(query(collection('appointments'), where('tutor', '==', auth.currentUser.uid)));
   const output = [];
   apts.forEach(item => {
-    updateDoc(item, {appointmentID: item.id});
     output.push(item.data());
   })
   return output;
@@ -162,4 +169,9 @@ export async function finishAppointment(appointmentID, stars, review) {
       review: review,
     })
   })
+}
+
+export async function cancelAppointment(appointmentId) {
+  const docRef = doc(db, `appointments/${appointmentId}`);
+  return deleteDoc(docRef);
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import defaultProfile from '../assets/profileIcon.png';
+import { cancelOutgoingRequest } from '../firebase-functions/bookingFunctions';
 import './Home/containers.css';
 
 const OutgoingRequestContainer = (data) => {
@@ -13,7 +14,9 @@ const OutgoingRequestContainer = (data) => {
     const requestId = data.props.requestId;
     // console.log(requestId);
     
-
+    function handleCancelClick() {
+        cancelOutgoingRequest(requestId);
+    }
     // console.log(name);
     return (
         <div className = "tutor-requests">
@@ -33,7 +36,7 @@ const OutgoingRequestContainer = (data) => {
             </div>
 
             <div className = "tutor-requests-buttons">
-                <button id = "tutor-decline"> Cancel </button>
+                <button id = "tutor-decline" onClick={handleCancelClick}> Cancel </button>
             </div>
         </div>
     )

@@ -2,12 +2,21 @@ import React, {useState} from 'react'
 import defaultProfile from '../assets/profileIcon.png';
 import ReviewPopup from './ReviewPopup';
 import './Home/containers.css';
+import { cancelAppointment } from '../firebase-functions/bookingFunctions';
 
-const ScheduleLearnontainer = () => {
+const ScheduleLearnontainer = (data) => {
     
     const profilePic = defaultProfile;
+    // const appointmentId = data.props.appointmentId;
+    
+
+    
 
     const [popup, isPopup] = useState(false);
+
+    function handleCancel() {
+        // cancelAppointment(appointmentId)
+    }
 
     return (
         <div className = "tutor-schedule">
@@ -23,7 +32,7 @@ const ScheduleLearnontainer = () => {
 
             <div className = "tutor-schedule-buttons">
                 <button id = "tutor-accept" onClick = {() => isPopup(true)}> Complete </button>
-                <button id = "tutor-decline"> Cancel </button>
+                <button id = "tutor-decline" onClick={handleCancel}> Cancel </button>
             </div>
 
             <ReviewPopup trigger = {popup} setTrigger = {isPopup}></ReviewPopup>
