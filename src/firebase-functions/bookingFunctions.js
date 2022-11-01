@@ -151,17 +151,18 @@ export async function getTutorAppointments() {
 // Updates the Appointment status to done, only student can access
 // Also rates the tutor
 export async function finishAppointment(appointmentId, stars, review) {
-  const appointmentDoc = await getDoc(db, `appointments/${appointmentId}`);
-  const tutorDoc = await getDoc(db, `users/${appointmentDoc.data().tutor}`);
+  const appointmentDocRef = doc(db, `appointments/${appointmentId}`);
+  const appointmentDoc = (await getDoc(appointmentDocRef)).data()
+  const tutorDocRef = doc(db, `users/${appointmentDoc.tutor}`);
   
   // Finish appointment
-  updateDoc(appointmentDoc, {
+  updateDoc(appointmentDocRef, {
     done: true,
     timeFinished: serverTimestamp(),
   })
 
   // Rate Tutor
-  updateDoc( tutorDoc, {
+  updateDoc( tutorDocRef, {
     completedSessions: increment(1),
     totalStars: increment(stars),
     reviews: arrayUnion({
