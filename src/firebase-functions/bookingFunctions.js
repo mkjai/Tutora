@@ -140,7 +140,7 @@ export async function getStudentAppointments() {
 // Also adds the current docID as a field, so that it's id can be
 // passed into finishAppointment() later on
 export async function getTutorAppointments() {
-  const apts = await getDocs(query(collection(db, 'appointments'), where('tutor', '==', auth.currentUser.uid)));
+  const apts = await getDocs(query(collection(db, 'appointments'), where('tutor', '==', auth.currentUser.uid), where('done', '==', false)));
   const output = [];
   apts.forEach(item => {
     output.push(item.data());
