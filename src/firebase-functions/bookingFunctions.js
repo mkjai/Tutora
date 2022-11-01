@@ -120,7 +120,7 @@ async function createNewAppointment(student, tutor) {
     timeCreated: serverTimestamp(),
   })
   return updateDoc(docRef, {
-    appointmentID: docRef.id,
+    appointmentId: docRef.id,
   })
 }
 
@@ -150,8 +150,8 @@ export async function getTutorAppointments() {
 
 // Updates the Appointment status to done, only student can access
 // Also rates the tutor
-export async function finishAppointment(appointmentID, stars, review) {
-  const appointmentDoc = await getDoc(db, `appointments/${appointmentID}`);
+export async function finishAppointment(appointmentId, stars, review) {
+  const appointmentDoc = await getDoc(db, `appointments/${appointmentId}`);
   const tutorDoc = await getDoc(db, `users/${appointmentDoc.data().tutor}`);
   
   // Finish appointment
