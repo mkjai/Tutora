@@ -1,4 +1,4 @@
-import {React ,useState, useEffect} from 'react'
+import {React ,useState, useEffect, useRef} from 'react'
 import ReviewContainer from '../components/ReviewContainer';
 import { useNavigate, Link} from 'react-router-dom';
 import '../index.css';
@@ -13,18 +13,13 @@ export default function ReviewPage() {
     const [userProfile, setUserProfile] = useState([]);
 
     useEffect(() => {
-        getProfile();
-    }, [])
-
-      const getProfile = async () => {
+      const fetchUserData = async () => {
         const response = await getCurrentUserData();
         setUserProfile(response);
         setIsLoading(false);
       };
-
-    console.log(userProfile.reviews);
-
-
+      fetchUserData();
+    }, []);
 
     return (
         <div className = "review-page">

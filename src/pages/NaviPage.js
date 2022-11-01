@@ -6,12 +6,13 @@ import Popup from '../components/Popup';
 import { SelectionButton } from '../components/SelectionButtons';
 import Select from 'react-select';
 import makeAnimated from "react-select/animated";
-import { useAuth, getCurrentUserProfile} from '../AuthContext';
+import { useAuth} from '../AuthContext';
 import { searchByCourseAndSchool, searchBySchool } from '../AuthContext';
 import { auth, db } from '../firebase';
 import { useEffect } from 'react';
 import { createSearchParams, Link, useNavigate, useParams } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
+import { getCurrentUserData } from '../firebase-functions/bookingFunctions';
 var options = require("../assets/COURSES.json");
 var data = require("../assets/SCHOOLS.json");
 
@@ -24,17 +25,28 @@ export default function NaviPage() {
 
   const [tutorData, setTutorData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [userProfile, setUserProfile] = useState([]);
+
+  
+  const animatedComponents = makeAnimated();
+  const [selectedCourse, setSelectedCourse] = useState([]);
+  const [selectedSchool, setSelectedSchool] = useState([]);
 
 
 
 
     useEffect(() => {
       const fetchTutorData = async () => {
-        const response = await searchBySchool('John A. Rowland High');
+        const response = await searchByCourseAndSchool(selectedCourse,userProfile.school);
         setTutorData(response);
-        setIsLoading(false);
       };
       fetchTutorData();
+      const fetchUserData = async () => {
+        const response = await getCurrentUserData();
+        setUserProfile(response);
+        setIsLoading(false);
+      };
+      fetchUserData();
     }, []);
 
     console.log(tutorData);
@@ -44,8 +56,6 @@ export default function NaviPage() {
 
 
 
-  const animatedComponents = makeAnimated();
-  const [selectedOptions, setSelectedOptions] = useState([]);
 
     const customStyle = {
         control: (base, state) => ({
@@ -140,7 +150,7 @@ export default function NaviPage() {
                 <Link style = {{textDecoration: 'none'}}
                   to = {`/profile/${tutors.uid}`} state = {{tutor: tutors}}
                 >
-                    <TutorContainer key = {tutors.uid} data = {tutors}></TutorContainer> 
+                    <TutorContainer key = {tutors.uid} data = {tutors}></TutorContainer>
                 </Link>)
           })}
         </div>
@@ -151,8 +161,7 @@ export default function NaviPage() {
                     <Select multi
                         components = {animatedComponents}
                         options = {options}
-                        defaultValue = {auth.currentUser.school}
-                        onChange = {(item) => setSelectedOptions(item)}
+                        onChange = {(item) => setSelectedCourse(item)}
                         isClearable = {true}
                         isSearchable = {true}
                         isDisabled = {false}
@@ -169,7 +178,8 @@ export default function NaviPage() {
                     <Select multi
                         components = {animatedComponents}
                         options = {data}
-                        onChange = {(item) => setSelectedOptions(item)}
+                        onChange = {(item) => setSelectedSchool(item)}
+                        defaultValue = {userProfile.defaultSchool}
                         isClearable = {true}
                         isSearchable = {true}
                         isDisabled = {false}
