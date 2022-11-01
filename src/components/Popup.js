@@ -60,7 +60,6 @@ function Popup(props) {
         <div className = "popup-inner" style = {STYLES}>
 
             { props.children }
-            <button className = "popup-button" style = {BUTTON_STYLES} onClick = {() => props.setTrigger(false)}> Continue </button>
 
         </div>
     </div>

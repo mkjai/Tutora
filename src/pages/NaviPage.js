@@ -16,6 +16,33 @@ import { getCurrentUserData } from '../firebase-functions/bookingFunctions';
 var options = require("../assets/COURSES.json");
 var data = require("../assets/SCHOOLS.json");
 
+
+const BUTTON_STYLES = {
+    display: 'flex',
+    height: '40px',
+    width: '50%',
+    padding: '0.5rem',
+    marginBottom: '1rem',
+    background: '#00867D',
+    color: '#fff',
+    cursor: 'pointer',
+    alignItems: 'center',
+    justifyContent: 'center',
+    outline: 'none',
+    borderRadius: '5px',
+    border: 'none',
+    marginTop: '1rem',
+    
+    fontFamily: 'Nunito',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    lineHeight: '1rem',
+    fontSize: '1.5rem'
+}
+
+
+
+
 export default function NaviPage() {
 
   const [popup, isPopup] = useState(false);
@@ -31,28 +58,39 @@ export default function NaviPage() {
   const animatedComponents = makeAnimated();
   const [selectedCourse, setSelectedCourse] = useState([]);
   const [selectedSchool, setSelectedSchool] = useState([]);
+  const schoolChoice = selectedSchool.label;
+  const courseChoice = selectedCourse.label;
+
+
+
+  const fetchUserData = async () => {
+  const response = await getCurrentUserData();
+  setUserProfile(response);
+  setSelectedSchool(response.defaultSchool);
+  setIsLoading(false);
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, [])
 
 
 
 
-    useEffect(() => {
-      const fetchTutorData = async () => {
-        const response = await searchByCourseAndSchool(selectedCourse,userProfile.school);
+
+    const fetchTutorData = async () => {
+      console.log(courseChoice);
+      console.log(schoolChoice);
+        const response = await searchByCourseAndSchool(courseChoice,schoolChoice);
         setTutorData(response);
-      };
-      fetchTutorData();
-      const fetchUserData = async () => {
-        const response = await getCurrentUserData();
-        setUserProfile(response);
         setIsLoading(false);
-      };
-      fetchUserData();
-    }, []);
-
-    console.log(tutorData);
+    };
 
 
-
+    function clickHandler() {
+      fetchTutorData();
+      isPopup(false);
+    }
 
 
 
@@ -144,8 +182,9 @@ export default function NaviPage() {
           <button onClick = {() => isPopup(true)}><GoSettings size = {25} className = "goSettings" /></button>
         </div>
 
+        {tutorData.length ?
         <div className = "tutor-grid">
-          {tutorData.map((tutors) => {
+          { tutorData.map((tutors) => {
             return(
                 <Link style = {{textDecoration: 'none'}}
                   to = {`/profile/${tutors.uid}`} state = {{tutor: tutors}}
@@ -153,7 +192,8 @@ export default function NaviPage() {
                     <TutorContainer key = {tutors.uid} data = {tutors}></TutorContainer>
                 </Link>)
           })}
-        </div>
+        </div> : <p id = "navi-no"> Please choose a course </p>
+        }
 
         <Popup trigger = {popup} setTrigger = {isPopup}>
           <p id = "select-label"> Find by course </p>
@@ -162,7 +202,8 @@ export default function NaviPage() {
                         components = {animatedComponents}
                         options = {options}
                         onChange = {(item) => setSelectedCourse(item)}
-                        isClearable = {true}
+                        defaultValue = {selectedCourse}
+                        isClearable = {false}
                         isSearchable = {true}
                         isDisabled = {false}
                         isLoading = {false}
@@ -179,8 +220,8 @@ export default function NaviPage() {
                         components = {animatedComponents}
                         options = {data}
                         onChange = {(item) => setSelectedSchool(item)}
-                        defaultValue = {userProfile.defaultSchool}
-                        isClearable = {true}
+                        defaultValue = {selectedSchool}
+                        isClearable = {false}
                         isSearchable = {true}
                         isDisabled = {false}
                         isLoading = {false}
@@ -190,6 +231,8 @@ export default function NaviPage() {
                     >
                     </Select>
                 </div>
+
+              <button style = {BUTTON_STYLES} onClick = {clickHandler}> Continue </button>
         </Popup>
       </div>
 

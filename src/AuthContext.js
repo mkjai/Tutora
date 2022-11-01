@@ -61,38 +61,20 @@ export async function createUserProfile(profileMap) {
   return setDoc(doc(db, `users/${auth.currentUser.uid}`), profileMap);
 }
 
-export async function searchByCourse(course) {
-  const q = query(collection(db, 'users'), where('courses', 'array-contains',course), where('uid', '!=', auth.currentUser.uid))
-  const output = [];
-  (await getDocs(q)).forEach(doc => {
-    output.push(doc.data());
-  })
-  return output;
-}
-
-export async function searchByName(name) {
-  const q = query(collection(db, 'users'), where('name', '==',name), where('uid', '!=', auth.currentUser.uid))
-  const output = [];
-  (await getDocs(q)).forEach(doc => {
-    output.push(doc.data());
-  })
-  return output;
-}
-
 export async function searchByCourseAndSchool(course, school) {
-    const q = query(collection(db, 'users'), where('school', '==', school), where('courses', 'array-contains', course), where('uid', '!=', auth.currentUser.uid))
-    const output = [];
-    (await getDocs(q)).forEach(doc => {
-        output.push(doc.data());
-    })
-    return output;
+  const q = query(collection(db, 'users'), where('school', '==', school), where('courses', 'array-contains', course), where('uid', '!=', auth.currentUser.uid))
+  const output = [];
+  (await getDocs(q)).forEach(doc => {
+    output.push(doc.data());
+  })
+  return output;
 }
 
-export async function searchBySchool(school) {
-    const q = query(collection(db, 'users'), where('school', '==', school), where('uid', '!=', auth.currentUser.uid))
-    const output = [];
-    (await getDocs(q)).forEach(doc => {
-        output.push(doc.data());
-    })
-    return output;
+export async function searchByCourse(course) {
+  const q = query(collection(db, 'users'), where('courses', 'array-contains', course), where('uid', '!=', auth.currentUser.uid))
+  const output = [];
+  (await getDocs(q)).forEach(doc => {
+    output.push(doc.data());
+  })
+  return output;
 }
