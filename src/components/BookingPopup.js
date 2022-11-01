@@ -173,8 +173,6 @@ function BookingPopup(props) {
         createOutgoingRequest(params.id, bookingText, selectedOptions.label)
         props.setTrigger(false);
     }
-    console.log(params.id);
-    console.log(getOutgoingRequests());
 
 
   return (

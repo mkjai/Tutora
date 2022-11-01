@@ -44,7 +44,7 @@ export default function RequestPage() {
                 </div>
 
                 <div className = "requests-grid">
-                    {incomingRequests.length > 1 ? incomingRequests.map((elem) => {
+                    {incomingRequests.length > 0 ? incomingRequests.map((elem) => {
                         return(
                             <IncomingRequestContainer key = {elem.timeCreated} props = {elem}></IncomingRequestContainer> 
                         )
@@ -56,7 +56,7 @@ export default function RequestPage() {
                 </div>
                 
                 <div className = "requests-grid">
-                    {outgoingRequestData.length > 1 ? outgoingRequestData.map((elem) => {
+                    {outgoingRequestData.length > 0 ? outgoingRequestData.map((elem) => {
                         return(
                             <OutgoingRequestContainer key = {elem.timeCreated} props = {elem}></OutgoingRequestContainer> 
                         )
