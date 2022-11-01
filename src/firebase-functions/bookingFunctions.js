@@ -84,6 +84,9 @@ export async function getIncomingRequests() {
 // Updates the request status to be accepted, and sends a message with contactInfo
 // Also creates a new appointment with the student
 export async function acceptIncomingRequest(to, message) {
+  
+  await createNewAppointment(to, auth.currentUser.uid);
+
   const q = query(collection(db, 'requests'), where('from', '==', auth.currentUser.uid), where('to', '==', to));
   
   // should only return one doc
@@ -97,8 +100,13 @@ export async function acceptIncomingRequest(to, message) {
 }
 
 // Updates the request status to be rejected, and sends a message
-export async function rejectIncomingRequest(requestID, message) {
-  return updateDoc(doc(db, `requests/${requestID}`), {
+export async function rejectIncomingRequest(to, message) {
+  const q = query(collection(db, 'requests'), where('from', '==', auth.currentUser.uid), where('to', '==', to));
+
+  // should only return one doc
+  const requestDoc = (await getDocs(q))[0];
+
+  return updateDoc(requestDoc, {
     status: 'REJECTED',
     messageToStudent: message,
   })
