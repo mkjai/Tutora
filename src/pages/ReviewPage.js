@@ -11,16 +11,20 @@ export default function ReviewPage() {
 
     const [isLoading, setIsLoading] = useState(false);
     const [userProfile, setUserProfile] = useState([]);
+
     useEffect(() => {
+        getProfile();
+    }, [])
+
       const getProfile = async () => {
         const response = await getCurrentUserData();
         setUserProfile(response);
         setIsLoading(false);
       };
-      getProfile();
-    }, []);
 
-    console.log(userProfile);
+    console.log(userProfile.reviews);
+
+
 
     return (
         <div className = "review-page">

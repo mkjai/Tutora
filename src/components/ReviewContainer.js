@@ -17,7 +17,7 @@ const ReviewContainer = (data) => {
     const name = data.data.name;
     const rating = data.data.reviews.star;
     const comment = data.data.reviews.review;
-    console.log(data);
+    console.log(data.data.reviews);
 
 
     return (

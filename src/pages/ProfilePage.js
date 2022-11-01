@@ -12,15 +12,16 @@ export default function ProfilePage() {
     const [userProfile, setUserProfile] = useState([]);
     const courses = userProfile.courses;
     useEffect(() => {
-      const getProfile = async () => {
+      getProfile();
+    }, []);
+
+    const getProfile = async () => {
         const response = await getCurrentUserData();
         setUserProfile(response);
         setIsLoading(false);
       };
-      getProfile();
-    }, []);
 
-    console.log(userProfile);
+    console.log(userProfile.reviews);
     console.log(courses);
 
 
