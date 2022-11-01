@@ -2,7 +2,6 @@
      margin: 0;
      box-sizing: border-box;
      font-size: 62.5%;
-
  }
 
  @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
@@ -303,6 +302,12 @@
     gap: 2rem;
     display: grid;
     margin: 1rem auto;
+}
+
+.requests-grid p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #999999;
 }
 
 .request-page-inner {

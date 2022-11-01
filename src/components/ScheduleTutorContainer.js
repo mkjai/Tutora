@@ -23,11 +23,6 @@ const ScheduleTutorContainer = () => {
                 <label> Message </label>
                 <p> Test </p>
             </div>
-
-            <div className = "tutor-schedule-buttons">
-                <button id = "tutor-accept"> Complete </button>
-                <button id = "tutor-decline"> Cancel </button>
-            </div>
         </div>
     )
 }

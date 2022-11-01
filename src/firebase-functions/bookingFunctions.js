@@ -8,9 +8,13 @@ import { FaLessThan } from 'react-icons/fa';
 // console.log(auth.currentUser.uid);
 // Creates new outgoing request to a tutor, with a message to tutor
 export async function createOutgoingRequest(to, message, course) {
+  const fromName = (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().name;
+  const toName = (await getDoc(doc(db, `users/${to}`))).data().name;
   return addDoc(collection(db, 'requests'), {
     to: to,
+    toName: toName,
     from: auth.currentUser.uid,
+    fromName: fromName,
     timeCreated: serverTimestamp(),
     status: 'PENDING',
     messageToTutor: message,
@@ -18,18 +22,19 @@ export async function createOutgoingRequest(to, message, course) {
     StudentContactInfo: (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().contactInfo,
   })  
 }
-
 // Checks if a request has already been made to this user
 export async function doesRequestAlreadyExist(to) {
+  let output = false;
   getOutgoingRequests()
   .then(
     (arr) => {
       arr.forEach(item => {
-        if (to === item.to && item.status === 'PENDING') {
-          return true;
+        if (to === item.to) {
+          // console.log('already exists')
+          output =  true;
+          return;
         }
       })
-      return false;
     }
   )
   .catch(
@@ -37,6 +42,7 @@ export async function doesRequestAlreadyExist(to) {
       console.log('how lmao' + e)
     }
   )
+  return output;
 }
 
 // Gets all outgoing requests currently made by this user.

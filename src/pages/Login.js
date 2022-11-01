@@ -71,7 +71,7 @@ export default function LoginForm() {
 
                     <Link to = "/signup" style = {{ textDecoration: 'none'}} className = "create-acc-link"><button className = "log-in-form-button"> Create an Account </button></Link>
 
-                    <p className = "forgot" onClick = {() => isPopup(true)}> Forgot password? </p>
+                    {/* <p className = "forgot" onClick = {() => isPopup(true)}> Forgot password? </p> */}
                 </div>
 
             </form>

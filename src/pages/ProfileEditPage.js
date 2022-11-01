@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../components/Authenication/signupForm.css';
 import Avatar from 'react-avatar-edit';
-import profileIcon from '../assets/profileIcon.png';
 import Popup from '../components/Popup';
 import AvatarPopup from '../components/AvatarPopup';
 import Select from 'react-select';
@@ -140,12 +139,12 @@ const ProfileEditPage = () => {
             <form className = "sign-up-cont-inner">
                 <p class = "sign-up-cont-label"> Edit profile </p>
 
-                <div className = "add-profile-container">
+                {/* <div className = "add-profile-container">
                     <p> Add a profile picture </p>
                     <img src = {profileIcon} alt = ''/>
                     <button onClick = {() => setButtonPopup(true)}> Upload </button>
 
-                </div>
+                </div> */}
 
                 <div className = "sign-up-text-container">
                     <p> Bio </p>

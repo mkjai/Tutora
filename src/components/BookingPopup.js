@@ -181,7 +181,7 @@ function BookingPopup(props) {
     props.trigger) ? (
 
     <div style = {OVERLAY_STYLES}>
-        <div clasName = "booking-review-popup-inner" style = {STYLES}>
+        <div className = "booking-review-popup-inner" style = {STYLES}>
 
             <div className = "booking-review-subject-selection">
                 <p id = "booking-review-select-label"> Choose a course </p>

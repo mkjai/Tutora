@@ -5,10 +5,13 @@ import tempImg from '../assets/profileIcon.png';
 import {FaStar} from 'react-icons/fa'
 import BookingPopup from '../components/BookingPopup'
 import { doesRequestAlreadyExist } from '../firebase-functions/bookingFunctions';
+import { auth } from '../firebase';
 
 const OtherUserProfile = _ => {
 
     const [popup,isPopup] = useState(false);
+    const [isRequested, setIsRequested] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const location = useLocation();
     console.log(location);
@@ -17,6 +20,18 @@ const OtherUserProfile = _ => {
     const params = useParams();
 
     console.log(params.id);
+
+    useEffect(() => {
+      const getAlrRequest = async () => {
+        const response = await doesRequestAlreadyExist(params.id);
+        setIsRequested(response);
+        setIsLoading(false);
+      };
+      getAlrRequest();
+    }, []);
+
+    console.log(isRequested);
+
 
 
     return (
@@ -49,8 +64,8 @@ const OtherUserProfile = _ => {
             <div className = 'booking-btn'>
                 <button 
                     onClick = {() => {isPopup(true)}}
-                    disabled = {doesRequestAlreadyExist()}
-                    style = {doesRequestAlreadyExist() ? {backgroundColor: 'grey'} : {}}
+                    disabled = {isRequested}
+                    style = {isRequested ? {backgroundColor: 'grey'} : {}}
                     > 
                         Send a Request 
                 </button>

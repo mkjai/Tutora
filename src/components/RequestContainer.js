@@ -2,16 +2,16 @@ import React from 'react'
 import defaultProfile from '../assets/profileIcon.png';
 import './Home/containers.css';
 
-const RequestContainer = (props) => {
+const RequestContainer = (data) => {
 
-    console.log(props);
+    console.log(data.props);
     
-    const name = props.StudentContactInfo;
-    const course = props.StudentContactInfo;
-    const message = props.StudentContactInfo;
+    const name = data.props.fromName;
+    const course = data.props.lessonCourse;
+    const message = data.props.messageToTutor;
     const profilePic = defaultProfile;
 
-
+    console.log(name);
     return (
         <div className = "tutor-requests">
             <div className = "tutor-requests-profile-name">

@@ -138,6 +138,7 @@
      align-items: center;
      flex-direction: row;
      gap: 1rem;
+    word-break: break-word;
  }
 
  .tutor-requests-profile-name img, .tutor-schedule-profile-name img {

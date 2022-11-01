@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import '../components/Authenication/signupForm.css';
-import { Avatar } from '@mui/material';
+// import { Avatar } from '@mui/material';
 import Select from 'react-select';
 import makeAnimated from "react-select/animated";
 import {Link, Navigate} from 'react-router-dom'
@@ -49,29 +49,29 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
         setAvailabilityText(event.target.value);
     };
 
-    function handlePFP(e) {
-        if (e.target.files[0]) {
-            setImage(e.target.files[0]);
-        }
-    }
+    // function handlePFP(e) {
+    //     if (e.target.files[0]) {
+    //         setImage(e.target.files[0]);
+    //     }
+    // }
 
 
-    function handleClick() {
-         const imageRef = ref(storage, 'image');
-         uploadBytes(imageRef, image).then(() => {
-            getDownloadURL(imageRef)
-                .then((url) => {
-                    setUrl(url);
-                })
-                .catch((err) => {
-                    console.log(err.message, 'cannot get image url');
-                })
-            setImage(null);
-         })
-         .catch((err) => {
-                    console.log(err.message);
-                })
-    }
+    // function handleClick() {
+    //      const imageRef = ref(storage, 'image');
+    //      uploadBytes(imageRef, image).then(() => {
+    //         getDownloadURL(imageRef)
+    //             .then((url) => {
+    //                 setUrl(url);
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err.message, 'cannot get image url');
+    //             })
+    //         setImage(null);
+    //      })
+    //      .catch((err) => {
+    //                 console.log(err.message);
+    //             })
+    // }
 
     async function submitHandler(e) {
             e.preventDefault();
@@ -223,7 +223,7 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
                     </Select>
                 </div>
 
-                <div className = "add-profile-container">
+                {/* <div className = "add-profile-container">
                     <p> Add a profile picture (Optional) </p>
                     <Avatar className = 'avatar'
                         src = {url}
@@ -238,7 +238,7 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
                     <button onClick = {handleClick}> Upload </button>
 
 
-                </div>
+                </div> */}
 
                 <div className = "sign-up-text-container">
                     <p> Bio (Optional) </p>

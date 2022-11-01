@@ -31,14 +31,14 @@ export default function SettingPage() {
                 <label> Settings </label>
 
                 <div className = "setting-display">
-                    <button onClick = {() => isPopupAccount(true)}> Account </button>
+                    {/* <button onClick = {() => isPopupAccount(true)}> Account </button> */}
                     <button onClick = {() => isPopupHelp(true)}> Help and Support </button>
                     <button onClick = {() => isPopupAbout(true)}> About </button>
                     <button onClick = {handleSignout}> Sign out </button>
                 </div>
             </div>
 
-            <SettingPopup className = "account-popup" trigger = {popupAccount} setTrigger = {isPopupAccount}>
+            {/* <SettingPopup className = "account-popup" trigger = {popupAccount} setTrigger = {isPopupAccount}>
                 <div className = "account-popup-inner">
                     <p> Change email </p>
                     <input type = "text" placeholder = "Change email" value = ""></input>
@@ -50,7 +50,7 @@ export default function SettingPage() {
                     <button id = "confirm-change"> Confirm </button>
                     <button id = "delete-account"> Delete account </button>
                 </div>
-            </SettingPopup>
+            </SettingPopup> */}
 
             
             <SettingPopup className = "help-popup" trigger = {popupHelp} setTrigger = {isPopupHelp}>

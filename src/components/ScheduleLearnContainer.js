@@ -22,7 +22,7 @@ const ScheduleLearnontainer = () => {
             </div>
 
             <div className = "tutor-schedule-buttons">
-                <button id = "tutor-accept" onClick = {() => isPopup(true)}> Rate </button>
+                <button id = "tutor-accept" onClick = {() => isPopup(true)}> Complete </button>
                 <button id = "tutor-decline"> Cancel </button>
             </div>
 
