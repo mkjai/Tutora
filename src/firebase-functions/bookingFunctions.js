@@ -10,7 +10,7 @@ import { FaLessThan } from 'react-icons/fa';
 export async function createOutgoingRequest(to, message, course) {
   const fromName = (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().name;
   const toName = (await getDoc(doc(db, `users/${to}`))).data().name;
-  return addDoc(collection(db, 'requests'), {
+  const docRef = await addDoc(collection(db, 'requests'), {
     to: to,
     toName: toName,
     from: auth.currentUser.uid,
@@ -20,7 +20,10 @@ export async function createOutgoingRequest(to, message, course) {
     messageToTutor: message,
     lessonCourse: course,
     StudentContactInfo: (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().contactInfo,
-  })  
+  }) 
+  updateDoc(docRef, {
+    requestId: docRef.id,
+  })
 }
 // Checks if a request has already been made to this user
 export async function doesRequestAlreadyExist(to) {
@@ -83,16 +86,10 @@ export async function getIncomingRequests() {
 
 // Updates the request status to be accepted, and sends a message with contactInfo
 // Also creates a new appointment with the student
-export async function acceptIncomingRequest(to) {
-  
-  await createNewAppointment(to, auth.currentUser.uid);
-
-  const q = query(collection(db, 'requests'), where('from', '==', auth.currentUser.uid), where('to', '==', to));
-  
-  // should only return one doc
-  const requestDoc = (await getDocs(q)).docs[0]
-  console.log(requestDoc)
-
+export async function acceptIncomingRequest(requestId) {
+  const requestDoc = await getDoc(doc(db, `requests/${requestId}`))
+  console.log(requestDoc.data())
+  await createNewAppointment(requestDoc.data().from, requestDoc.data().to);
   return updateDoc(requestDoc, {
     status: 'ACCEPTED',
     TutorContactInfo: (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data().contactInfo,

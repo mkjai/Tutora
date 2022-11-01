@@ -11,11 +11,12 @@ const IncomingRequestContainer = (data) => {
     const course = data.props.lessonCourse;
     const message = data.props.messageToTutor;
     const uid = data.props.from;
+    const requestId = data.props.requestId;
     const profilePic = defaultProfile;
 
-    console.log(acceptIncomingRequest())
+    // console.log(acceptIncomingRequest())
 
-    console.log(name);
+    console.log(requestId);
     return (
         <div className = "tutor-requests">
             <div className = "tutor-requests-profile-name">

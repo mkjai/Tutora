@@ -10,6 +10,9 @@ const OutgoingRequestContainer = (data) => {
     const course = data.props.lessonCourse;
     const message = data.props.messageToTutor;
     const profilePic = defaultProfile;
+    const requestId = data.props.requestId;
+    console.log(requestId);
+    
 
     console.log(name);
     return (
