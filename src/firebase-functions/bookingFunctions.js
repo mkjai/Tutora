@@ -176,3 +176,7 @@ export async function cancelAppointment(appointmentId) {
   const docRef = doc(db, `appointments/${appointmentId}`);
   return deleteDoc(docRef);
 }
+
+export async function getCurrentUserData() {
+  return (await getDoc(doc(db, `users/${auth.currentUser.uid}`))).data();
+}
