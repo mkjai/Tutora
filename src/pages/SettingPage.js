@@ -1,6 +1,8 @@
 import {React, useState} from 'react'
 import '../index.css';
 import SettingPopup from '../components/SettingPopup';
+import { useAuth } from '../AuthContext';
+import { useNavigate } from "react-router-dom";
 
 export default function SettingPage() {
 
@@ -8,6 +10,20 @@ export default function SettingPage() {
     const [popupHelp, isPopupHelp] = useState(false);
     const [popupAbout, isPopupAbout] = useState(false);
 
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+    const { signout, setError } = useAuth();
+
+    async function handleSignout() {
+        try {
+        setError("");
+        await signout();
+        setLoading(false);
+        navigate("/login");
+        } catch {
+        setError("Failed to logout");
+        }
+    }
 
     return (
         <div className = "setting-page">
@@ -18,7 +34,7 @@ export default function SettingPage() {
                     <button onClick = {() => isPopupAccount(true)}> Account </button>
                     <button onClick = {() => isPopupHelp(true)}> Help and Support </button>
                     <button onClick = {() => isPopupAbout(true)}> About </button>
-                    <button> Sign out </button>
+                    <button onClick = {handleSignout}> Sign out </button>
                 </div>
             </div>
 

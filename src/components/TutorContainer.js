@@ -1,51 +1,44 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import defaultProfile from '../assets/profileIcon.png';
 import './Home/containers.css';
 import {FaStar} from 'react-icons/fa'
-import BookingPopup from './BookingPopup';
+import { Link } from 'react-router-dom';
 
-const TutorContainer = () => {
-
-    // Only for testing
-    {/*
-    Make functions for me to:
-        access the number of review, rating, profile picture, first and last name, the subjects they are teaching"
-
-    */}
+const TutorContainer = ({name, pfp, rating, reviews, courses, uid, bio, contactInfo, availability}) => {
     
     const profilePic = defaultProfile;
-
-
-    const [popup, isPopup] = useState(false);
 
     return (
         <div className = "tutor-container">
             <div className = "container-top">
                 <div className = "profile-name">
                     <img src = {profilePic} alt = '' />
-                    <p> Name </p>
+                    <p style={{color: "black"}}> {name} </p>
                 </div>
-                <button className = "tutor-container-btn"
-                    onClick = {() => isPopup(true)}
-                > Book a lesson </button>
             </div>
 
             <div className = "tutor-container-rr">
                 <div className = "tutor-container-rating">
-                    <p> <FaStar size = {20} /> 5.0 </p>
+                    <p> <FaStar size = {20} /> {rating} </p>
                 </div>
 
                 <div className = "tutor-container-reviews">
-                    <p> 10 Reviews</p>
+                    <p> {reviews} Reviews</p>
                 </div>
             </div>
 
             <div className = "tutor-container-subject">
                 <label>Subjects:</label> 
-                <p>Test </p>
+                {
+                    <p> {courses.join(' - ')} </p>
+                }
+                
             </div>
 
-            <BookingPopup trigger = {popup} setTrigger = {isPopup}></BookingPopup>
+            <div className = 'container-bottom'>
+            <button className = "tutor-container-btn"
+                > Check profile </button>
+            </div>
         </div>
     )
 }

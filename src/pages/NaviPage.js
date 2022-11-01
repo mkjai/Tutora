@@ -6,17 +6,39 @@ import Popup from '../components/Popup';
 import { SelectionButton } from '../components/SelectionButtons';
 import Select from 'react-select';
 import makeAnimated from "react-select/animated";
+import { useAuth, getCurrentUserProfile} from '../AuthContext';
+import { searchByCourseAndSchool, searchBySchool } from '../AuthContext';
+import { auth, db } from '../firebase';
+import { useEffect } from 'react';
+import { createSearchParams, Link, useNavigate, useParams } from 'react-router-dom';
 var options = require("../assets/COURSES.json");
-
+var data = require("../assets/SCHOOLS.json");
 
 export default function NaviPage() {
 
-  {/*
-
-  */}
-
   const [popup, isPopup] = useState(false);
   const [selects, setSelects] = useState();
+
+  const navigate = useNavigate();
+
+  const [tutorData, setTutorData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+
+    useEffect(() => {
+      const fetchTutorData = async () => {
+        const response = await searchBySchool('John A. Rowland High');
+        setTutorData(response);
+        setIsLoading(false);
+      };
+      fetchTutorData();
+    }, []);
+
+    console.log(tutorData);
+
+
+
+
 
 
   const animatedComponents = makeAnimated();
@@ -97,7 +119,6 @@ export default function NaviPage() {
     }
 
 
-
   return (
     <div className = "navi-page">
       <div className = "navi-inner">
@@ -111,12 +132,17 @@ export default function NaviPage() {
         </div>
 
         <div className = "tutor-grid">
-          <TutorContainer></TutorContainer>
-          <TutorContainer></TutorContainer>
+          {tutorData.map((tutors) => {
+            return(
+                <Link style = {{textDecoration: 'none'}}
+                  to = {`/profile/${tutors.uid}`} state = {{tutor: tutors}}
+                >
+                    <TutorContainer key = {tutors.uid} {...tutors}></TutorContainer> 
+                </Link>)
+          })}
         </div>
 
         <Popup trigger = {popup} setTrigger = {isPopup}>
-          <SelectionButton></SelectionButton>
           <p id = "select-label"> Find by course </p>
                 <div className = "course-selection">
                     <Select multi
@@ -130,6 +156,23 @@ export default function NaviPage() {
                         closeMenuOnSelect = {false}
                         styles = {customStyle}
                         placeholder = {<div className = "course-select"> <label>Choose a course </label> </div>}
+                    >
+                    </Select>
+                </div>
+
+            <p id = "select-label"> Find by school </p>
+                <div className = "course-selection">
+                    <Select multi
+                        components = {animatedComponents}
+                        options = {data}
+                        onChange = {(item) => setSelectedOptions(item)}
+                        isClearable = {true}
+                        isSearchable = {true}
+                        isDisabled = {false}
+                        isLoading = {false}
+                        closeMenuOnSelect = {false}
+                        styles = {customStyle}
+                        placeholder = {<div className = "course-select"> <label>Choose a school </label> </div>}
                     >
                     </Select>
                 </div>

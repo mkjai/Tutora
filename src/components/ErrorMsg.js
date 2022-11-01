@@ -10,7 +10,7 @@ export default function ErrorMsg() {
 
     const STYLES = {
         position: 'absolute',
-        top: '8%',
+        top: '15%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
         backgroundColor: '#DC143C',

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
-import { arrayUnion, doc, writeBatch } from "firebase/firestore";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile} from "firebase/auth";
+import { arrayUnion, doc, getDoc, getDocs, collection, query, where, writeBatch, setDoc } from "firebase/firestore";
 
 import {auth, db} from "./firebase";
 
@@ -15,12 +15,17 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
+
     function register(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     function login(email, password) {
         return signInWithEmailAndPassword(auth, email, password);
+    }
+
+    function signout() {
+      return signOut(auth);
     }
 
     useEffect(() => {
@@ -32,12 +37,14 @@ export function AuthProvider({ children }) {
         return unsubscribe;
     }, []);
 
+    
     const value = {
         currentUser,
         login,
         register,
         error,
         setError,
+        signout
     };
 
     return (
@@ -48,31 +55,44 @@ export function AuthProvider({ children }) {
 }
 
 export async function createUserProfile(profileMap) {
-  const user = auth.currentUser;
-  if (user != null) {
-    const updateUserProfile = writeBatch(db);
-    
-    updateUserProfile.set(doc(db, `users/${user.uid}`), profileMap)
+  updateProfile(auth.currentUser, {
+    displayName: profileMap.name
+  })
+  return setDoc(doc(db, `users/${auth.currentUser.uid}`), profileMap);
+}
 
-    // for each item in profileMap.courses, create a new doc
-    profileMap.courses.forEach(element => {
-      updateUserProfile.set(doc(db, `explore/${element}/schools/${profileMap.school}`), 
-        {
-          students: arrayUnion(user.uid)
-        }
-      );
-    });
+export async function searchByCourse(course) {
+  const q = query(collection(db, 'users'), where('courses', 'array-contains',course), where('uid', '!=', auth.currentUser.uid))
+  const output = [];
+  (await getDocs(q)).forEach(doc => {
+    output.push(doc.data());
+  })
+  return output;
+}
 
-    updateUserProfile.commit()
-    .then(
-      () =>
-      console.log(`successfully created profile ${auth.currentUser.uid}`)
-    )
-    .catch(
-      (error) => {
-        console.log(error)
-      }
-    )
-  }
-  
+export async function searchByName(name) {
+  const q = query(collection(db, 'users'), where('name', '==',name), where('uid', '!=', auth.currentUser.uid))
+  const output = [];
+  (await getDocs(q)).forEach(doc => {
+    output.push(doc.data());
+  })
+  return output;
+}
+
+export async function searchByCourseAndSchool(course, school) {
+    const q = query(collection(db, 'users'), where('school', '==', school), where('courses', 'array-contains', course), where('uid', '!=', auth.currentUser.uid))
+    const output = [];
+    (await getDocs(q)).forEach(doc => {
+        output.push(doc.data());
+    })
+    return output;
+}
+
+export async function searchBySchool(school) {
+    const q = query(collection(db, 'users'), where('school', '==', school), where('uid', '!=', auth.currentUser.uid))
+    const output = [];
+    (await getDocs(q)).forEach(doc => {
+        output.push(doc.data());
+    })
+    return output;
 }

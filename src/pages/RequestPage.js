@@ -1,28 +1,37 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import defaultProfile from '../assets/profileIcon.png';
 import '../index.css';
 import RequestContainer from '../components/RequestContainer';
+import { getIncomingRequests, getOutgoingRequests } from '../firebase-functions/bookingFunctions';
 
 const profilePic = defaultProfile;
 
 
 export default function RequestPage() {
+
+    const [requestData, setRequestData] = useState([]);
+    const [loading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+      const fetchTutorData = async () => {
+        const response = await getIncomingRequests();
+        setRequestData(response);
+        setIsLoading(false);
+      };
+      fetchTutorData();
+    }, []);
+
+    console.log(requestData);
+
+    console.log(getOutgoingRequests());
+
+
+
     return (
         <div className = "request-page">
             <div className = "request-page-inner">
-                <div className = "become-tutor">
-                    <div className = "become-tutor-profile-name">
-                        <img  src = {profilePic} alt = ''/>
-                        <p> Name </p>
-                    </div>
-
-                    <div className = "become-tutor-subject">
-                        <label> Subjects</label>
-                        <p> Test</p>
-                    </div>
-                    <div className = "become-tutor-buttons">
-                        <button> Become tutor </button>
-                    </div>
+                <div className = 'request-label'>
+                    <label> You must choose course(s) to teach to become a tutor</label>
                 </div>
 
                 <div className = "requests">
@@ -30,8 +39,11 @@ export default function RequestPage() {
                 </div>
 
                 <div className = "requests-grid">
-                    <RequestContainer></RequestContainer>
-                    <RequestContainer></RequestContainer>
+                    {requestData.map((requests) => {
+                        return(
+                            <RequestContainer key = {requests.uid} {...requests}></RequestContainer> 
+                        )
+                        })}
                 </div>
             </div>
         </div>

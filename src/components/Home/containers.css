@@ -1,6 +1,5 @@
 .tutor-container {
     width: 36rem;
-    height: 20rem;
     display: flex;
     align-items: start;
     flex-direction: column;
@@ -10,6 +9,7 @@
     border-radius: 1rem;
     padding: 1rem;
     cursor: help;
+    overflow-wrap: break-word;
 }
 
 .container-top {
@@ -17,7 +17,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 9rem;
+    width: 100%;
+    cursor: help;
 }
 
 .profile-name {
@@ -36,7 +37,7 @@
     font-weight: 700;
 }
 
-.container-top button {
+.tutor-container button {
     display: flex;
     height: 35px;
     padding-left: 1rem;
@@ -56,14 +57,22 @@
     font-size: 1.5rem;
 }
 
+.container-bottom {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 1rem;;
+}
+
 .tutor-container-rr {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding-left: 1rem;
-    padding-top: 0.5rem;
-
-    gap: 5rem;
+    justify-content: space-between;
+    text-align: center;
+    
+    margin: 0 auto;
+    gap: 10rem;
 }
 
 .tutor-container-rating p {
@@ -90,18 +99,22 @@
     color: #C0C0C0;
 }
 
+.tutor-container-subject {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
 .tutor-container-subject label {
     color: #000;
     font-size: 2rem;
     font-weight: 700;
-    padding-left: 1rem;
 }
 
 .tutor-container-subject p{
     font-size: 1.7rem;
     font-weight: 700;
-    padding-left: 1rem;
-    padding-right: 0.2rem;
 
     color: #c0c0c0;
 }
@@ -118,7 +131,6 @@
      box-shadow: 0 0.188rem 1.550rem rgb(156, 156, 156, 0.3);
      border-radius: 1rem;
      padding: 1rem;
-     cursor: help;
  }
 
  .tutor-requests-profile-name, .tutor-schedule-profile-name {

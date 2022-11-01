@@ -175,6 +175,7 @@
 .profile-page p {
     font-size: 2rem;
     font-weight: 500;
+    color: #999999;
 }
 
 .profile-page-ratings {
@@ -203,26 +204,49 @@
 .profile-blocks-grid {
     max-width: 76rem;
     display: grid;
-    margin: 1rem auto
+    margin: 0 auto
+}
+
+.booking-btn button {
+    width: 30rem;
+        display: flex;
+        height: 35px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        background: #00867D;
+        color: #fff;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        outline: none;
+        border-radius: 5px;
+        border: none;
+        
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1rem;
+        font-size: 1.5rem;
 }
 
 #profile-blocks {
     width: 28rem;
-    height: 30rem;
+    height: auto;
     background: #fff;
     border-radius:0;
     padding: 1rem;
-    border-top: 1px solid #D3D3D3;
     border-bottom: 1px solid #D3D3D3;
 
     color: #fff;
+    overflow-wrap: break-word;
+
 }
 
 #profile-blocks h1 {
     font-size: 2rem;
     font-weight: 500;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    color: #999999;
+    text-align: center;
 }
 
 #profile-blocks label {
@@ -231,6 +255,7 @@
     display: flex;
     justify-content: center;
     color: #000;
+    margin-bottom: 1rem;
 
 }
 
@@ -238,87 +263,27 @@
 /* -------- start of request ------- */
 .request-page {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    max-width: 76rem;
-    margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    
+        max-width: 76rem;
+        margin: 0 auto;
 }
 
- .become-tutor {
-     width: 38rem;
-     display: flex;
-     align-items: start;
-     flex-direction: column;
-     background: #fff;
-     margin: 0 auto;   
-    box-shadow: 0 0.188rem 1.550rem rgb(156, 156, 156, 0.3);
-     border-radius: 1rem;
-     padding: 1rem;
-     margin-top: 1.5rem;
-     margin-bottom: 1.5rem;
- }
-
- .become-tutor-profile-name {
-     display: flex;
-     align-items: center;
-     flex-direction: row;
-     gap: 1rem;
- }
-
- .become-tutor-profile-name img {
-    width: 7rem;
- }
-
- .become-tutor-profile-name p {
-    font-size: 2rem;
-    font-weight: 700;
- }
-
- .become-tutor-subject label {
-     color: #000;
-     font-size: 2rem;
-     font-weight: 700;
-     padding-left: 1rem;
- }
-
- .become-tutor-subject p {
-     font-size: 1.7rem;
-     font-weight: 700;
-     padding-left: 1rem;
-     padding-right: 0.2rem;
-
-     color: #c0c0c0;
- }
-
-.become-tutor-buttons {
+.request-label {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 1rem;
 }
 
- .become-tutor-buttons button {
-     display: flex;
-     height: 35px;
-     padding-left: 2rem;
-     padding-right: 2rem;
-     background: #00867D;
-     color: #fff;
-     cursor: pointer;
-     align-items: center;
-     outline: none;
-     border-radius: 5px;
-     border: none;
-
-     font-family: 'Nunito';
-     font-style: normal;
-     font-weight: 700;
-     line-height: 1rem;
-     font-size: 1.5rem;
- }
+.request-page label{
+    font-size: 3rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
 
  .requests, .schedule-page-lessons {
     display: flex;
@@ -338,6 +303,10 @@
     gap: 2rem;
     display: grid;
     margin: 1rem auto;
+}
+
+.request-page-inner {
+    margin-top: 1rem;
 }
 
 /* --- schedule page --- */

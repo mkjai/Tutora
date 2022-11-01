@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import '../components/Authenication/signupForm.css';
-import Avatar from 'react-avatar-edit';
-import profileIcon from '../assets/profileIcon.png';
-import Popup from '../components/Popup';
-import AvatarPopup from '../components/AvatarPopup';
+import { Avatar } from '@mui/material';
 import Select from 'react-select';
 import makeAnimated from "react-select/animated";
 import {Link, Navigate} from 'react-router-dom'
@@ -11,15 +8,17 @@ import validator from 'validator'
 import { registerVersion } from 'firebase/app';
 import { useNavigate } from 'react-router-dom'
 import { useAuth, createUserProfile} from '../AuthContext'
-import { auth } from '../firebase';
+import { auth, storage } from '../firebase';
+import { getDownloadURL, ref, uploadBytes} from 'firebase/storage';
+import { getSpaceUntilMaxLength } from '@testing-library/user-event/dist/utils';
 var data = require("../assets/SCHOOLS.json");
 var options = require("../assets/COURSES.json");
 
 
 const ProfileCreation = ({prevPage, handleChange, values}) => {
 
-    const [buttonPopup, setButtonPopup] = useState(false);
-    const [imgCrop, setImgCrop] = useState(false);
+    const [image, setImage] = useState(null);
+    const [url, setUrl] = useState(null);
 
     const [characterLimit] = useState(150);
     const [bioText, setBioText] = useState("");
@@ -35,7 +34,8 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [selectedSchool, setSelectedSchool] = useState([]);
 
-
+    const selectedCourses = [];
+    selectedOptions.map(item => selectedCourses.push(item.label));
 
     const handleBio = event => {
         setBioText(event.target.value);
@@ -49,19 +49,35 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
         setAvailabilityText(event.target.value);
     };
 
-    const onCrop = (view) => {
-        setImgCrop(view)
+    function handlePFP(e) {
+        if (e.target.files[0]) {
+            setImage(e.target.files[0]);
+        }
     }
 
-    const onClose = () => {
-        setImgCrop(null)
+
+    function handleClick() {
+         const imageRef = ref(storage, 'image');
+         uploadBytes(imageRef, image).then(() => {
+            getDownloadURL(imageRef)
+                .then((url) => {
+                    setUrl(url);
+                })
+                .catch((err) => {
+                    console.log(err.message, 'cannot get image url');
+                })
+            setImage(null);
+         })
+         .catch((err) => {
+                    console.log(err.message);
+                })
     }
 
     async function submitHandler(e) {
             e.preventDefault();
             console.log(values);
 
-            if (selectedSchool == null || selectedSchool.length == 0) {
+            if (selectedSchool === null || selectedSchool.length === 0) {
                 return setError("Please choose your school");
             }
 
@@ -72,11 +88,11 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
             {
                 uid: auth.currentUser.uid,
                 name: values.name,
-                school: selectedSchool,
+                school: selectedSchool.label,
                 bio: bioText,
                 contactInfo: contactText,
                 availability: availabilityText,
-                courses: selectedOptions
+                courses: selectedCourses
             }
             )
             .then(
@@ -169,10 +185,6 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
         })
     }
 
-    const avatarLabelStyle = {
-        fontSize: "1.5rem", fontWeight: 700
-    }
-
     return (
         <div className = "sign-up-cont-container">
             <form className = "sign-up-cont-inner" onSubmit = {submitHandler}>
@@ -213,8 +225,18 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
 
                 <div className = "add-profile-container">
                     <p> Add a profile picture (Optional) </p>
-                    <img src = {profileIcon} alt = ''/>
-                    <button onClick = {() => setButtonPopup(true)}> Upload </button>
+                    <Avatar className = 'avatar'
+                        src = {url}
+                        sx={{width: 150, height:150}}
+                        />
+                    <label className = 'file-input'>
+                        Choose your file
+                        <input
+                            type = 'file'
+                            onChange = {handlePFP}/>
+                    </label>
+                    <button onClick = {handleClick}> Upload </button>
+
 
                 </div>
 
@@ -239,15 +261,6 @@ const ProfileCreation = ({prevPage, handleChange, values}) => {
                 <button className = "sign-up-cont-inner-create-btn" type = "submit"> Done </button>
                 <button className = "sign-up-cont-inner-back-btn" onClick = {prevPage}> Back </button>
                 </form>
-
-                <AvatarPopup trigger = {buttonPopup} setTrigger = {setButtonPopup}>
-                    <h1 class = "sign-up-cont-popup-label"> Choose a profile picture </h1>
-                    <Avatar
-                        className = "avatar" width = {250} height = {300} onClose = {onCrop}
-                        onCrop = {onClose} labelStyle = {avatarLabelStyle}
-                    />
-                </AvatarPopup>
-
             </div>
 
 

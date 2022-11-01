@@ -2,7 +2,7 @@ import React from 'react'
 import defaultProfile from '../assets/profileIcon.png';
 import './Home/containers.css';
 
-const RequestContainer = () => {
+const RequestContainer = (name, course, message) => {
     
     const profilePic = defaultProfile;
 
@@ -11,17 +11,17 @@ const RequestContainer = () => {
         <div className = "tutor-requests">
             <div className = "tutor-requests-profile-name">
                 <img  src = {profilePic} alt = ''/>
-                <p> Name </p>
+                <p> {name} </p>
             </div>
 
             <div className = "tutor-requests-subject">
                 <label> Subjects</label>
-                <p> Test</p>
+                <p> {course} </p>
             </div>
 
             <div className = "tutor-requests-msg">
                 <label> Message </label>
-                <p> Test </p>
+                <p> {message} </p>
             </div>
 
             <div className = "tutor-requests-buttons">

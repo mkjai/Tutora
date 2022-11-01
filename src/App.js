@@ -11,6 +11,7 @@ import ProfileEditPage from './pages/ProfileEditPage.js';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import WithNav from './components/WithNav.js';
 import WithoutNav from './components/WithoutNav.js';
+import OtherUserProfile from './pages/OtherUserProfile.js';
 
 import { AuthProvider, useAuth} from "./AuthContext";
 
@@ -37,6 +38,7 @@ function App() {
                     <Route path = "/edit" element = {<PrivateRoute><ProfileEditPage/></PrivateRoute>} exact />
                     <Route path = "/reviews" element = {<PrivateRoute><ReviewPage/></PrivateRoute>} exact />
                     <Route path = "/setting-page" element = {<PrivateRoute><SettingPage/></PrivateRoute>} exact />
+                    <Route path = "/profile/:id" element = {<PrivateRoute><OtherUserProfile/></PrivateRoute>} exact />
                 </Route>
             </Routes>
         </Router>
