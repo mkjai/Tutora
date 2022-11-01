@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import defaultProfile from '../assets/profileIcon.png';
+import AcceptingPopup from './AcceptingPopup';
 import './Home/containers.css';
 
 const IncomingRequestContainer = (data) => {
@@ -33,9 +34,11 @@ const IncomingRequestContainer = (data) => {
             </div>
 
             <div className = "tutor-requests-buttons">
-                <button id = "tutor-accept"> Accept </button>
+                <button id = "tutor-accept" onClick = {() => isPopup(true)}> Accept </button>
                 <button id = "tutor-decline"> Decline </button>
             </div>
+
+            <AcceptingPopup trigger = {popup} setTrigger = {isPopup}/>
         </div>
     )
 }
